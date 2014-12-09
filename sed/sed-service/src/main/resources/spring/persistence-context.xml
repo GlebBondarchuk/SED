@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="packagesToScan" value="com.bsu.sed.model"/>
+        <property name="jpaDialect">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaDialect"/>
+        </property>
+        <property name="persistenceProviderClass" value="org.hibernate.jpa.HibernatePersistenceProvider"/>
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+                <!--uncomment for view schema updating-->
+                <!--<property name="generateDdl" value="true"/>-->
+                <property name="databasePlatform" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
+            </bean>
+        </property>
+
+        <property name="jpaPropertyMap">
+            <map>
+                <entry key="hibernate.show_sql" value="false"/>
+                <entry key="hibernate.format_sql" value="false"/>
+                <entry key="hibernate.generate_statistics" value="false"/>
+
+                <entry key="hibernate.transaction.jta.platform"
+                       value="org.hibernate.service.jta.platform.internal.JBossAppServerJtaPlatform"/>
+
+                <entry key="hibernate.cache.default_cache_concurrency_strategy" value="NONSTRICT_READ_WRITE"/>
+
+                <!--is used when connected 2nd level cache-->
+                <entry key="hibernate.transaction.manager_lookup_class"
+                       value="org.hibernate.transaction.JBossTransactionManagerLookup"/>
+
+                <entry key="hibernate.cache.region.factory_class"
+                       value="org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory"/>
+                <entry key="hibernate.cache.use_query_cache" value="false"/>
+                <entry key="hibernate.cache.use_second_level_cache" value="true"/>
+                <entry key="hibernate.cache.use_minimal_puts" value="false"/>
+            </map>
+        </property>
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
+
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+</beans>

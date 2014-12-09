@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+    <!-- global template -->
+    <definition name="sed-page-template" template="/WEB-INF/view/layout/pageTemplate.jsp">
+        <put-attribute name="title" cascade="true" value=""/>
+        <put-attribute name="header-content" value="/WEB-INF/view/layout/header.jsp"/>
+        <put-attribute name="menu-content" value="/WEB-INF/view/layout/menu.jsp"/>
+        <put-attribute name="primary-content" value=""/>
+        <put-attribute name="footer-content" value="/WEB-INF/view/layout/header.jsp"/>
+    </definition>
+
+    <!--main application page-->
+    <definition name="sed-main" extends="sed-page-template">
+        <put-attribute name="title" cascade="true" value="label.title"/>
+        <put-attribute name="primary-content" value="/WEB-INF/view/main.jsp"/>
+    </definition>
+
+</tiles-definitions>
