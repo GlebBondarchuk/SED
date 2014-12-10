@@ -19,4 +19,14 @@
         <put-attribute name="primary-content" value="/WEB-INF/view/main.jsp"/>
     </definition>
 
+    <!--error pages-->
+    <definition name="error.404" extends="sed-page-template">
+        <put-attribute name="title" cascade="true" value="label.404"/>
+        <put-attribute name="primary-content" value="/WEB-INF/view/error/404.jsp"/>
+    </definition>
+    <definition name="error.exception" extends="sed-page-template">
+        <put-attribute name="title" cascade="true" value="label.404"/>
+        <put-attribute name="primary-content" value="/WEB-INF/view/error/exception.jsp"/>
+    </definition>
+
 </tiles-definitions>

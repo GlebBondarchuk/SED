@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 /**
  * @author gbondarchuk
@@ -18,6 +19,13 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public User getByLogin(String login) {
-        return userDao.getByLogin(login);
+        throw new RuntimeException("Exception occurred.");
+//        return userDao.getByLogin(login);
+    }
+
+    @Override
+    @Transactional
+    public List<User> getAll() {
+        return userDao.getAll();
     }
 }

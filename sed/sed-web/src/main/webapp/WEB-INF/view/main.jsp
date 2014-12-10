@@ -1,9 +1,4 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" trimDirectiveWhitespaces="true" %>
-<html>
-<head>
-    <title title="Software Engineering Department">Software Engineering Department</title>
-</head>
-<body>
-    Hello All
-</body>
-</html>
+
+<spring:message code="label.content"/>
