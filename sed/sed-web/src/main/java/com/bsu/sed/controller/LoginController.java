@@ -32,8 +32,12 @@ public class LoginController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView redirect() {
-        return new ModelAndView("sed-main");
+    @RequestMapping(value = "/login/gleb", method = RequestMethod.GET)
+    public ModelAndView login2() {
+//        User user = userService.getByLogin("system");
+        String message = messageSource.getMessage("label.title", null, Locale.CHINESE);
+        ModelAndView modelAndView = new ModelAndView("error.exception");
+        modelAndView.addObject("exception", "Vise Versa");
+        return modelAndView;
     }
 }
