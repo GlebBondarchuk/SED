@@ -31,4 +31,9 @@ public class LoginController {
         ModelAndView modelAndView = new ModelAndView("sed-main");
         return modelAndView;
     }
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public ModelAndView redirect() {
+        return new ModelAndView("sed-main");
+    }
 }
