@@ -18,17 +18,10 @@ public class ExceptionHandlerController {
        return new ModelAndView("error.404");
     }
 
-    @ExceptionHandler(Throwable.class)
-    public ModelAndView handleOthersExceptions(Throwable throwable) {
+    @ExceptionHandler(RuntimeException.class)
+    public ModelAndView handleOthersExceptions(RuntimeException exception) {
         ModelAndView modelAndView = new ModelAndView("error.exception");
-        modelAndView.addObject("exception", throwable.getMessage());
-        return modelAndView;
-    }
-
-    @ExceptionHandler(StackOverflowError.class)
-    public ModelAndView handleStackOverFlowError(StackOverflowError e) {
-        ModelAndView modelAndView = new ModelAndView("error.exception");
-        modelAndView.addObject("exception", e.getMessage());
+        modelAndView.addObject("exception", exception.getMessage());
         return modelAndView;
     }
 }

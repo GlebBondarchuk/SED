@@ -10,18 +10,15 @@
 
     <mvc:annotation-driven/>
 
-    <!--<context:annotation-config />-->
-
     <context:component-scan base-package="com.bsu.sed.controller">
         <context:include-filter type="annotation"
-                                expression="org.springframework.web.bind.annotation.ControllerAdvice" />
+                                expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
     </context:component-scan>
 
     <mvc:resources mapping="/resources/**" location="/resources/"/>
 
     <!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <!--property name="prefix" value="/WEB-INF/content/"/-->
         <property name="prefix" value="/WEB-INF/jsp/"/>
         <property name="suffix" value=".jsp"/>
         <property name="order" value="1"/>
@@ -39,33 +36,29 @@
     <!-- Configure bean to convert JSON to POJO and vice versa -->
     <bean id="jsonMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
 
-    <!--<bean id="jacksonMessageChanger" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">      -->
-        <!--<property name="supportedMediaTypes" value="application/json"/>-->
-    <!--</bean>-->
-    <!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">-->
-        <!--<property name="messageConverters">-->
-            <!--<util:list id="beanList">-->
-                <!--<ref bean="jacksonMessageChanger"/>-->
-            <!--</util:list>-->
-        <!--</property>-->
-    <!--</bean>-->
+    <!--Internationalization-->
+    <bean id="messageSource"
+          class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basenames" value="classpath:/i18n/messages"/>
+        <property name="defaultEncoding" value="UTF-8"/>
+    </bean>
 
+    <bean id="localeChangeInterceptor"
+          class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+        <property name="paramName" value="lang"/>
+    </bean>
 
-    <!--<import resource="tiles-context.xml"/>-->
-    <!--<import resource="web-context.xml"/>-->
-    <!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">-->
-        <!--<property name="messageConverters">-->
-            <!--<list>-->
-                <!--<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>-->
-            <!--</list>-->
-        <!--</property>-->
-    <!--</bean>-->
-    <!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>-->
-    <!--&lt;!&ndash;Note HandlerAdapter Spring3.1 began &ndash;&gt;-->
-    <!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/>-->
+    <bean id="localeResolver"
+          class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+        <property name="defaultLocale" value="en"/>
+    </bean>
 
-    <!--<bean id='beanNameUrl'-->
-     <!--class='org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping'/>-->
+    <bean id="handlerMapping"
+          class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
+        <property name="interceptors" ref="localeChangeInterceptor"/>
+    </bean>
 
-
+    <mvc:interceptors>
+        <ref bean="localeChangeInterceptor"/>
+    </mvc:interceptors>
 </beans>

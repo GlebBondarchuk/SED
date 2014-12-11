@@ -5,10 +5,7 @@
        http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
-        <property name="basenames">
-            <list>
-                <value>i18n.messages</value>
-            </list>
-        </property>
+        <property name="basename" value="i18n.messages_en"/>
     </bean>
+
 </beans>

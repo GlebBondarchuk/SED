@@ -3,7 +3,7 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-<c:set var="applicationPath" value="${pageContext.request.contextPath}"/>
+<c:set var="applicationPath" value="${pageContext.request.contextPath}" scope="application"/>
 
 <!DOCTYPE HTML>
 <html>
@@ -11,7 +11,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
     <%--page icon--%>
-    <link rel="shortcut icon" href="${applicationPath}/resources/image/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="${applicationPath}/resources/image/main/favicon.png" type="image/x-icon">
 
     <%--page title--%>
     <c:set var="title"><tiles:insertAttribute name="title"/></c:set>
