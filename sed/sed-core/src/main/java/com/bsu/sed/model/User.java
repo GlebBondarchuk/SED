@@ -14,6 +14,7 @@ public class User extends BaseEntity {
     private String login;
     private String name;
     private String password;
+    private Role role;
     private String email;
     private boolean disabled;
 
@@ -72,5 +73,15 @@ public class User extends BaseEntity {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Column(name = "role")
+    @Enumerated(EnumType.STRING)
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }

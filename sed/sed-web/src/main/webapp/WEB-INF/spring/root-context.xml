@@ -6,6 +6,6 @@
 
        <import resource="classpath:spring/sed-context.xml"/>
        <import resource="web-context.xml"/>
-       <!--<import resource="security-context.xml"/>-->
+       <import resource="security-context.xml"/>
        <import resource="tiles-context.xml"/>
 </beans>

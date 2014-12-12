@@ -13,6 +13,12 @@
         <put-attribute name="footer-content" value="/WEB-INF/view/layout/footer.jsp"/>
     </definition>
 
+    <!--login page-->
+    <definition name="sed-login" extends="sed-page-template">
+        <put-attribute name="title" cascade="true" value="label.title"/>
+        <put-attribute name="primary-content" value="/WEB-INF/view/login.jsp"/>
+    </definition>
+
     <!--main application page-->
     <definition name="sed-main" extends="sed-page-template">
         <put-attribute name="title" cascade="true" value="label.title"/>

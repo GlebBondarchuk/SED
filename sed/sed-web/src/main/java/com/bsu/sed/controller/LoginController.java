@@ -3,6 +3,7 @@ package com.bsu.sed.controller;
 import com.bsu.sed.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,12 +27,10 @@ public class LoginController {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView login() {
-//        User user = userService.getByLogin("system");
-        String message = messageSource.getMessage("label.title", null, Locale.CHINESE);
-        ModelAndView modelAndView = new ModelAndView("sed-main");
-        return modelAndView;
+        return new ModelAndView("sed-login");
     }
 
+    @Secured("")
     @RequestMapping(value = "/login/gleb", method = RequestMethod.GET)
     public ModelAndView login2() {
 //        User user = userService.getByLogin("system");

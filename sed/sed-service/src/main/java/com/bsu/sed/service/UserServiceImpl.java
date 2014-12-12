@@ -19,8 +19,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public User getByLogin(String login) {
-        throw new RuntimeException("Exception occurred.");
-//        return userDao.getByLogin(login);
+        return userDao.getByLogin(login);
     }
 
     @Override

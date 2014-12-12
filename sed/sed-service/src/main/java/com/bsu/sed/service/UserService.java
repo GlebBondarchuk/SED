@@ -8,6 +8,11 @@ import java.util.List;
  * @author gbondarchuk
  */
 public interface UserService {
+    /**
+     * System user.
+     */
+    static final String SYSTEM_USER = "system";
+
     User getByLogin(String login);
 
     List<User> getAll();
