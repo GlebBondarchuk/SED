@@ -10,14 +10,15 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
+    <%--css styles--%>
+    <link rel="stylesheet" href="${applicationPath}/resources/css/main.css" />
+
     <%--page icon--%>
     <link rel="shortcut icon" href="${applicationPath}/resources/image/main/favicon.png" type="image/x-icon">
 
     <%--page title--%>
     <c:set var="title"><tiles:insertAttribute name="title"/></c:set>
     <title><spring:message code="${title}"/></title>
-
-
 
 </head>
 <body>
