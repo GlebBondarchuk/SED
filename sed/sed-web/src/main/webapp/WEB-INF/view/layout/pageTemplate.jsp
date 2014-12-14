@@ -11,7 +11,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
     <%--css styles--%>
-    <link rel="stylesheet" href="${applicationPath}/resources/css/main.css" />
+    <link rel="stylesheet" href="${applicationPath}/resources/css/main.css"/>
 
     <%--page icon--%>
     <link rel="shortcut icon" href="${applicationPath}/resources/image/main/favicon.png" type="image/x-icon">
@@ -22,11 +22,15 @@
 
 </head>
 <body>
+
 <tiles:insertAttribute name="header-content"/>
-<tiles:insertAttribute name="menu-content"/>
-<div class="page-content">
-    <tiles:insertAttribute name="primary-content"/>
+<div id="main">
+    <div id="content-top">
+        <tiles:insertAttribute name="menu-content"/>
+        <tiles:insertAttribute name="primary-content"/>
+    </div>
 </div>
 <tiles:insertAttribute name="footer-content"/>
+
 </body>
 </html>

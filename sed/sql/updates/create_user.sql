@@ -11,5 +11,7 @@ CREATE TABLE IF NOT EXISTS sed_user (
 )
   ENGINE = InnoDB;
 
-INSERT INTO sed_user (login, name, password, role, email, disabled) VALUES ('system', 'system', 'system', 'ADMIN', 'system@sed.com', TRUE);
-INSERT INTO sed_user (login, name, password, role, email, disabled) VALUES ('gleb', 'Gleb Bondarchuk', '899cc984ac3801fa9cb12f1486264628', 'ADMIN', 'gleb.exadel@gmail.com', FALSE);
+INSERT INTO sed_user (login, name, password, role, email, disabled)
+VALUES ('system', 'system', 'system', 'ADMIN', 'system@sed.com', TRUE);
+INSERT INTO sed_user (login, name, password, role, email, disabled)
+VALUES ('gleb', 'Gleb Bondarchuk', '899cc984ac3801fa9cb12f1486264628', 'ADMIN', 'gleb.exadel@gmail.com', FALSE);
