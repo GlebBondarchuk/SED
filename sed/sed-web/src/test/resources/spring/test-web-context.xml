@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <import resource="test-service-context.xml"/>
+
+    <!-- Use file:**/target/** or file:**/webapp to find out web spring configuration -->
+
+    <import resource="file:**/target/**/WEB-INF/spring/security-context.xml"/>
+    <import resource="file:**/target/**/WEB-INF/spring/servlet-context.xml"/>
+    <import resource="file:**/target/**/WEB-INF/spring/tiles-context.xml"/>
+    <import resource="file:**/target/**/WEB-INF/spring/web-context.xml"/>
+</beans>
