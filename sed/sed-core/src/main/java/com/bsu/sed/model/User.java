@@ -7,7 +7,7 @@ import javax.persistence.*;
  *
  * @author gbondarchuk
  */
-@Entity
+@Entity(name="User")
 @Table(name = "sed_user")
 public class User extends BaseEntity {
     private Long id;
