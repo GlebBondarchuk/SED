@@ -12,7 +12,7 @@
     </beans:bean>
 
 
-    <!--<security:global-method-security secured-annotations="enabled" pre-post-annotations="enabled"/>-->
+    <security:global-method-security secured-annotations="enabled" pre-post-annotations="enabled"/>
 
     <http auto-config='true'>
         <!--<intercept-url pattern="/**" access="ROLE_USER"/>-->
