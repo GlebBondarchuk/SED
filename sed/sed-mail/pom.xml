@@ -12,6 +12,13 @@
     <artifactId>sed-mail</artifactId>
 
     <dependencies>
+
+        <!--Core Module-->
+        <dependency>
+            <artifactId>sed-core</artifactId>
+            <groupId>com.bsu.sed</groupId>
+        </dependency>
+
         <!--Mail-->
         <dependency>
             <groupId>javax.mail</groupId>
