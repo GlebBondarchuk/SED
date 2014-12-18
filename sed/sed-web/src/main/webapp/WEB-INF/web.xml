@@ -28,6 +28,8 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
 
+    <!--Main And Only Application Entry Point-->
+    <!--All requests and responses should be pass there-->
     <servlet-mapping>
         <servlet-name>dispatcherServlet</servlet-name>
         <url-pattern>/</url-pattern>
@@ -41,10 +43,6 @@
         <filter-name>springSecurityFilterChain</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-
-    <error-page>
-        <location>/exception</location>
-    </error-page>
 
     <display-name>Software Engineering Department</display-name>
 </web-app>
