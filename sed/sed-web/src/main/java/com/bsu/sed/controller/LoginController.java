@@ -3,7 +3,7 @@ package com.bsu.sed.controller;
 import com.bsu.sed.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
-import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,10 +30,9 @@ public class LoginController {
         return new ModelAndView("sed-login");
     }
 
-    @Secured("")
+    @PreAuthorize("hasRole('USER')")
     @RequestMapping(value = "/login/gleb", method = RequestMethod.GET)
     public ModelAndView login2() {
-//        User user = userService.getByLogin("system");
         String message = messageSource.getMessage("label.title", null, Locale.CHINESE);
         ModelAndView modelAndView = new ModelAndView("error.exception");
         modelAndView.addObject("exception", "Vise Versa");
