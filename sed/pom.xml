@@ -53,6 +53,13 @@
         <!--Mail-->
         <javax.mail.version>1.5.2</javax.mail.version>
 
+        <!--Java EE API-->
+        <javaee.api.vesion>7.0</javaee.api.vesion>
+
+        <!--Apache Velocity-->
+        <apache.velocity.version>1.7</apache.velocity.version>
+        <apache.velocity-tools.version>2.0</apache.velocity-tools.version>
+
         <project.build.source>1.7</project.build.source>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
@@ -66,8 +73,33 @@
             </dependency>
             <dependency>
                 <groupId>com.bsu.sed</groupId>
+                <artifactId>sed-mail</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.bsu.sed</groupId>
                 <artifactId>sed-service</artifactId>
                 <version>${project.version}</version>
+            </dependency>
+
+            <!-- Java Enterprise Edition API -->
+            <dependency>
+                <groupId>javax</groupId>
+                <artifactId>javaee-api</artifactId>
+                <version>${javaee.api.vesion}</version>
+                <scope>runtime</scope>
+            </dependency>
+
+            <!--Apache Velocity-->
+            <dependency>
+                <groupId>org.apache.velocity</groupId>
+                <artifactId>velocity</artifactId>
+                <version>${apache.velocity.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.velocity</groupId>
+                <artifactId>velocity-tools</artifactId>
+                <version>${apache.velocity-tools.version}</version>
             </dependency>
 
             <!-- Spring -->
@@ -365,6 +397,7 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
     <build>
         <plugins>
             <plugin>
@@ -384,4 +417,24 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>developer</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <custom.resource>bsu</custom.resource>
+                <documentRepositoryFolder>/sed</documentRepositoryFolder>
+                <serverUrl>http://localhost:8080</serverUrl>
+                <context-root>/</context-root>
+                <displayVersion>inline</displayVersion>
+                <dbURL>jdbc:mysql://localhost:3306/sed</dbURL>
+                <dbUser>root</dbUser>
+                <dbPassword>root</dbPassword>
+            </properties>
+        </profile>
+    </profiles>
+
 </project>

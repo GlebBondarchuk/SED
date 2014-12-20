@@ -1,4 +1,4 @@
-package com.bsu.sed.model;
+package com.bsu.sed.model.persistent;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;

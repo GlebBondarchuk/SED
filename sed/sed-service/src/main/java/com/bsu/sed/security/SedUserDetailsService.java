@@ -1,6 +1,6 @@
 package com.bsu.sed.security;
 
-import com.bsu.sed.model.User;
+import com.bsu.sed.model.persistent.User;
 import com.bsu.sed.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.DisabledException;

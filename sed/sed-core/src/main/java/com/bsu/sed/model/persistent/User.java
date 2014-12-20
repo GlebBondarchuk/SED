@@ -1,4 +1,6 @@
-package com.bsu.sed.model;
+package com.bsu.sed.model.persistent;
+
+import com.bsu.sed.model.Role;
 
 import javax.persistence.*;
 

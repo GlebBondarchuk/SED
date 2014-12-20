@@ -1,6 +1,6 @@
 package com.bsu.sed.service;
 
-import com.bsu.sed.model.User;
+import com.bsu.sed.model.persistent.User;
 
 import java.util.List;
 

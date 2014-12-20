@@ -9,9 +9,9 @@ import java.util.Collection;
  */
 public class MailMessage {
     private String[] recipients;
-    private String sender;
     private String subject;
     private String emailBody;
+    private InlineResource inlineResource;
     private MessagePriority priority = MessagePriority.NORMAL; //normal priority as default.
 
     protected MailMessage() {
@@ -31,14 +31,6 @@ public class MailMessage {
 
     public void setRecipients(String recipient) {
         this.recipients = new String[]{recipient};
-    }
-
-    public String getSender() {
-        return sender;
-    }
-
-    public void setSender(String sender) {
-        this.sender = sender;
     }
 
     public String getSubject() {
@@ -67,5 +59,13 @@ public class MailMessage {
 
     public void setPriority(MessagePriority priority) {
         this.priority = priority;
+    }
+
+    public InlineResource getInlineResource() {
+        return inlineResource;
+    }
+
+    public void setInlineResource(InlineResource inlineResource) {
+        this.inlineResource = inlineResource;
     }
 }

@@ -1,7 +1,7 @@
 package com.bsu.sed.service;
 
 import com.bsu.sed.dao.UserDao;
-import com.bsu.sed.model.User;
+import com.bsu.sed.model.persistent.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

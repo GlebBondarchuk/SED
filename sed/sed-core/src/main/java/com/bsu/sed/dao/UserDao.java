@@ -1,7 +1,7 @@
 package com.bsu.sed.dao;
 
 import com.bsu.sed.dao.generic.GenericDao;
-import com.bsu.sed.model.User;
+import com.bsu.sed.model.persistent.User;
 
 /**
  * @author gbondarchuk

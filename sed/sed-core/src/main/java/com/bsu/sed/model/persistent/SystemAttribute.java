@@ -1,4 +1,6 @@
-package com.bsu.sed.model;
+package com.bsu.sed.model.persistent;
+
+import com.bsu.sed.model.SystemAttributeKey;
 
 import javax.persistence.*;
 
@@ -7,7 +9,7 @@ import javax.persistence.*;
  *
  * @author gbondarchuk
  */
-@Entity(name="System")
+@Entity(name = "System")
 @Table(name = "sed_system")
 public class SystemAttribute extends BaseEntity {
 
@@ -16,6 +18,7 @@ public class SystemAttribute extends BaseEntity {
     private String value;
     private String displayName;
     private String description;
+    private String category;
 
     @Override
     @Id
@@ -64,5 +67,14 @@ public class SystemAttribute extends BaseEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Column(name = "category")
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

@@ -8,8 +8,6 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>sed-web</artifactId>
     <packaging>war</packaging>
-    <name>sed-web</name>
-    <url>http://maven.apache.org</url>
 
     <dependencies>
 

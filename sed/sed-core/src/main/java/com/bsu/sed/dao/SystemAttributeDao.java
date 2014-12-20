@@ -1,7 +1,7 @@
 package com.bsu.sed.dao;
 
 import com.bsu.sed.dao.generic.GenericDao;
-import com.bsu.sed.model.SystemAttribute;
+import com.bsu.sed.model.persistent.SystemAttribute;
 import com.bsu.sed.model.SystemAttributeKey;
 
 /**
@@ -16,4 +16,12 @@ public interface SystemAttributeDao extends GenericDao<SystemAttribute, Long> {
      * @return Attribute value.
      */
     String get(SystemAttributeKey key);
+
+    /**
+     * Get integer system attribute value.
+     *
+     * @param key Key value.
+     * @return Integer attribute value.
+     */
+    int getInt(SystemAttributeKey key);
 }

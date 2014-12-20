@@ -1,0 +1,12 @@
+<html>
+<body>
+    #parse("/template/common/header.vm")
+<div id="user" style="padding: 20px">
+    $esc.html($user.name)
+</div>
+    #parse("/template/common/footer.vm")
+</body>
+</html>
+
+
+

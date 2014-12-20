@@ -1,7 +1,7 @@
 package com.bsu.sed.dao;
 
 import com.bsu.sed.dao.generic.AbstractDao;
-import com.bsu.sed.model.User;
+import com.bsu.sed.model.persistent.User;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;

@@ -13,10 +13,16 @@
 
     <dependencies>
 
-        <!--Core Module-->
+        <!--Core module-->
         <dependency>
             <artifactId>sed-core</artifactId>
             <groupId>com.bsu.sed</groupId>
+        </dependency>
+
+        <!--Mail module-->
+        <dependency>
+            <groupId>com.bsu.sed</groupId>
+            <artifactId>sed-mail</artifactId>
         </dependency>
 
         <!--Apache-->

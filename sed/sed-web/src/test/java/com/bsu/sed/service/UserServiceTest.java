@@ -1,7 +1,7 @@
 package com.bsu.sed.service;
 
 import com.bsu.sed.common.AbstractNonTransactionalIntegrationTest;
-import com.bsu.sed.model.User;
+import com.bsu.sed.model.persistent.User;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,9 +41,9 @@ public class UserServiceTest extends AbstractNonTransactionalIntegrationTest {
     }
 
     private void likeSystemUserTest(User user) {
-        Assert.assertEquals(user.getEmail(), "system@sed.com");
+        Assert.assertEquals(user.getEmail(), "sed.bsu@gmail.com");
         Assert.assertEquals(user.getLogin(), "system");
-        Assert.assertEquals(user.getName(), "system");
+        Assert.assertEquals(user.getName(), "System User");
         Assert.assertEquals(user.getPassword(), "system");
         Assert.assertEquals(user.isDisabled(), true);
     }
