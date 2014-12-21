@@ -15,6 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author gbondarchuk
  */
 public class MailBuilderTest extends AbstractTransactionalIntegrationTest {
+
+    private static final String WRONG_SYMBOL = "$";
+
     @Autowired
     private UserService service;
 
@@ -44,6 +47,10 @@ public class MailBuilderTest extends AbstractTransactionalIntegrationTest {
         Assert.assertEquals(message.getRecipients()[0], user.getEmail());
         Assert.assertEquals(message.getSubject(), "User Registration");
         Assert.assertNotNull(message.getEmailBody());
+
+        if(message.getEmailBody().contains(WRONG_SYMBOL)) {
+            Assert.fail("Message body contains unexpected symbols.");
+        }
         return message;
     }
 }

@@ -1,8 +1,11 @@
 <html>
 <body>
+    #parse("/template/common/styles.vm")
     #parse("/template/common/header.vm")
-<div id="user" style="padding: 20px">
+<div id="user" style="$bodyMainStyle">
+    <hr>
     $esc.html($user.name)
+    <hr>
 </div>
     #parse("/template/common/footer.vm")
 </body>

@@ -1,14 +1,14 @@
-<div style="background: #eee;border: 1px solid #ccc;padding: 5px 10px;">
+<div style="$headerBoxStyle">
     <h2>
-        <span style="color: #000000;">
+        <span style="$headerBoxColor">
         &nbsp; &nbsp; &nbsp;
-            <img src="cid:bsu" style="width: 49px;height: 73px;float: left;"/>
+            <img src="cid:bsu" style="$headerLogoStyle"/>
         &nbsp;&nbsp;
         </span>
     </h2>
 
     <h2>
-        <span style="color: #000000;">
+        <span style="$headerBoxColor">
             &nbsp; &nbsp; BSU, Software Engineering Department
         </span>
     </h2>

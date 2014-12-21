@@ -1,0 +1,6 @@
+#set($headerBoxStyle = "background: #eee;border: 1px solid #ccc;padding: 5px 10px;")
+#set($headerBoxColor="color: #000000;")
+#set($headerLogoStyle="width: 49px;height: 73px;float: left;")
+#set($footerBoxStyle="background: #eee;border: 1px solid #ccc;padding: 5px 10px;")
+#set($footerFont="font-size: 14px;")
+#set($bodyMainStyle="padding: 20px")

@@ -1,6 +1,6 @@
-<div style="background: #eee;border: 1px solid #ccc;padding: 5px 10px;">
+<div style="$footerBoxStyle">
     <p>
-        <span style="font-size: 14px;">
+        <span style="$footerFont">
         Best regards,<br/>
         Software Engineering Department
         </span>
