@@ -1,5 +1,6 @@
 package com.bsu.sed.model;
 
 public enum SystemAttributeCategory {
-    EMAIL
+    EMAIL,
+    ANOTHER /*Should be renamed*/
 }

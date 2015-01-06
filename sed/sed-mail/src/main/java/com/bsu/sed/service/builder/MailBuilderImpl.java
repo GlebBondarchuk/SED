@@ -45,7 +45,7 @@ public class MailBuilderImpl implements MailBuilder {
 
 
         message.setEmailBody(emailBody);
-        message.setRecipients(user.getEmail());
+        message.setRecipients(user.getLogin());
         message.setPriority(MessagePriority.NORMAL);
 
 

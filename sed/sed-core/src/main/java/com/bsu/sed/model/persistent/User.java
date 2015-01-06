@@ -1,6 +1,8 @@
 package com.bsu.sed.model.persistent;
 
 import com.bsu.sed.model.Role;
+import com.bsu.sed.model.constraint.ConstraintConstants;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 
@@ -9,16 +11,20 @@ import javax.persistence.*;
  *
  * @author gbondarchuk
  */
-@Entity(name="User")
+@Entity(name = "User")
 @Table(name = "sed_user")
 public class User extends BaseEntity {
+
     private Long id;
     private String login;
     private String name;
     private String password;
     private Role role;
-    private String email;
     private boolean disabled;
+
+    public enum Fields {
+        login, password, name
+    }
 
     @Override
     @Id
@@ -41,16 +47,9 @@ public class User extends BaseEntity {
         this.disabled = disabled;
     }
 
-    @Column(name = "email")
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    @Column(name = "login")
+    @NotEmpty
+    @com.bsu.sed.model.constraint.Email
+    @Column(name = "login", length = ConstraintConstants.USER_LOGIN_MAX_LENGTH)
     public String getLogin() {
         return login;
     }
@@ -59,7 +58,8 @@ public class User extends BaseEntity {
         this.login = login;
     }
 
-    @Column(name = "name")
+    @NotEmpty
+    @Column(name = "name", length = ConstraintConstants.USER_NAME_MAX_LENGTH)
     public String getName() {
         return name;
     }
@@ -68,7 +68,8 @@ public class User extends BaseEntity {
         this.name = name;
     }
 
-    @Column(name = "password")
+    @NotEmpty
+    @Column(name = "password", length = ConstraintConstants.USER_PASSWORD_MAX_LENGTH)
     public String getPassword() {
         return password;
     }
@@ -77,7 +78,7 @@ public class User extends BaseEntity {
         this.password = password;
     }
 
-    @Column(name = "role")
+    @Column(name = "role", length = ConstraintConstants.USER_ROLE_MAX_LENGTH)
     @Enumerated(EnumType.STRING)
     public Role getRole() {
         return role;

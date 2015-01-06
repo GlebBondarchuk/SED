@@ -23,14 +23,18 @@
 </head>
 <body>
 
-<tiles:insertAttribute name="header-content"/>
+<header>
+    <tiles:insertAttribute name="header-content"/>
+</header>
 <div id="main">
     <div id="content-top">
         <tiles:insertAttribute name="menu-content"/>
         <tiles:insertAttribute name="primary-content"/>
     </div>
 </div>
-<tiles:insertAttribute name="footer-content"/>
+<footer>
+    <tiles:insertAttribute name="footer-content"/>
+</footer>
 
 </body>
 </html>

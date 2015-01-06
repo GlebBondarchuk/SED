@@ -32,7 +32,6 @@ public class UserServiceTest extends AbstractNonTransactionalIntegrationTest {
     private void notNullTest(User user) {
         Assert.assertNotNull(user);
         Assert.assertNotNull(user.getId());
-        Assert.assertNotNull(user.getEmail());
         Assert.assertNotNull(user.getLogin());
         Assert.assertNotNull(user.getName());
         Assert.assertNotNull(user.getPassword());
@@ -41,8 +40,7 @@ public class UserServiceTest extends AbstractNonTransactionalIntegrationTest {
     }
 
     private void likeSystemUserTest(User user) {
-        Assert.assertEquals(user.getEmail(), "sed.bsu@gmail.com");
-        Assert.assertEquals(user.getLogin(), "system");
+        Assert.assertEquals(user.getLogin(), "sed.bsu@gmail.com");
         Assert.assertEquals(user.getName(), "System User");
         Assert.assertEquals(user.getPassword(), "system");
         Assert.assertEquals(user.isDisabled(), true);

@@ -11,7 +11,7 @@ public interface UserService {
     /**
      * System user.
      */
-    static final String SYSTEM_USER = "system";
+    static final String SYSTEM_USER = "sed.bsu@gmail.com";
 
     User getByLogin(String login);
 

@@ -21,7 +21,7 @@ public class SystemAttributeDaoImpl extends AbstractDao<SystemAttribute> impleme
      */
     private String getValue(SystemAttributeKey key) {
         Session session = em.unwrap(Session.class);
-        Query query = session.createQuery("select system.value from System system where system.key = :key");
+        Query query = session.createQuery("select system.value from SystemAttribute system where system.key = :key");
         query.setParameter("key", key);
         return (String) query.uniqueResult();
     }

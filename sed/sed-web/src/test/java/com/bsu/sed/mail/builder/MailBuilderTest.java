@@ -40,11 +40,12 @@ public class MailBuilderTest extends AbstractTransactionalIntegrationTest {
 
     private MailMessage buildRegistrationMessage() {
         User user = service.getByLogin(UserService.SYSTEM_USER);
+        user.setLogin("rostislav.bobrovsky@gmail.com");
         Assert.assertNotNull(user);
 
         MailMessage message = mailBuilder.buildRegistrationMessage(user);
         Assert.assertEquals(message.getPriority(), MessagePriority.NORMAL);
-        Assert.assertEquals(message.getRecipients()[0], user.getEmail());
+        Assert.assertEquals(message.getRecipients()[0], user.getLogin());
         Assert.assertEquals(message.getSubject(), "User Registration");
         Assert.assertNotNull(message.getEmailBody());
 

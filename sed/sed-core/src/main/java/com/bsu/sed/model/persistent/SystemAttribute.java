@@ -1,15 +1,21 @@
 package com.bsu.sed.model.persistent;
 
+import com.bsu.sed.model.SystemAttributeCategory;
 import com.bsu.sed.model.SystemAttributeKey;
+import com.bsu.sed.model.constraint.ConstraintConstants;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Size;
 
 /**
  * System Application Attributes.
  *
  * @author gbondarchuk
  */
-@Entity(name = "System")
+@Entity(name = "SystemAttribute")
 @Table(name = "sed_system")
 public class SystemAttribute extends BaseEntity {
 
@@ -18,7 +24,7 @@ public class SystemAttribute extends BaseEntity {
     private String value;
     private String displayName;
     private String description;
-    private String category;
+    private SystemAttributeCategory category;
 
     @Override
     @Id
@@ -32,7 +38,7 @@ public class SystemAttribute extends BaseEntity {
         this.id = id;
     }
 
-    @Column(name = "key")
+    @Column(name = "key", updatable = false)
     @Enumerated(EnumType.STRING)
     public SystemAttributeKey getKey() {
         return key;
@@ -42,6 +48,8 @@ public class SystemAttribute extends BaseEntity {
         this.key = key;
     }
 
+    @NotEmpty
+    @Length(max = ConstraintConstants.SYSTEM_VALUE_MAX_LENGTH)
     @Column(name = "value")
     public String getValue() {
         return value;
@@ -51,7 +59,8 @@ public class SystemAttribute extends BaseEntity {
         this.value = value;
     }
 
-    @Column(name = "display_name")
+    @NotEmpty
+    @Column(name = "display_value", updatable = false)
     public String getDisplayName() {
         return displayName;
     }
@@ -60,7 +69,8 @@ public class SystemAttribute extends BaseEntity {
         this.displayName = displayName;
     }
 
-    @Column(name = "description")
+    @NotEmpty
+    @Column(name = "description", length = ConstraintConstants.SYSTEM_DESCRIPTION_MAX_LENGTH)
     public String getDescription() {
         return description;
     }
@@ -69,12 +79,13 @@ public class SystemAttribute extends BaseEntity {
         this.description = description;
     }
 
-    @Column(name = "category")
-    public String getCategory() {
+    @Column(name = "category", updatable = false)
+    @Enumerated(EnumType.STRING)
+    public SystemAttributeCategory getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(SystemAttributeCategory category) {
         this.category = category;
     }
 }

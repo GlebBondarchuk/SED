@@ -23,6 +23,9 @@
 
         <!--Hibernate-->
         <hibernate.version>4.3.7.Final</hibernate.version>
+        <!--This transitively pulls in the dependency to the Bean Validation API-->
+        <!--javax.validation:validation-api:1.1.0.Final-->
+        <hiverbate.validator.version>5.1.3.Final</hiverbate.validator.version>
 
         <!--Servlet-->
         <javax.servlet.api>3.1.0</javax.servlet.api>
@@ -243,7 +246,7 @@
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-validator</artifactId>
-                <version>${hibernate.version}</version>
+                <version>${hiverbate.validator.version}</version>
             </dependency>
 
             <!--Logging-->

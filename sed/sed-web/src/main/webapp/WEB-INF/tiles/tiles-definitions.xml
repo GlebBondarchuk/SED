@@ -19,6 +19,13 @@
         <put-attribute name="primary-content" value="/WEB-INF/view/login.jsp"/>
     </definition>
 
+    <!--sign up page-->
+    <definition name="sed-sign-up" extends="sed-page-template">
+        <put-attribute name="title" cascade="true" value="label.title"/>
+        <put-attribute name="primary-content" value="/WEB-INF/view/signUp.jsp"/>
+    </definition>
+
+
     <!--main application page-->
     <definition name="sed-main" extends="sed-page-template">
         <put-attribute name="title" cascade="true" value="label.title"/>
