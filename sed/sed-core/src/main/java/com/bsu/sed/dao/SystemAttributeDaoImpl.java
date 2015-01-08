@@ -7,6 +7,8 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
+
 /**
  * @author gbondarchuk
  */

@@ -2,9 +2,11 @@ package com.bsu.sed.model.persistent;
 
 import com.bsu.sed.model.Role;
 import com.bsu.sed.model.constraint.ConstraintConstants;
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 /**
  * User entity.
@@ -49,7 +51,8 @@ public class User extends BaseEntity {
 
     @NotEmpty
     @com.bsu.sed.model.constraint.Email
-    @Column(name = "login", length = ConstraintConstants.USER_LOGIN_MAX_LENGTH)
+    @Length(max = ConstraintConstants.USER_LOGIN_MAX_LENGTH)
+    @Column(name = "login")
     public String getLogin() {
         return login;
     }
@@ -59,7 +62,8 @@ public class User extends BaseEntity {
     }
 
     @NotEmpty
-    @Column(name = "name", length = ConstraintConstants.USER_NAME_MAX_LENGTH)
+    @Length(max = ConstraintConstants.USER_NAME_MAX_LENGTH)
+    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -69,7 +73,8 @@ public class User extends BaseEntity {
     }
 
     @NotEmpty
-    @Column(name = "password", length = ConstraintConstants.USER_PASSWORD_MAX_LENGTH)
+    @Length(max = ConstraintConstants.USER_PASSWORD_MAX_LENGTH)
+    @Column(name = "password")
     public String getPassword() {
         return password;
     }
@@ -78,7 +83,8 @@ public class User extends BaseEntity {
         this.password = password;
     }
 
-    @Column(name = "role", length = ConstraintConstants.USER_ROLE_MAX_LENGTH)
+    @NotNull
+    @Column(name = "role")
     @Enumerated(EnumType.STRING)
     public Role getRole() {
         return role;

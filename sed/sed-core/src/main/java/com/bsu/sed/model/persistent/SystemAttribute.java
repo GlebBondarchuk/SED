@@ -8,6 +8,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
@@ -44,7 +45,7 @@ public class SystemAttribute extends BaseEntity {
         return key;
     }
 
-    public void setKey(SystemAttributeKey key) {
+    private void setKey(SystemAttributeKey key) {
         this.key = key;
     }
 
@@ -65,12 +66,13 @@ public class SystemAttribute extends BaseEntity {
         return displayName;
     }
 
-    public void setDisplayName(String displayName) {
+    private void setDisplayName(String displayName) {
         this.displayName = displayName;
     }
 
     @NotEmpty
-    @Column(name = "description", length = ConstraintConstants.SYSTEM_DESCRIPTION_MAX_LENGTH)
+    @Length(max = ConstraintConstants.SYSTEM_DESCRIPTION_MAX_LENGTH)
+    @Column(name = "description")
     public String getDescription() {
         return description;
     }
@@ -85,7 +87,7 @@ public class SystemAttribute extends BaseEntity {
         return category;
     }
 
-    public void setCategory(SystemAttributeCategory category) {
+    private void setCategory(SystemAttributeCategory category) {
         this.category = category;
     }
 }

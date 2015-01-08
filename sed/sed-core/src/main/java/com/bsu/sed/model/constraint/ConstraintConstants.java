@@ -18,7 +18,6 @@ public abstract class ConstraintConstants {
     public static final int USER_LOGIN_MAX_LENGTH = 50;
     public static final int USER_NAME_MAX_LENGTH = 50;
     public static final int USER_PASSWORD_MAX_LENGTH = 50;
-    public static final int USER_ROLE_MAX_LENGTH = 50;
 
     /**
      * System Attribute Constraints.

@@ -1,10 +1,15 @@
 package com.bsu.sed.controller;
 
+import com.bsu.sed.model.persistent.SystemAttribute;
+import com.bsu.sed.service.SystemAttributeService;
 import com.bsu.sed.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.TransactionSystemException;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -18,6 +23,8 @@ import java.util.Locale;
  */
 @Controller
 public class LoginController {
+
+    private static final Logger log = LoggerFactory.getLogger(LoginController.class);
 
     @Autowired
     private UserService userService;

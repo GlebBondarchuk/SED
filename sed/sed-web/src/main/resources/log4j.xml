@@ -14,27 +14,31 @@
 	<logger name="com.bsu.sed">
 		<level value="info" />
 	</logger>
-	
-	<!-- 3rd-party Loggers -->
-	<logger name="org.springframework.core">
-		<level value="info" />
-	</logger>
-	
-	<logger name="org.springframework.beans">
-		<level value="info" />
-	</logger>
-	
-	<logger name="org.springframework.context">
-		<level value="info" />
-	</logger>
 
-	<logger name="org.springframework.web">
-		<level value="info" />
-	</logger>
+	<!--&lt;!&ndash; 3rd-party Loggers &ndash;&gt;-->
+	<!--<logger name="org.springframework.core">-->
+		<!--<level value="info" />-->
+	<!--</logger>-->
+	<!---->
+	<!--<logger name="org.springframework.beans">-->
+		<!--<level value="info" />-->
+	<!--</logger>-->
+	<!---->
+	<!--<logger name="org.springframework.context">-->
+		<!--<level value="info" />-->
+	<!--</logger>-->
+
+	<!--<logger name="org.springframework.web">-->
+		<!--<level value="info" />-->
+	<!--</logger>-->
+
+	<!--<logger name="javax">-->
+		<!--<level value="info" />-->
+	<!--</logger>-->
 
 	<!-- Root Logger -->
 	<root>
-		<priority value="warn" />
+		<priority value="info" />
 		<appender-ref ref="console" />
 	</root>
 	
