@@ -4,20 +4,17 @@ import com.bsu.sed.common.AbstractTransactionalIntegrationTest;
 import com.bsu.sed.model.Role;
 import com.bsu.sed.model.constraint.ConstraintConstants;
 import com.bsu.sed.model.persistent.User;
-import com.bsu.sed.utils.StringUtils;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import javax.validation.Validator;
 
 import javax.validation.Validation;
+import javax.validation.Validator;
 import java.util.List;
 import java.util.Set;
 
 import static com.bsu.sed.utils.StringUtils.*;
-import static com.bsu.sed.utils.StringUtils.createOverflowString;
-import static com.bsu.sed.utils.StringUtils.createValidString;
 
 /**
  * Tests for user dao.

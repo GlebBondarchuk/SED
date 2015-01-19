@@ -3,11 +3,14 @@
 <div id="main">
     <div id="header">
         <security:authorize access="isAnonymous()">
-            <a href="${applicationPath}/login"><spring:message code="label.signIn"/></a>
+            <a href="${applicationPath}/login"><spring:message code="label.signIn"/></a> BANNER
         </security:authorize>
         <security:authorize access="isAuthenticated()">
             Welcome, <security:authentication property="principal.username"/>
             <a href="${applicationPath}/j_spring_security_logout"><spring:message code="label.signOut"/></a>
+        </security:authorize>
+        <security:authorize access="hasRole('ADMIN')">
+            <a href="${applicationPath}/admin/system">System Page</a>
         </security:authorize>
         <div>
             Language: <a href="?lang=en"><img src="${applicationPath}/resources/image/language/usa.png"/></a> |

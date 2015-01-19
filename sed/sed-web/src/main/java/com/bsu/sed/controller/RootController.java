@@ -1,5 +1,6 @@
 package com.bsu.sed.controller;
 
+import com.bsu.sed.model.Tiles;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 public class RootController {
     @RequestMapping(value = "/")
     public ModelAndView loadRootPage() {
-        return new ModelAndView("sed-main");
+        return new ModelAndView(Tiles.MAIN_PAGE.getTileName());
     }
 }

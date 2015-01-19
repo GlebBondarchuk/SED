@@ -1,5 +1,6 @@
 package com.bsu.sed.controller;
 
+import com.bsu.sed.model.Tiles;
 import com.bsu.sed.model.persistent.SystemAttribute;
 import com.bsu.sed.service.SystemAttributeService;
 import com.bsu.sed.service.UserService;
@@ -34,15 +35,15 @@ public class LoginController {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView login() {
-        return new ModelAndView("sed-login");
+        return new ModelAndView(Tiles.LOGIN_PAGE.getTileName());
     }
 
-    @PreAuthorize("hasRole('USER')")
-    @RequestMapping(value = "/login/gleb", method = RequestMethod.GET)
-    public ModelAndView login2() {
-        String message = messageSource.getMessage("label.title", null, Locale.CHINESE);
-        ModelAndView modelAndView = new ModelAndView("error.exception");
-        modelAndView.addObject("exception", "Vise Versa");
-        return modelAndView;
-    }
+//    @PreAuthorize("hasRole('USER')")
+//    @RequestMapping(value = "/login/gleb", method = RequestMethod.GET)
+//    public ModelAndView login2() {
+//        String message = messageSource.getMessage("label.title", null, Locale.CHINESE);
+//        ModelAndView modelAndView = new ModelAndView("error.exception");
+//        modelAndView.addObject("exception", "Vise Versa");
+//        return modelAndView;
+//    }
 }

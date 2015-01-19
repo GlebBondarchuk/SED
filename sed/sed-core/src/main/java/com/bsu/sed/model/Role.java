@@ -6,7 +6,7 @@ package com.bsu.sed.model;
  * @author gbondarchuk
  */
 public enum Role {
-    ADMIN, /*Admin Role*/
+     ADMIN, /*Admin Role*/
     TEACHER, /*Teacher Role*/
-    STUDENT   /*Student Role*/
+    STUDENT  /*Student Role*/
 }

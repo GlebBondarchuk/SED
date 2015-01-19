@@ -1,34 +1,32 @@
 package com.bsu.sed.model.dto;
 
-import com.bsu.sed.model.metadata.UserDtoMetadata;
-import com.bsu.sed.model.persistent.User;
-import com.bsu.sed.utils.EntityUtils;
 
+import com.bsu.sed.model.Role;
+import com.bsu.sed.model.constraint.ConstraintConstants;
+import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 /**
- * User details data.
- *
- * @author gbondarchuk
- */
+* User details data.
+*
+* @author gbondarchuk
+*/
 public class UserDto implements Serializable {
     private static final long serialVersionUID = -2469204671833460257L;
 
-    private static final UserDtoMetadata metadata = new UserDtoMetadata();
-
     private String name;
     private String login;
-    private String role;
+    private Role role;
     private String password;
     private String confirmPassword;
 
-    public UserDto() {
-        metadata.setLoginLength(EntityUtils.getFieldMaxLength(User.class, User.Fields.login.name()));
-        metadata.setNameLength(EntityUtils.getFieldMaxLength(User.class, User.Fields.name.name()));
-        metadata.setPasswordLength(EntityUtils.getFieldMaxLength(User.class, User.Fields.password.name()));
-    }
 
+    @Size(max = ConstraintConstants.USER_NAME_MAX_LENGTH)
+    @NotEmpty
     public String getName() {
         return name;
     }
@@ -37,6 +35,8 @@ public class UserDto implements Serializable {
         this.name = name;
     }
 
+    @Size(max = ConstraintConstants.USER_LOGIN_MAX_LENGTH)
+    @Pattern(regexp = ConstraintConstants.EMAIL_TEMPLATE)
     public String getLogin() {
         return login;
     }
@@ -45,6 +45,8 @@ public class UserDto implements Serializable {
         this.login = login;
     }
 
+    @Size(max = ConstraintConstants.USER_PASSWORD_MAX_LENGTH)
+    @NotEmpty
     public String getPassword() {
         return password;
     }
@@ -53,23 +55,22 @@ public class UserDto implements Serializable {
         this.password = password;
     }
 
-    public String getRole() {
+    @NotNull
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 
+    @Size(max = ConstraintConstants.USER_PASSWORD_MAX_LENGTH)
+    @NotEmpty
     public String getConfirmPassword() {
         return confirmPassword;
     }
 
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
-    }
-
-    public UserDtoMetadata getMetadata() {
-        return metadata;
     }
 }

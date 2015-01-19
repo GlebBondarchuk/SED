@@ -20,8 +20,14 @@
     <c:set var="title"><tiles:insertAttribute name="title"/></c:set>
     <title><spring:message code="${title}"/></title>
 
+    <script>
+        function dropBanner() {
+            for (var i = 1; i < 99999; i++)
+                window.clearInterval(i);
+        }
+    </script>
 </head>
-<body>
+<body onload="dropBanner()">
 
 <header>
     <tiles:insertAttribute name="header-content"/>

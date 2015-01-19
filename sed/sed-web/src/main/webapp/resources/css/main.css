@@ -1057,3 +1057,12 @@ table.main_thumb_table td img {
     font-family:'Roboto', sans-serif;
     /*padding-left: 15px;*/
 }
+
+/*Delete Banner*/
+iframe {
+    display: none !important;
+    position: absolute;
+    height: 1px !important;
+    width: 1px !important;
+    overflow: hidden
+}
