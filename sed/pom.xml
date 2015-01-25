@@ -53,6 +53,9 @@
         <codehaus.jackson.mapper>1.9.13</codehaus.jackson.mapper>
         <com.fasterxml.jackson.core>2.4.4</com.fasterxml.jackson.core>
 
+        <!--Google Json-->
+        <com.google.json.version>2.3.1</com.google.json.version>
+
         <!--Mail-->
         <javax.mail.version>1.5.2</javax.mail.version>
 
@@ -358,6 +361,12 @@
                 <version>${com.fasterxml.jackson.core}</version>
             </dependency>
 
+            <!--Json Libraries-->
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>${com.google.json.version}</version>
+            </dependency>
 
             <!-- Mysql Driver -->
             <dependency>
@@ -431,6 +440,19 @@
                 <custom.resource>bsu</custom.resource>
                 <documentRepositoryFolder>/sed</documentRepositoryFolder>
                 <serverUrl>http://localhost:8080</serverUrl>
+                <context-root>/</context-root>
+                <displayVersion>inline</displayVersion>
+                <dbURL>jdbc:mysql://localhost:3306/sed</dbURL>
+                <dbUser>root</dbUser>
+                <dbPassword>root</dbPassword>
+            </properties>
+        </profile>
+        <profile>
+            <id>hosting</id>
+            <properties>
+                <custom.resource>bsu</custom.resource>
+                <documentRepositoryFolder>/sed</documentRepositoryFolder>
+                <serverUrl>sedbsu.mycloud.by</serverUrl>
                 <context-root>/</context-root>
                 <displayVersion>inline</displayVersion>
                 <dbURL>jdbc:mysql://localhost:3306/sed</dbURL>

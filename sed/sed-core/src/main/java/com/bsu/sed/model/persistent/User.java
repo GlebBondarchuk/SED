@@ -1,12 +1,13 @@
 package com.bsu.sed.model.persistent;
 
 import com.bsu.sed.model.Role;
-import com.bsu.sed.model.constraint.ConstraintConstants;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+
+import static com.bsu.sed.model.constraint.ConstraintConstants.*;
 
 /**
  * User entity.
@@ -22,6 +23,7 @@ public class User extends BaseEntity {
     private String name;
     private String password;
     private Role role;
+    private UserDetails details;
     private boolean disabled;
 
     public enum Fields {
@@ -51,7 +53,7 @@ public class User extends BaseEntity {
 
     @NotEmpty
     @com.bsu.sed.model.constraint.Email
-    @Length(max = ConstraintConstants.USER_LOGIN_MAX_LENGTH)
+    @Length(max = USER_LOGIN_MAX_LENGTH)
     @Column(name = "login")
     public String getLogin() {
         return login;
@@ -62,7 +64,7 @@ public class User extends BaseEntity {
     }
 
     @NotEmpty
-    @Length(max = ConstraintConstants.USER_NAME_MAX_LENGTH)
+    @Length(max = USER_NAME_MAX_LENGTH)
     @Column(name = "name")
     public String getName() {
         return name;
@@ -73,7 +75,7 @@ public class User extends BaseEntity {
     }
 
     @NotEmpty
-    @Length(max = ConstraintConstants.USER_PASSWORD_MAX_LENGTH)
+    @Length(max = USER_PASSWORD_MAX_LENGTH)
     @Column(name = "password")
     public String getPassword() {
         return password;
@@ -92,5 +94,15 @@ public class User extends BaseEntity {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "details", nullable = true)
+    public UserDetails getDetails() {
+        return details;
+    }
+
+    public void setDetails(UserDetails details) {
+        this.details = details;
     }
 }

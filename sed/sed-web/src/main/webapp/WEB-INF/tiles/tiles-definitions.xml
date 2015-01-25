@@ -5,8 +5,9 @@
 
 <tiles-definitions>
     <!-- global template -->
-    <definition name="sed-page-template" template="/WEB-INF/view/layout/pageTemplate.jsp">
+    <definition name="sed-page-template" template="/WEB-INF/view/layout/template.jsp">
         <put-attribute name="title" cascade="true" value=""/>
+        <put-attribute name="navigation-content" value="/WEB-INF/view/layout/navigation.jsp"/>
         <put-attribute name="header-content" value="/WEB-INF/view/layout/header.jsp"/>
         <put-attribute name="menu-content" value="/WEB-INF/view/layout/menu.jsp"/>
         <put-attribute name="primary-content" value=""/>
@@ -25,10 +26,28 @@
         <put-attribute name="primary-content" value="/WEB-INF/view/signUp.jsp"/>
     </definition>
 
+    <!--user page-->
+    <definition name="sed-user" extends="sed-page-template">
+        <put-attribute name="title" cascade="true" value="label.title"/>
+        <put-attribute name="primary-content" value="/WEB-INF/view/user.jsp"/>
+    </definition>
+
+    <!--contact page-->
+    <definition name="sed-contact" extends="sed-page-template">
+        <put-attribute name="title" cascade="true" value="label.title"/>
+        <put-attribute name="primary-content" value="/WEB-INF/view/contact.jsp"/>
+    </definition>
+
     <!--system page-->
     <definition name="sed-system" extends="sed-page-template">
         <put-attribute name="title" cascade="true" value="label.title"/>
         <put-attribute name="primary-content" value="/WEB-INF/view/admin/system.jsp"/>
+    </definition>
+
+    <!--system page-->
+    <definition name="sed-users" extends="sed-page-template">
+        <put-attribute name="title" cascade="true" value="label.title"/>
+        <put-attribute name="primary-content" value="/WEB-INF/view/admin/users.jsp"/>
     </definition>
 
     <!--main application page-->

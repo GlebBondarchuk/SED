@@ -1,6 +1,7 @@
 package com.bsu.sed.service;
 
 import com.bsu.sed.dao.SystemAttributeDao;
+import com.bsu.sed.model.SystemAttributeKey;
 import com.bsu.sed.model.persistent.SystemAttribute;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,5 +27,10 @@ public class SystemAttributeServiceImpl implements SystemAttributeService {
     @Override
     public void update(SystemAttribute attribute) {
         systemAttributeDao.update(attribute);
+    }
+
+    @Override
+    public String get(SystemAttributeKey key) {
+        return systemAttributeDao.get(key);
     }
 }

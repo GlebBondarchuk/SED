@@ -10,5 +10,6 @@ public enum SystemAttributeKey {
     EMAIL_PASSWORD,
     EMAIL_PROTOCOL,
     EMAIL_HOST,
-    EMAIL_PORT
+    EMAIL_PORT,
+    EMAIL_MASK
 }

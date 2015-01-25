@@ -30,7 +30,7 @@ public class ExceptionHandlerController {
     @ExceptionHandler(AccessDeniedException.class)
     public ModelAndView handleAccessDeniedExceptions(RuntimeException e) {
         log.warn(e.getMessage());
-        if(!SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")) {
+        if (!SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")) {
             ModelAndView modelAndView = new ModelAndView(EXCEPTION_PAGE.getTileName());
             modelAndView.addObject("exception", e.getMessage());
             return modelAndView;
@@ -42,7 +42,17 @@ public class ExceptionHandlerController {
     public ModelAndView handleOthersExceptions(RuntimeException e) {
         log.warn(e.getMessage(), e);
         ModelAndView modelAndView = new ModelAndView(EXCEPTION_PAGE.getTileName());
-        modelAndView.addObject("exception", e.getMessage());
+        modelAndView.addObject("exception", getExceptionMessage(e));
         return modelAndView;
+    }
+
+    private String getExceptionMessage(Throwable e) {
+        if (e.getCause() != null) {
+            String message = e.getMessage() + "\n" + getExceptionMessage(e.getCause());
+            System.out.println(message);
+            return message;
+        } else {
+             return e.getMessage();
+        }
     }
 }

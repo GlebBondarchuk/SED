@@ -1,12 +1,17 @@
+SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS sed_user;
+SET FOREIGN_KEY_CHECKS = 1;
 CREATE TABLE IF NOT EXISTS sed_user (
   id       BIGINT            NOT NULL AUTO_INCREMENT,
   name     VARCHAR(50)       NOT NULL,
   password VARCHAR(50)       NOT NULL,
   role     VARCHAR(50)       NOT NULL,
   login    VARCHAR(50)       NOT NULL UNIQUE,
+  details  BIGINT                     DEFAULT NULL,
   disabled BIT DEFAULT FALSE NOT NULL,
-  PRIMARY KEY (id)
+  PRIMARY KEY (id),
+  FOREIGN KEY (details) REFERENCES sed_user_details (id)
+    ON DELETE CASCADE
 )
   ENGINE = InnoDB;
 

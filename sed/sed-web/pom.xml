@@ -23,6 +23,12 @@
             <artifactId>commons-dbcp</artifactId>
         </dependency>
 
+        <!--Google Json-->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+        </dependency>
+
 
         <!--Spring Security-->
         <dependency>

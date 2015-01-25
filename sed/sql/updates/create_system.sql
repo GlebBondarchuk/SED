@@ -25,3 +25,6 @@ VALUES ('EMAIL_HOST', 'smtp.gmail.com', 'Email Host', '', 'EMAIL');
 INSERT INTO sed_system (`key`, value, display_value, description, category)
 VALUES ('EMAIL_PORT', '587', 'Email Port', '', 'EMAIL');
 
+INSERT INTO sed_system (`key`, value, display_value, description, category)
+VALUES ('EMAIL_MASK', '@gmail.com', 'Email Mask', '', 'EMAIL');
+

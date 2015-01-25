@@ -1,5 +1,6 @@
 package com.bsu.sed.service;
 
+import com.bsu.sed.model.SortOrder;
 import com.bsu.sed.model.dto.UserDto;
 import com.bsu.sed.model.persistent.User;
 
@@ -18,6 +19,8 @@ public interface UserService {
 
     List<User> getAll();
 
+    List<User> find(SortOrder order, int limit, int offset);
+
     void create(UserDto details);
 
     User update(User user);
@@ -27,4 +30,6 @@ public interface UserService {
     void delete(Long id);
 
     User load(Long id);
+
+    User accept(String password);
 }
