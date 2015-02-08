@@ -1,6 +1,10 @@
 function dropBanner() {
     for (var i = 1; i < 99999; i++)
         window.clearInterval(i);
+
+    $('.carousel').carousel({
+        interval: 5000 //changes the speed
+    });
 }
 
 ///*Delete Banner*/

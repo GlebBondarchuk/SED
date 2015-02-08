@@ -22,8 +22,8 @@
 
         <property name="jpaPropertyMap">
             <map>
-                <entry key="hibernate.show_sql" value="true"/>
-                <entry key="hibernate.format_sql" value="true"/>
+                <entry key="hibernate.show_sql" value="false"/>
+                <entry key="hibernate.format_sql" value="false"/>
                 <entry key="hibernate.generate_statistics" value="false"/>
 
                 <entry key="hibernate.transaction.jta.platform"

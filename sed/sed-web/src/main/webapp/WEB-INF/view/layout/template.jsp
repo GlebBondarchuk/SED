@@ -56,8 +56,8 @@
     <%--<c:set var="title"><tiles:insertAttribute name="title"/></c:set>--%>
     <%--<title><spring:message code="${title}"/></title>--%>
 </head>
-<%--onload="dropBanner()"--%>
-<body>
+
+<body onload="dropBanner()">
 <%--Navigation--%>
 <tiles:insertAttribute name="navigation-content"/>
 
@@ -109,10 +109,5 @@
 
 <script src="${applicationPath}/resources/js/wysihtml5-0.3.0.js"></script>
 <script src="${applicationPath}/resources/js/bootstrap3-wysihtml5.js"></script>
- <script>
-     $('.carousel').carousel({
-         interval: 5000 //changes the speed
-     });
- </script>
 </body>
 </html>

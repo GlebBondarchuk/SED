@@ -20,7 +20,7 @@
 
         <div class="input-group">
             <span class="input-group-addon">@</span>
-            <input class="form-control" type='email' name='j_username' placeholder="Email">
+            <input class="form-control" type='text' name='j_username' placeholder="Email">
         </div>
         <input class="form-control" type='password' name='j_password' placeholder="Password"/>
 
