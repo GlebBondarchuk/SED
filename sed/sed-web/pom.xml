@@ -17,6 +17,12 @@
             <groupId>com.bsu.sed</groupId>
         </dependency>
 
+        <!--Transliteration-->
+        <dependency>
+            <groupId>com.moparisthebest</groupId>
+            <artifactId>junidecode</artifactId>
+        </dependency>
+
         <!--Apache-->
         <dependency>
             <groupId>commons-dbcp</groupId>

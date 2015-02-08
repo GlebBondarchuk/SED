@@ -21,14 +21,13 @@ public class User extends BaseEntity {
     private Long id;
     private String login;
     private String name;
+    private String phone;
     private String password;
     private Role role;
+    private String photo;
     private UserDetails details;
     private boolean disabled;
-
-    public enum Fields {
-        login, password, name
-    }
+//    private List<People> peoples;
 
     @Override
     @Id
@@ -74,6 +73,16 @@ public class User extends BaseEntity {
         this.name = name;
     }
 
+    @Length(max = USER_PHONE_MAX_LENGTH)
+    @Column(name = "phone")
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     @NotEmpty
     @Length(max = USER_PASSWORD_MAX_LENGTH)
     @Column(name = "password")
@@ -92,6 +101,15 @@ public class User extends BaseEntity {
         return role;
     }
 
+    @Column(name = "photo")
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
     public void setRole(Role role) {
         this.role = role;
     }
@@ -105,4 +123,13 @@ public class User extends BaseEntity {
     public void setDetails(UserDetails details) {
         this.details = details;
     }
+
+//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    public List<People> getPeoples() {
+//        return peoples;
+//    }
+//
+//    public void setPeoples(List<People> peoples) {
+//        this.peoples = peoples;
+//    }
 }

@@ -7,62 +7,90 @@
     <!-- global template -->
     <definition name="sed-page-template" template="/WEB-INF/view/layout/template.jsp">
         <put-attribute name="title" cascade="true" value=""/>
+        <put-attribute name="subtitle" cascade="true" value=""/>
         <put-attribute name="navigation-content" value="/WEB-INF/view/layout/navigation.jsp"/>
         <put-attribute name="header-content" value="/WEB-INF/view/layout/header.jsp"/>
-        <put-attribute name="menu-content" value="/WEB-INF/view/layout/menu.jsp"/>
+        <put-attribute name="success-content" value="/WEB-INF/view/layout/success.jsp"/>
+        <put-attribute name="error-content" value="/WEB-INF/view/layout/error.jsp"/>
         <put-attribute name="primary-content" value=""/>
         <put-attribute name="footer-content" value="/WEB-INF/view/layout/footer.jsp"/>
     </definition>
 
     <!--login page-->
     <definition name="sed-login" extends="sed-page-template">
-        <put-attribute name="title" cascade="true" value="label.title"/>
+        <put-attribute name="title" cascade="true" value="label.signIn.title"/>
+        <put-attribute name="subtitle" cascade="true" value="label.signIn.subtitle"/>
         <put-attribute name="primary-content" value="/WEB-INF/view/login.jsp"/>
     </definition>
 
     <!--sign up page-->
     <definition name="sed-sign-up" extends="sed-page-template">
-        <put-attribute name="title" cascade="true" value="label.title"/>
+        <put-attribute name="title" cascade="true" value="label.signUp.title"/>
+        <put-attribute name="subtitle" cascade="true" value="label.signUp.subtitle"/>
         <put-attribute name="primary-content" value="/WEB-INF/view/signUp.jsp"/>
     </definition>
 
     <!--user page-->
     <definition name="sed-user" extends="sed-page-template">
-        <put-attribute name="title" cascade="true" value="label.title"/>
+        <put-attribute name="title" cascade="true" value="label.user.subtitle"/>
+        <put-attribute name="subtitle" cascade="true" value="label.user.subtitle"/>
         <put-attribute name="primary-content" value="/WEB-INF/view/user.jsp"/>
     </definition>
 
     <!--contact page-->
     <definition name="sed-contact" extends="sed-page-template">
-        <put-attribute name="title" cascade="true" value="label.title"/>
+        <put-attribute name="title" cascade="true" value="label.contact.title"/>
+        <put-attribute name="subtitle" cascade="true" value="label.contact.subtitle"/>
         <put-attribute name="primary-content" value="/WEB-INF/view/contact.jsp"/>
+    </definition>
+
+    <!--peoples page-->
+    <definition name="sed-peoples" extends="sed-page-template">
+        <put-attribute name="title" cascade="true" value="label.peoples.title"/>
+        <put-attribute name="subtitle" cascade="true" value="label.peoples.subtitle"/>
+        <put-attribute name="primary-content" value="/WEB-INF/view/peoples.jsp"/>
     </definition>
 
     <!--system page-->
     <definition name="sed-system" extends="sed-page-template">
-        <put-attribute name="title" cascade="true" value="label.title"/>
+        <put-attribute name="title" cascade="true" value="label.system.title"/>
+        <put-attribute name="subtitle" cascade="true" value="label.system.subtitle"/>
         <put-attribute name="primary-content" value="/WEB-INF/view/admin/system.jsp"/>
     </definition>
 
-    <!--system page-->
+    <!--users page-->
     <definition name="sed-users" extends="sed-page-template">
-        <put-attribute name="title" cascade="true" value="label.title"/>
+        <put-attribute name="title" cascade="true" value="label.nav.admin.users"/>
+        <put-attribute name="subtitle" cascade="true" value="label.nav.admin.users"/>
         <put-attribute name="primary-content" value="/WEB-INF/view/admin/users.jsp"/>
+    </definition>
+
+    <!--users page-->
+    <definition name="sed-add-new-tab" extends="sed-page-template">
+        <put-attribute name="title" cascade="true" value="label.nav.admin.users"/>
+        <put-attribute name="subtitle" cascade="true" value="label.nav.admin.users"/>
+        <put-attribute name="primary-content" value="/WEB-INF/view/admin/userTab.jsp"/>
+    </definition>
+
+    <!--users page-->
+    <definition name="sed-edit-tab" extends="sed-page-template">
+        <put-attribute name="title" cascade="true" value="label.nav.admin.users"/>
+        <put-attribute name="subtitle" cascade="true" value="label.nav.admin.users"/>
+        <put-attribute name="primary-content" value="/WEB-INF/view/admin/userTab.jsp"/>
     </definition>
 
     <!--main application page-->
     <definition name="sed-main" extends="sed-page-template">
-        <put-attribute name="title" cascade="true" value="label.title"/>
+        <put-attribute name="title" cascade="true" value="label.main.title"/>
+        <put-attribute name="subtitle" cascade="true" value="label.main.subtitle"/>
         <put-attribute name="primary-content" value="/WEB-INF/view/main.jsp"/>
     </definition>
 
-    <!--error pages-->
-    <definition name="error.404" extends="sed-page-template">
-        <put-attribute name="title" cascade="true" value="label.404"/>
-        <put-attribute name="primary-content" value="/WEB-INF/view/error/404.jsp"/>
-    </definition>
+    <!--exception page-->
     <definition name="error.exception" extends="sed-page-template">
-        <put-attribute name="title" cascade="true" value="label.404"/>
+        <put-attribute name="title" cascade="true" value="label.exception.title"/>
+        <put-attribute name="subtitle" cascade="true" value="label.exception.subtitle"/>
+        <put-attribute name="error-content" value=""/>
         <put-attribute name="primary-content" value="/WEB-INF/view/error/exception.jsp"/>
     </definition>
 

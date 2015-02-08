@@ -1,5 +1,6 @@
 package com.bsu.sed.service.builder;
 
+import com.bsu.sed.dto.ContactDto;
 import com.bsu.sed.model.InlineResource;
 import com.bsu.sed.model.MailMessage;
 import com.bsu.sed.model.MessagePriority;
@@ -36,9 +37,8 @@ public class MailBuilderImpl implements MailBuilder {
         message.setSubject("User Registration");
         model.put("user", user);
 
-        InlineResource resource = new InlineResource("bsu", "/image/bsu.png");
-        message.setInlineResource(resource);
-        model.put("image", resource.getIdentifier());
+        InlineResource image = new InlineResource("bsu", "/image/bsu.png");
+        message.addInlineResource(image);
 
         String emailBody = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine,
                 "/template/registration_notification.vm", ENCODING_DEFAULT, model);
@@ -48,9 +48,27 @@ public class MailBuilderImpl implements MailBuilder {
         message.setRecipients(user.getLogin());
         message.setPriority(MessagePriority.NORMAL);
 
-
-
         return message;
+    }
+
+    @Override
+    public MailMessage buildContactMessage(ContactDto dto, String adminMail) {
+        MailMessage message = MailMessage.newMessage();
+        Map<String, Object> model = getModel();
+
+        message.setSubject(dto.getSubject());
+        model.put("message", dto.getMessage());
+
+        InlineResource image = new InlineResource("bsu", "/image/bsu.png");
+        message.addInlineResource(image);
+
+        String emailBody = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine,
+                "/template/contact.vm", ENCODING_DEFAULT, model);
+
+        message.setEmailBody(emailBody);
+        message.setRecipients(adminMail);
+        message.setPriority(MessagePriority.NORMAL);
+        return message ;
     }
 
     /**

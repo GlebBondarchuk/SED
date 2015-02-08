@@ -1,0 +1,12 @@
+<html>
+<body>
+    #parse("/template/common/styles.vm")
+    #parse("/template/common/header.vm")
+<div id="user" style="$bodyMainStyle">
+    <hr>
+    $esc.html($message)
+    <hr>
+</div>
+    #parse("/template/common/footer.vm")
+</body>
+</html>

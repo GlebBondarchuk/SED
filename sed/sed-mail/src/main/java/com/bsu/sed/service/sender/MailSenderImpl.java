@@ -4,6 +4,7 @@ import com.bsu.sed.dao.SystemAttributeDao;
 import com.bsu.sed.model.InlineResource;
 import com.bsu.sed.model.MailMessage;
 import com.bsu.sed.model.SystemAttributeKey;
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -13,6 +14,8 @@ import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Component;
 
 import javax.mail.internet.MimeMessage;
+import javax.transaction.Transactional;
+import java.util.List;
 
 /**
  * Mail sender.
@@ -20,6 +23,7 @@ import javax.mail.internet.MimeMessage;
  * @author gbondarchuk
  */
 @Component
+@Transactional
 public class MailSenderImpl implements MailSender {
 
     @Autowired
@@ -44,7 +48,7 @@ public class MailSenderImpl implements MailSender {
 
     @Override
     public void send(final MailMessage message) {
-        boolean multipart = (message.getInlineResource() != null);
+        boolean multipart = CollectionUtils.isNotEmpty(message.getInlineResources());
         send(message, multipart);
     }
 
@@ -65,9 +69,11 @@ public class MailSenderImpl implements MailSender {
                 helper.setPriority(message.getPriority().getPriority());
 
                 if (multipart) {
-                    InlineResource inlineResource = message.getInlineResource();
-                    ClassPathResource resource = new ClassPathResource(inlineResource.getUrl());
-                    helper.addInline(inlineResource.getIdentifier(), resource);
+                    List<InlineResource> inlineResources = message.getInlineResources();
+                    for (InlineResource inlineResource : inlineResources) {
+                        ClassPathResource resource = new ClassPathResource(inlineResource.getUrl());
+                        helper.addInline(inlineResource.getIdentifier(), resource);
+                    }
                 }
             }
         };

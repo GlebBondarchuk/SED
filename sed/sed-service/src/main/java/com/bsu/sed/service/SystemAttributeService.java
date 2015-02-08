@@ -15,4 +15,6 @@ public interface SystemAttributeService {
     void update(SystemAttribute attribute);
 
     String get(SystemAttributeKey key);
+
+    List<SystemAttribute> getAll();
 }

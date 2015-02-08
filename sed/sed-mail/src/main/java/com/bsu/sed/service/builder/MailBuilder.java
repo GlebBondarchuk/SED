@@ -1,5 +1,6 @@
 package com.bsu.sed.service.builder;
 
+import com.bsu.sed.dto.ContactDto;
 import com.bsu.sed.model.MailMessage;
 import com.bsu.sed.model.persistent.User;
 
@@ -15,4 +16,6 @@ public interface MailBuilder {
     static final String ENCODING_DEFAULT = "ISO-8859-1";
 
     MailMessage buildRegistrationMessage(User user);
+
+    MailMessage buildContactMessage(ContactDto dto, String adminEmail);
 }

@@ -21,7 +21,7 @@ public interface UserService {
 
     List<User> find(SortOrder order, int limit, int offset);
 
-    void create(UserDto details);
+    User create(UserDto details);
 
     User update(User user);
 
@@ -32,4 +32,6 @@ public interface UserService {
     User load(Long id);
 
     User accept(String password);
+
+    User getByUsername(String username);
 }

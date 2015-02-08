@@ -33,4 +33,9 @@ public class SystemAttributeServiceImpl implements SystemAttributeService {
     public String get(SystemAttributeKey key) {
         return systemAttributeDao.get(key);
     }
+
+    @Override
+    public List<SystemAttribute> getAll() {
+        return systemAttributeDao.getAll();
+    }
 }

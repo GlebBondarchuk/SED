@@ -10,7 +10,8 @@ CREATE TABLE IF NOT EXISTS sed_document (
   FOREIGN KEY (creator) REFERENCES sed_user (id)
     ON DELETE SET NULL
 )
-  ENGINE = InnoDB;
+  ENGINE = InnoDB
+  DEFAULT CHARSET =utf8;
 
 INSERT INTO sed_document (name, content_type, category, creator)
 VALUES ('no_photo_available.jpg', 'image/jpg', 'USER_PHOTO', 1);

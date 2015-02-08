@@ -19,12 +19,16 @@ import static com.bsu.sed.model.Tiles.*;
 @ControllerAdvice
 public class ExceptionHandlerController {
 
+    public static final String EXCEPTION = "exception";
+
     private static final Logger log = LoggerFactory.getLogger(ExceptionHandlerController.class);
 
     @ExceptionHandler(NoHandlerFoundException.class)
     public ModelAndView handleNotFound(NoHandlerFoundException e) {
         log.warn(e.getMessage());
-        return new ModelAndView(NOT_FOUND_PAGE.getTileName());
+        ModelAndView modelAndView = new ModelAndView(EXCEPTION_PAGE.getTileName());
+        modelAndView.addObject(EXCEPTION, e.getMessage());
+        return modelAndView;
     }
 
     @ExceptionHandler(AccessDeniedException.class)
@@ -32,7 +36,7 @@ public class ExceptionHandlerController {
         log.warn(e.getMessage());
         if (!SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")) {
             ModelAndView modelAndView = new ModelAndView(EXCEPTION_PAGE.getTileName());
-            modelAndView.addObject("exception", e.getMessage());
+            modelAndView.addObject(EXCEPTION, e.getMessage());
             return modelAndView;
         }
         return new ModelAndView(LOGIN_PAGE.getTileName());
@@ -42,7 +46,7 @@ public class ExceptionHandlerController {
     public ModelAndView handleOthersExceptions(RuntimeException e) {
         log.warn(e.getMessage(), e);
         ModelAndView modelAndView = new ModelAndView(EXCEPTION_PAGE.getTileName());
-        modelAndView.addObject("exception", getExceptionMessage(e));
+        modelAndView.addObject(EXCEPTION, getExceptionMessage(e));
         return modelAndView;
     }
 

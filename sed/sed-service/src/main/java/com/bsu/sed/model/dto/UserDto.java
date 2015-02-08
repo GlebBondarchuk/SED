@@ -2,12 +2,13 @@ package com.bsu.sed.model.dto;
 
 
 import com.bsu.sed.model.Role;
-import com.bsu.sed.model.constraint.ConstraintConstants;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+
+import static com.bsu.sed.model.constraint.ConstraintConstants.*;
 
 /**
 * User details data.
@@ -20,11 +21,15 @@ public class UserDto implements Serializable {
     private String name;
     private String login;
     private Role role;
+    private String phone;
+    private String photo;
+    private String position;
+    private String address;
     private String password;
     private String confirmPassword;
 
 
-    @Size(max = ConstraintConstants.USER_NAME_MAX_LENGTH)
+    @Size(max = USER_NAME_MAX_LENGTH)
     @NotEmpty
     public String getName() {
         return name;
@@ -34,7 +39,8 @@ public class UserDto implements Serializable {
         this.name = name;
     }
 
-    @Size(max = ConstraintConstants.USER_LOGIN_MAX_LENGTH)
+    @Size(max = USER_LOGIN_MAX_LENGTH)
+    @com.bsu.sed.model.constraint.Email
     public String getLogin() {
         return login;
     }
@@ -43,7 +49,7 @@ public class UserDto implements Serializable {
         this.login = login;
     }
 
-    @Size(max = ConstraintConstants.USER_PASSWORD_MAX_LENGTH)
+    @Size(max = USER_PASSWORD_MAX_LENGTH)
     @NotEmpty
     public String getPassword() {
         return password;
@@ -62,7 +68,40 @@ public class UserDto implements Serializable {
         this.role = role;
     }
 
-    @Size(max = ConstraintConstants.USER_PASSWORD_MAX_LENGTH)
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+    @Size(max = USER_PHONE_MAX_LENGTH)
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    @Size(max = USER_PASSWORD_MAX_LENGTH)
     @NotEmpty
     public String getConfirmPassword() {
         return confirmPassword;

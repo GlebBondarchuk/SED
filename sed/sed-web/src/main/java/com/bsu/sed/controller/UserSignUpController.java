@@ -40,6 +40,7 @@ public class UserSignUpController {
         String emailMsk = systemAttributeService.get(SystemAttributeKey.EMAIL_MASK);
         ModelAndView modelAndView = new ModelAndView(Tiles.SIGN_UP_PAGE.getTileName());
         modelAndView.addObject("roles", Role.values());
+        modelAndView.addObject("postURL", "/signUp");
         modelAndView.addObject("emailMask", emailMsk);
         return modelAndView;
     }
@@ -53,6 +54,7 @@ public class UserSignUpController {
             return modelAndView;
         }
         userService.create(user);
+        modelAndView.addObject("success", "Please, open <a href=\"http://webmail.bsu.by\" target=\"_blank\" class=\"alert-link\">email</a> to complete registration");
         return modelAndView;
     }
 

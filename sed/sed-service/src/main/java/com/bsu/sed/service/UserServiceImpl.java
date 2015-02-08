@@ -1,15 +1,16 @@
 package com.bsu.sed.service;
 
+import com.bsu.sed.dao.PeopleDao;
 import com.bsu.sed.dao.UserDao;
 import com.bsu.sed.model.MailMessage;
+import com.bsu.sed.model.Role;
 import com.bsu.sed.model.SortOrder;
-import com.bsu.sed.model.SystemAttributeKey;
 import com.bsu.sed.model.dto.UserDto;
+import com.bsu.sed.model.persistent.People;
 import com.bsu.sed.model.persistent.User;
 import com.bsu.sed.service.builder.MailBuilder;
 import com.bsu.sed.service.sender.MailSender;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -24,11 +25,11 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
     @Autowired
+    private PeopleDao peopleDao;
+    @Autowired
     private MailBuilder mailBuilder;
     @Autowired
     private MailSender mailSender;
-    @Autowired
-    private SystemAttributeService systemAttributeService;
 
     @Override
     public User getByLogin(String login) {
@@ -46,22 +47,28 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void create(UserDto details) {
-        Md5PasswordEncoder encoder = new Md5PasswordEncoder();
-        String password = encoder.encodePassword(details.getPassword(), null);
-
-        String emailMask = systemAttributeService.get(SystemAttributeKey.EMAIL_MASK);
-
+    public User create(UserDto details) {
         User user = new User();
-        user.setLogin(details.getLogin() + emailMask);
-        user.setPassword(password);
+        user.setLogin(details.getLogin());
+        user.setPassword(details.getPassword());
+        user.setPhone(details.getPhone());
         user.setRole(details.getRole());
         user.setName(details.getName());
-        user.setDisabled(true);
+        user.setPhoto(details.getPhoto());
+        user.setDisabled(!user.getRole().in(Role.TEACHER, Role.ADMIN));
         userDao.create(user);
+
+        if (user.getRole().in(Role.TEACHER, Role.ADMIN)) {
+            People people = new People();
+            people.setUser(user);
+            people.setAddress(details.getAddress());
+            people.setPosition(details.getPosition());
+            peopleDao.create(people);
+        }
 
         MailMessage message = mailBuilder.buildRegistrationMessage(user);
         mailSender.send(message);
+        return user;
     }
 
     @Override
@@ -92,5 +99,10 @@ public class UserServiceImpl implements UserService {
             userDao.update(user);
         }
         return user;
+    }
+
+    @Override
+    public User getByUsername(String username) {
+        return userDao.getByUsername(username);
     }
 }

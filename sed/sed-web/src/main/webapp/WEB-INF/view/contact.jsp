@@ -1,18 +1,5 @@
-<!-- Page Heading/Breadcrumbs -->
-<div class="row">
-    <div class="col-lg-12">
-        <h1 class="page-header">Contact
-            <small>Subheading</small>
-        </h1>
-        <ol class="breadcrumb">
-            <li><a href="${applicationPath}/">Home</a>
-            </li>
-            <li class="active">Contact</li>
-        </ol>
-    </div>
-</div>
-<!-- /.row -->
-
+<%@ taglib prefix="secutiry" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!-- Content Row -->
 <div class="row">
     <!-- Map Column -->
@@ -30,14 +17,15 @@
         <h3>Contact Details</h3>
 
         <p>
-            3481 Melrose Place<br>Beverly Hills, CA 90210<br>
+            &#1055;&#1088;. &#1053;&#1077;&#1079;&#1072;&#1074;&#1080;&#1089;&#1080;&#1084;&#1086;&#1089;&#1090;&#1080;, 4.,<br>&#1043;&#1083;&#1072;&#1074;&#1085;&#1099;&#1081;
+            &#1082;&#1086;&#1088;&#1087;&#1091;&#1089;, &#1082;. 228,230<br>
         </p>
 
         <p><i class="fa fa-phone"></i>
-            <abbr title="Phone">P</abbr>: (123) 456-7890</p>
+            <abbr title="Phone">P</abbr>: (+375-17) 209-5273</p>
 
         <p><i class="fa fa-envelope-o"></i>
-            <abbr title="Email">E</abbr>: <a href="mailto:name@example.com">name@example.com</a>
+            <abbr title="Email">E</abbr>: <a href="mailto:name@example.com ">kurb@unibel.by</a>
         </p>
 
         <p><i class="fa fa-clock-o"></i>
@@ -62,43 +50,32 @@
 
 <!-- Contact Form -->
 <!-- In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
-<div class="row">
-    <div class="col-md-8">
-        <h3>Send us a Message</h3>
+<secutiry:authorize access="isAuthenticated()">
+    <div class="row">
+        <div class="col-md-8">
+            <h3>Send us a Message</h3>
 
-        <form name="sentMessage" id="contactForm" novalidate>
-            <div class="control-group form-group">
-                <div class="controls">
-                    <label>Full Name:</label>
-                    <input type="text" class="form-control" id="name" required data-validation-required-message="Please enter your name.">
+            <form name="sentMessage" id="contactForm" novalidate action="${applicationPath}/contact" method="post">
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label>Subject:</label>
+                        <input type="text" class="form-control" name="subject" required data-validation-required-message="Please enter your name.">
 
-                    <p class="help-block"></p>
+                        <p class="help-block"></p>
+                    </div>
                 </div>
-            </div>
-            <div class="control-group form-group">
-                <div class="controls">
-                    <label>Phone Number:</label>
-                    <input type="tel" class="form-control" id="phone" required data-validation-required-message="Please enter your phone number.">
-                </div>
-            </div>
-            <div class="control-group form-group">
-                <div class="controls">
-                    <label>Email Address:</label>
-                    <input type="email" class="form-control" id="email" required data-validation-required-message="Please enter your email address.">
-                </div>
-            </div>
-            <div class="control-group form-group">
-                <div class="controls">
-                    <label>Message:</label>
-                    <textarea rows="10" cols="100" class="form-control" id="message" required
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label>Message:</label>
+                    <textarea rows="10" cols="100" class="form-control" name="message" required
                               data-validation-required-message="Please enter your message" maxlength="999" style="resize:none"></textarea>
+                    </div>
                 </div>
-            </div>
-            <div id="success"></div>
-            <!-- For success/fail messages -->
-            <button type="submit" class="btn btn-primary">Send Message</button>
-        </form>
+                <div id="success"></div>
+                <!-- For success/fail messages -->
+                <button type="submit" class="btn btn-primary"><spring:message code="contact.button.sendMessage"/></button>
+            </form>
+        </div>
     </div>
-
-</div>
-<!-- /.row -->
+    <!-- /.row -->
+</secutiry:authorize>

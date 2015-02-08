@@ -3,17 +3,20 @@ DROP TABLE IF EXISTS sed_user;
 SET FOREIGN_KEY_CHECKS = 1;
 CREATE TABLE IF NOT EXISTS sed_user (
   id       BIGINT            NOT NULL AUTO_INCREMENT,
-  name     VARCHAR(50)       NOT NULL,
+  name     VARCHAR(50)       NOT NULL UNIQUE,
   password VARCHAR(50)       NOT NULL,
   role     VARCHAR(50)       NOT NULL,
   login    VARCHAR(50)       NOT NULL UNIQUE,
+  phone    VARCHAR(50),
+  photo    VARCHAR(100),
   details  BIGINT                     DEFAULT NULL,
   disabled BIT DEFAULT FALSE NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (details) REFERENCES sed_user_details (id)
     ON DELETE CASCADE
 )
-  ENGINE = InnoDB;
+  ENGINE = InnoDB
+  DEFAULT CHARSET =utf8;
 
 INSERT INTO sed_user (name, password, role, login, disabled)
 VALUES ('System', 'system', 'ADMIN', 'sed.bsu@gmail.com', TRUE);

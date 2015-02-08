@@ -66,6 +66,9 @@
         <apache.velocity.version>1.7</apache.velocity.version>
         <apache.velocity-tools.version>2.0</apache.velocity-tools.version>
 
+        <!--Transliteration-->
+        <transliteration.version>0.1.1</transliteration.version>
+
         <project.build.source>1.7</project.build.source>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
@@ -86,6 +89,13 @@
                 <groupId>com.bsu.sed</groupId>
                 <artifactId>sed-service</artifactId>
                 <version>${project.version}</version>
+            </dependency>
+
+            <!--Transliteration-->
+            <dependency>
+                <groupId>com.moparisthebest</groupId>
+                <artifactId>junidecode</artifactId>
+                <version>${transliteration.version}</version>
             </dependency>
 
             <!-- Java Enterprise Edition API -->
@@ -445,6 +455,7 @@
                 <dbURL>jdbc:mysql://localhost:3306/sed</dbURL>
                 <dbUser>root</dbUser>
                 <dbPassword>root</dbPassword>
+                <locale>en_EN</locale>
             </properties>
         </profile>
         <profile>
@@ -452,12 +463,13 @@
             <properties>
                 <custom.resource>bsu</custom.resource>
                 <documentRepositoryFolder>/sed</documentRepositoryFolder>
-                <serverUrl>sedbsu.mycloud.by</serverUrl>
+                <serverUrl>sedbsu2015.mycloud.by</serverUrl>
                 <context-root>/</context-root>
                 <displayVersion>inline</displayVersion>
-                <dbURL>jdbc:mysql://localhost:3306/sed</dbURL>
+                <dbURL>jdbc:mysql://mysql17001-sedbsu2015.mycloud.by/sed</dbURL>
                 <dbUser>root</dbUser>
-                <dbPassword>root</dbPassword>
+                <dbPassword>4FmO3VJfLJ</dbPassword>
+                <locale>ru_RU</locale>
             </properties>
         </profile>
     </profiles>

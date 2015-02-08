@@ -27,5 +27,7 @@ public interface UserDao extends GenericDao<User, Long> {
      */
     User getByPassword(String password);
 
+    User getByUsername(String username);
+
     List<User> find(SortOrder order, int limit, int offset);
 }

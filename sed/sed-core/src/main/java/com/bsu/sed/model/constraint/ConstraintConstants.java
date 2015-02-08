@@ -17,12 +17,12 @@ public abstract class ConstraintConstants {
      */
     public static final int USER_LOGIN_MAX_LENGTH = 50;
     public static final int USER_NAME_MAX_LENGTH = 50;
+    public static final int USER_PHONE_MAX_LENGTH = 50;
     public static final int USER_PASSWORD_MAX_LENGTH = 50;
 
     /**
      * User Details Constraints
      */
-    public static final int USER_DETAILS_PHONE_MAX_LENGTH = 50;
     public static final int USER_DETAILS_ADDRESS_MAX_LENGTH = 100;
 
 

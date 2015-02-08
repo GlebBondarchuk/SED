@@ -13,7 +13,6 @@ import static com.bsu.sed.model.constraint.ConstraintConstants.*;
 @Table(name = "sed_user_details")
 public class UserDetails extends BaseEntity {
     private Long id;
-    private String phone;
     private String address;
 
     @Override
@@ -26,16 +25,6 @@ public class UserDetails extends BaseEntity {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    @Length(max = USER_DETAILS_PHONE_MAX_LENGTH)
-    @Column(name = "phone")
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
     }
 
     @Length(max = USER_DETAILS_ADDRESS_MAX_LENGTH)

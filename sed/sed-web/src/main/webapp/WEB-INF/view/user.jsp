@@ -1,2 +1,197 @@
-Hello ${user.name}
-This is your profile page.
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sed" uri="/tld/sed_library" %>
+
+
+<c:if test="${not edit}">
+    <div class="row">
+        <div class="col-md-2">
+            <c:choose>
+                <c:when test="${not empty people.user.photo}">
+                    <img class="img-responsive img-hover" height="200" width="150" src="${people.user.photo}" alt="">
+                </c:when>
+                <c:otherwise>
+                    <img class="img-responsive img-hover" height="200" width="150" src="http://placehold.it/300x400" alt="">
+                </c:otherwise>
+            </c:choose>
+        </div>
+        <div class="col-md-10">
+            <h3>${people.user.name}</h3>
+            <h4>${people.position}</h4>
+            <c:if test="${not empty people.user.phone}">
+                <p><i class="fa fa-phone"></i> ${people.user.phone}</p>
+            </c:if>
+            <c:if test="${not empty people.user.login}">
+                <p><i class="fa fa-envelope-o"></i><a href="mailto:${people.user.login}"> ${people.user.login}</a></p>
+            </c:if>
+            <c:if test="${not empty people.address}">
+                <p><i class="fa fa-home"></i> ${people.address}</p>
+            </c:if>
+        </div>
+    </div>
+</c:if>
+
+<security:authorize access="hasRole('ADMIN')">
+    <c:if test="${edit}">
+        <div class="row">
+            <div class="col-md-2">
+                <c:choose>
+                    <c:when test="${not empty people.user.photo}">
+                        <img class="img-responsive img-hover" height="200" width="150" src="${people.user.photo}" alt="">
+                    </c:when>
+                    <c:otherwise>
+                        <img class="img-responsive img-hover" height="200" width="150" src="http://placehold.it/300x400" alt="">
+                    </c:otherwise>
+                </c:choose>
+            </div>
+            <div class="col-md-10">
+                <form class="form-horizontal" role="form" action="<c:url value="${applicationPath}/user/${people.user.name}/edit/main"/>"
+                      method="post">
+                    <div class="form-group">
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                <input type="text" class="form-control" name="name" placeholder="Name" value="${people.user.name}" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+                                <input type="text" class="form-control" name="position" placeholder="Position" value="${people.position}" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-phone"></span></span>
+                                <input type="text" class="form-control" name="phone" placeholder="Phone" value="${people.user.phone}" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+                                <input type="email" class="form-control" name="login" placeholder="Email" value="${people.user.login}" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-home"></span></span>
+                                <input type="text" class="form-control" name="address" placeholder="Address" value="${people.address}" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-picture"></span></span>
+                                <input type="text" class="form-control" name="photo" placeholder="Photo Link" value="${people.user.photo}" required>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="submit" name="submit" id="submit" value="<spring:message code="people.button.saveChanges"/>" class="btn btn-danger pull-left">
+                </form>
+            </div>
+        </div>
+    </c:if>
+</security:authorize>
+
+<hr>
+<div class="row">
+    <div class="col-lg-12">
+        <ul id="myTab" class="nav nav-tabs nav-justified">
+            <c:forEach var="content" items="${people.contents}" varStatus="status">
+                <c:choose>
+                    <c:when test="${status.first}">
+                        <li class="active">
+                            <a href="#${content.id}" data-toggle="tab">
+                                <strong><i class="fa fa-support"></i> ${content.name}</strong>
+                            </a>
+                        </li>
+                    </c:when>
+                    <c:otherwise>
+                        <li>
+                            <a href="#${content.id}" data-toggle="tab">
+                                <strong><i class="fa fa-support"></i> ${content.name}</strong>
+                            </a>
+                        </li>
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
+        </ul>
+
+        <div id="myTabContent" class="tab-content">
+            <c:forEach var="content" items="${people.contents}" varStatus="status">
+                <c:choose>
+                    <c:when test="${status.first}">
+                        <div class="tab-pane fade active in" id="${content.id}">
+                            <br>
+                                ${content.html}
+                            <i class="wysiwyg-color-gray pull-right">Updated: ${content.updateDate}</i>
+                        </div>
+                    </c:when>
+                    <c:otherwise>
+                        <div class="tab-pane fade in" id="${content.id}">
+                            <br>
+                                ${content.html}
+                            <i class="wysiwyg-color-gray pull-right">Updated: ${content.updateDate}</i>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
+        </div>
+    </div>
+</div>
+
+<security:authorize access="hasRole('ADMIN')">
+    <hr>
+    <div class="row">
+        <div class="col-lg-12">
+            <c:if test="${not edit}">
+                <a class="btn btn-danger btn-primary"
+                   href="<c:url value="${applicationPath}/user/${people.user.name}/edit"/>" role="button"><spring:message
+                        code="people.button.editPage"/></a>
+            </c:if>
+            <c:if test="${edit}">
+                <div>
+                    <c:if test="${not empty people.contents}">
+                        <a class="btn btn-danger btn-primary" onclick="editTab();" role="button"><spring:message code="people.button.editTab"/></a>
+                        <a class="btn btn-danger btn-primary" onclick="deleteTab();" role="button"><spring:message
+                                code="people.button.deleteTab"/></a>
+                    </c:if>
+                    <a class="btn btn-danger btn-primary" onclick="addTab();" role="button"><spring:message code="people.button.addTab"/></a>
+                </div>
+            </c:if>
+        </div>
+    </div>
+
+    <script>
+        function editTab() {
+            var activeContentId = $("#myTabContent").find(".active").attr('id');
+            window.location.href = "<c:url value="${applicationPath}/user/${people.user.name}/edit/tab/"/>" + activeContentId;
+        }
+
+        function deleteTab() {
+            bootbox.setDefaults({locale: '${sed:getLangLowerCase()}'});
+            bootbox.confirm("<spring:message code="dialog.sure"/>", function (confirmed) {
+                if (confirmed) {
+                    var activeContentId = $("#myTabContent").find(".active").attr('id');
+                    window.location.href = "<c:url value="${applicationPath}/user/${people.user.name}/edit/tab/delete/"/>" + activeContentId;
+                }
+            });
+        }
+
+        function addTab() {
+            window.location.href = "<c:url value="${applicationPath}/user/${people.user.name}/addTab"/>";
+        }
+    </script>
+</security:authorize>
+
+

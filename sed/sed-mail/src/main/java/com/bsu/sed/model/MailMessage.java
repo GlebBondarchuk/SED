@@ -1,6 +1,8 @@
 package com.bsu.sed.model;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Mail message object.
@@ -11,7 +13,7 @@ public class MailMessage {
     private String[] recipients;
     private String subject;
     private String emailBody;
-    private InlineResource inlineResource;
+    private List<InlineResource> inlineResources = new ArrayList<>();
     private MessagePriority priority = MessagePriority.NORMAL; //normal priority as default.
 
     protected MailMessage() {
@@ -61,11 +63,11 @@ public class MailMessage {
         this.priority = priority;
     }
 
-    public InlineResource getInlineResource() {
-        return inlineResource;
+    public List<InlineResource> getInlineResources() {
+        return inlineResources;
     }
 
-    public void setInlineResource(InlineResource inlineResource) {
-        this.inlineResource = inlineResource;
+    public void addInlineResource(InlineResource inlineResource) {
+        this.inlineResources.add(inlineResource);
     }
 }

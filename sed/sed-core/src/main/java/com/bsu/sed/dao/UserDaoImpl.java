@@ -19,17 +19,23 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
 
     @Override
     public User getByLogin(String login) {
-        Session session = em.unwrap(Session.class);
-        Criteria criteria = session.createCriteria(User.class);
-        criteria.add(Restrictions.like("login", login));
-        return (User) criteria.uniqueResult();
+        return getByField("login", login);
     }
 
     @Override
     public User getByPassword(String password) {
+        return getByField("password", password);
+    }
+
+    @Override
+    public User getByUsername(String username) {
+        return getByField("name", username);
+    }
+
+    private User getByField(String fieldName, String fieldValue) {
         Session session = em.unwrap(Session.class);
         Criteria criteria = session.createCriteria(User.class);
-        criteria.add(Restrictions.like("password", password));
+        criteria.add(Restrictions.like(fieldName, fieldValue));
         return (User) criteria.uniqueResult();
     }
 

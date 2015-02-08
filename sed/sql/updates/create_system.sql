@@ -8,7 +8,8 @@ CREATE TABLE IF NOT EXISTS sed_system (
   category      VARCHAR(50)  NOT NULL,
   PRIMARY KEY (id)
 )
-  ENGINE = InnoDB;
+  ENGINE = InnoDB
+  DEFAULT CHARSET =utf8;
 
 INSERT INTO sed_system (`key`, value, display_value, description, category)
 VALUES ('EMAIL', 'sed.bsu@gmail.com', 'System Email Server', 'Only for gmail accounts.', 'EMAIL');
