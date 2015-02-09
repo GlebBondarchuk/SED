@@ -19,7 +19,7 @@
             <c:if test="${not empty people.user.login}">
                 <p><i class="fa fa-envelope-o"></i><a href="mailto:${people.user.login}"> ${people.user.login}</a></p>
             </c:if>
-            <a class="btn btn-primary" href="<c:url value="${applicationPath}/user/${people.user.name}"/>"><spring:message code="peoples.button.viewDetails"/></a>
+            <a class="btn btn-primary" href="<c:url value="${applicationPath}/user/${people.user.id}"/>"><spring:message code="peoples.button.viewDetails"/></a>
         </div>
     </div>
     <c:if test="${not status.last}">

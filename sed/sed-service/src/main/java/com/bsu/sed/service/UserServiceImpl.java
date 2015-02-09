@@ -64,6 +64,7 @@ public class UserServiceImpl implements UserService {
             people.setAddress(details.getAddress());
             people.setPosition(details.getPosition());
             peopleDao.create(people);
+            return user;
         }
 
         MailMessage message = mailBuilder.buildRegistrationMessage(user);

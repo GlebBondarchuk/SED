@@ -9,11 +9,11 @@ import java.util.List;
  * @author gbondarchuk
  */
 public interface PeopleService {
-    People update(UserDto dto, String username);
+    People update(UserDto dto, Long userId);
 
-    People addContent(String contentName, String html, String username);
+    People addContent(String contentName, String html, Long userId);
 
-    People getByUsername(String username);
+    People getByUserId(Long id);
 
     List<People> find();
 }

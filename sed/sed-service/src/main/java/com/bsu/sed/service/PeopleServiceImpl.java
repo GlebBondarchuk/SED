@@ -26,8 +26,8 @@ public class PeopleServiceImpl implements PeopleService {
     private ContentDao contentDao;
 
     @Override
-    public People update(UserDto dto, String username) {
-        People people = peopleDao.getByUsername(username);
+    public People update(UserDto dto, Long userId) {
+        People people = peopleDao.getByUserId(userId);
         people.setPosition(dto.getPosition());
         people.setAddress(dto.getAddress());
         people.getUser().setName(dto.getName());
@@ -43,8 +43,8 @@ public class PeopleServiceImpl implements PeopleService {
     }
 
     @Override
-    public People addContent(String contentName, String html, String username) {
-        People people = peopleDao.getByUsername(username);
+    public People addContent(String contentName, String html, Long userId) {
+        People people = peopleDao.getByUserId(userId);
         Content content = new Content();
         content.setName(contentName);
         content.setContent(html.getBytes(Charset.forName("UTF-8")));
@@ -55,8 +55,8 @@ public class PeopleServiceImpl implements PeopleService {
     }
 
     @Override
-    public People getByUsername(String username) {
-        People people = peopleDao.getByUsername(username);
+    public People getByUserId(Long id) {
+        People people = peopleDao.getByUserId(id);
         if (people == null) {
             return null;
         }

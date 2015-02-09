@@ -54,7 +54,7 @@
 
     window.operationEvent = {
         'click .edit': function (e, value, row, index) {
-            window.location.href = "${applicationPath}/user/" + row.name + "/edit";
+            window.location.href = "${applicationPath}/user/" + row.id + "/edit";
         },
         'click .remove': function (e, value, row, index) {
             bootbox.setDefaults({locale: '${sed:getLangLowerCase()}'});

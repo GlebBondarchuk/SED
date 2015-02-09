@@ -97,7 +97,7 @@ public class AdminController {
             return modelAndView;
         }
         User created = userService.create(user);
-        People people = peopleService.getByUsername(created.getName());
+        People people = peopleService.getByUserId(created.getId());
         modelAndView.addObject("user", created);
         modelAndView.addObject("people", people);
         return modelAndView;

@@ -1,6 +1,8 @@
 package com.bsu.sed.handler;
 
 import com.bsu.sed.model.Role;
+import com.bsu.sed.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -22,12 +24,21 @@ import java.io.IOException;
 public class AuthenticationSuccessHandler implements org.springframework.security.web.authentication.AuthenticationSuccessHandler {
     private static final String LOGIN_URL = "/login";
 
+    @Autowired
+    private UserService userService;
+
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         HttpSession session = request.getSession();
         User user = (User) authentication.getPrincipal();
         String username = user.getUsername();
-        session.setAttribute("username", username);
+        com.bsu.sed.model.persistent.User authenticated = userService.getByUsername(username);
+        String redirectURL = request.getContextPath();
+        if (authenticated == null) {
+            response.sendRedirect(redirectURL);
+            return;
+        }
+        session.setAttribute("userId", authenticated.getId());
 
         String referer = request.getHeader(HttpHeaders.REFERER);
 
@@ -42,9 +53,9 @@ public class AuthenticationSuccessHandler implements org.springframework.securit
             }
         }
 
-
         if (referer.contains(LOGIN_URL)) {
-            String redirectURL = request.getContextPath() + "/user/" + username;
+            Long id = authenticated.getId();
+            redirectURL += "/user/" + id;
             response.sendRedirect(redirectURL);
         } else {
             response.sendRedirect(referer);

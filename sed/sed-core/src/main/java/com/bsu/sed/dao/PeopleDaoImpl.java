@@ -11,11 +11,12 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class PeopleDaoImpl extends AbstractDao<People> implements PeopleDao {
+
     @Override
-    public People getByUsername(String username) {
+    public People getByUserId(Long id) {
         Session session = em.unwrap(Session.class);
-        Query query = session.createQuery("from People where user.name like :username");
-        query.setParameter("username", username);
+        Query query = session.createQuery("from People where user.id like :id");
+        query.setParameter("id", id);
         return (People) query.uniqueResult();
     }
 }
