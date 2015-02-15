@@ -110,7 +110,9 @@
                             </div>
                         </div>
                     </div>
-                    <input type="submit" name="submit" id="submit" value="<spring:message code="people.button.saveChanges"/>" class="btn btn-danger pull-left">
+                    <button type="submit" name="submit" id="submit" class="btn btn-danger pull-left">
+                        <span class="glyphicon glyphicon-save"></span>&nbsp;&nbsp;<spring:message code="people.button.saveChanges"/>
+                    </button>
                 </form>
             </div>
         </div>
@@ -170,17 +172,17 @@
         <div class="col-lg-12">
             <c:if test="${not edit}">
                 <a class="btn btn-danger btn-primary"
-                   href="<c:url value="${applicationPath}/people/${people.user.login}/edit"/>" role="button"><spring:message
-                        code="people.button.editPage"/></a>
+                   href="<c:url value="${applicationPath}/people/${people.user.login}/edit"/>" role="button">
+                    <span class="glyphicon glyphicon-edit"></span>&nbsp;&nbsp;<spring:message code="people.button.editPage"/>
+                </a>
             </c:if>
             <c:if test="${edit}">
                 <div>
                     <c:if test="${not empty people.contents}">
-                        <a class="btn btn-danger btn-primary" onclick="editTab();" role="button"><spring:message code="people.button.editTab"/></a>
-                        <a class="btn btn-danger btn-primary" onclick="deleteTab();" role="button"><spring:message
-                                code="people.button.deleteTab"/></a>
+                        <a class="btn btn-danger btn-primary" onclick="editTab();" role="button"><span class="glyphicon glyphicon-edit"></span>&nbsp;&nbsp;<spring:message code="people.button.editTab"/></a>
+                        <a class="btn btn-danger btn-primary" onclick="deleteTab();" role="button"><span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;<spring:message code="people.button.deleteTab"/></a>
                     </c:if>
-                    <a class="btn btn-danger btn-primary" onclick="addTab();" role="button"><spring:message code="people.button.addTab"/></a>
+                    <a class="btn btn-danger btn-primary" onclick="addTab();" role="button"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;<spring:message code="people.button.addTab"/></a>
                 </div>
             </c:if>
         </div>

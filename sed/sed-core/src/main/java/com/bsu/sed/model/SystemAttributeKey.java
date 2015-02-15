@@ -14,5 +14,6 @@ public enum SystemAttributeKey {
     EMAIL_MASK,
 
     /* Peoples Attributes */
-    CHECK_PEOPLE_REGISTRATION
+    CHECK_PEOPLE_REGISTRATION,
+    CHECK_STUDENT_REGISTRATION
 }

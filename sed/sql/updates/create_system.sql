@@ -33,3 +33,6 @@ VALUES ('EMAIL_MASK', '@gmail.com', 'Email Mask', '', 'EMAIL');
 INSERT INTO sed_system (`key`, value, display_value, description, category, `bit`)
 VALUES ('CHECK_PEOPLE_REGISTRATION', 'true', 'Check Peoples Registration', '', 'PEOPLES', TRUE);
 
+INSERT INTO sed_system (`key`, value, display_value, description, category, `bit`)
+VALUES ('CHECK_STUDENT_REGISTRATION', 'true', 'Check Students Registration', '', 'STUDENTS', TRUE);
+

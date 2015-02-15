@@ -19,13 +19,13 @@
     <div class="col-lg-12">
         <c:choose>
             <c:when test="${empty content.id}">
-                <input onclick="addTab();" class="btn btn-danger btn-primary" type="button" value="<spring:message code="people.button.save"/>"/>
+                <button onclick="addTab();" class="btn btn-danger btn-primary" type="button"><span class="glyphicon glyphicon-save"></span>&nbsp;&nbsp;<spring:message code="people.button.save"/></button>
             </c:when>
             <c:otherwise>
-                <input onclick="editTab();" class="btn btn-danger btn-primary" type="button" value="<spring:message code="people.button.saveChanges"/>"/>
+                <button onclick="editTab();" class="btn btn-danger btn-primary" type="button"><span class="glyphicon glyphicon-save"></span>&nbsp;&nbsp;<spring:message code="people.button.saveChanges"/></button>
             </c:otherwise>
         </c:choose>
-        <a class="btn btn-danger btn-primary" href="<c:url value="${applicationPath}/people/${login}/edit"/>" role="button"><spring:message code="people.button.cancel"/></a>
+        <a class="btn btn-danger btn-primary" href="<c:url value="${applicationPath}/people/${login}/edit"/>" role="button"><span class="glyphicon glyphicon-remove-circle"></span>&nbsp;&nbsp;<spring:message code="people.button.cancel"/></a>
     </div>
 </div>
 <script>

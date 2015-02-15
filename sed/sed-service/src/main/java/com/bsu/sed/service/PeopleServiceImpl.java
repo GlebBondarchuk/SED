@@ -56,7 +56,9 @@ public class PeopleServiceImpl implements PeopleService {
         people.setHead(dto.isHead());
 
         peopleDao.create(people);
-        mailService.sendRegistrationMessage(user);
+        if (checkPeopleRegistration) {
+            mailService.sendRegistrationMessage(user);
+        }
         return people;
     }
 

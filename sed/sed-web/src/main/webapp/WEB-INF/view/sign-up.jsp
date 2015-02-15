@@ -7,8 +7,10 @@
 <script src="${applicationPath}/resources/js/signUp.js"></script>
 
 <div class="row">
-    <form id="signUpForm" data-toggle="validator" class="form-horizontal col-lg-12" role="form" action="${applicationPath}${postUrl}" method="post">
-        <div class="well well-sm"><strong><span class="glyphicon glyphicon-asterisk"></span>&nbsp;&nbsp;Required Field</strong></div>
+    <form id="signUpForm" data-toggle="validator" class="form-horizontal col-lg-12" role="form"
+          action="${applicationPath}${postUrl}" method="post">
+        <div class="well well-sm"><strong><span class="glyphicon glyphicon-asterisk"></span>&nbsp;&nbsp;Required
+            Field</strong></div>
 
         <div class="form-group">
             <label class="col-sm-2 control-label">Role</label>
@@ -33,7 +35,8 @@
 
             <div class="col-sm-10">
                 <div class="input-group">
-                    <input maxlength="<%=ConstraintConstants.USER_NAME_MAX_LENGTH%>" type="text" class="form-control" name="name" placeholder="Name" value="${dto.name}" required>
+                    <input maxlength="<%=ConstraintConstants.USER_NAME_MAX_LENGTH%>" type="text" class="form-control"
+                           name="name" placeholder="Name" value="${dto.name}" required>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                 </div>
@@ -45,7 +48,8 @@
 
             <div class="col-sm-10">
                 <div class="input-group">
-                    <input type="text" class="form-control" name="login" placeholder="Email" value="${dto.login}" required pattern="[^@]+"
+                    <input type="text" class="form-control" name="login" placeholder="Email" value="${dto.login}"
+                           required pattern="[^@]+"
                            data-error="Domain name ${emailMask} has been already written.">
                     <span class="input-group-addon">${emailMask}</span>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
@@ -68,22 +72,22 @@
 
             <div class="col-sm-10">
                 <div class="input-group">
-                    <input type="url" class="form-control" name="photo" placeholder="Photo Link" value="${dto.photo}" required
+                    <input type="url" class="form-control" name="photo" placeholder="Photo Link" value="${dto.photo}"
+                           required
                            data-error="Please, enter correct link">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-link"></span></span>
                 </div>
                 <span class="help-block with-errors hidden"></span>
             </div>
         </div>
-        <% try {
-        } catch (Exception e) {
-        } %><security:authorize access="hasAnyRole('ADMIN','TEACHER')">
+        <security:authorize access="hasAnyRole('ADMIN','TEACHER')">
             <div class="form-group teacher">
                 <label class="col-sm-2 control-label">Position</label>
 
                 <div class="col-sm-10">
                     <div class="input-group">
-                        <input type="text" class="form-control" name="position" placeholder="People Position" value="${dto.position}" required>
+                        <input type="text" class="form-control" name="position" placeholder="People Position"
+                               value="${dto.position}" required>
                         <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
                         <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                     </div>
@@ -95,7 +99,8 @@
 
                 <div class="col-sm-10">
                     <div class="input-group">
-                        <input type="text" class="form-control" name="address" placeholder="Address" value="${dto.address}">
+                        <input type="text" class="form-control" name="address" placeholder="Address"
+                               value="${dto.address}">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-home"></span></span>
                     </div>
                 </div>
@@ -106,7 +111,8 @@
 
             <div class="col-sm-10">
                 <div class="input-group">
-                    <input type="text" class="form-control" name="course" placeholder="Course" value="${dto.course}" required>
+                    <input type="text" class="form-control" name="course" placeholder="Course" value="${dto.course}"
+                           required>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                 </div>
                 <span class="help-block with-errors hidden"></span>
@@ -117,7 +123,8 @@
 
             <div class="col-sm-10">
                 <div class="input-group">
-                    <input type="text" class="form-control" name="group" placeholder="Group" value="${dto.group}" required>
+                    <input type="text" class="form-control" name="group" placeholder="Group" value="${dto.group}"
+                           required>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                 </div>
                 <span class="help-block with-errors hidden"></span>
@@ -128,7 +135,8 @@
 
             <div class="col-sm-10">
                 <div class="input-group">
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Password" value="${dto.password}" required>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password"
+                           value="${dto.password}" required>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                 </div>
@@ -140,7 +148,8 @@
             <div class="col-sm-10">
                 <div class="input-group">
                     <input type="password" class="form-control" name="confirmPassword" placeholder="Confirm Password"
-                           value="${dto.confirmPassword}" required data-match="#password" data-match-error="Password doesn't match">
+                           value="${dto.confirmPassword}" required data-match="#password"
+                           data-match-error="Password doesn't match">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                 </div>
@@ -148,6 +157,6 @@
             </div>
         </div>
 
-        <input type="submit" name="submit" value="Sign Up" class="btn btn-primary pull-right">
+        <button type="submit" name="submit" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Sign Up</button>
     </form>
 </div>

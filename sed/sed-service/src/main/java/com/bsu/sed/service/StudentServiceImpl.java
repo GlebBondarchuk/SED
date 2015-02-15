@@ -31,6 +31,7 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public Student createStudent(StudentDto dto) {
         String emailMask = systemAttributeDao.get(SystemAttributeKey.EMAIL_MASK);
+        boolean checkStudentRegistration = systemAttributeDao.getBoolean(SystemAttributeKey.CHECK_STUDENT_REGISTRATION);
         User user = new User();
         user.setLogin(dto.getLogin());
         user.setEmail(dto.getLogin() + emailMask);
@@ -40,7 +41,7 @@ public class StudentServiceImpl implements StudentService {
         user.setRole(dto.getRole());
         user.setPhone(dto.getPhone());
         user.setPhoto(dto.getPhoto());
-        user.setDisabled(true);
+        user.setDisabled(checkStudentRegistration);
 
         Student student = new Student();
         student.setUser(user);
@@ -48,7 +49,9 @@ public class StudentServiceImpl implements StudentService {
         student.setGroup(dto.getGroup());
 
         studentDao.create(student);
-        mailService.sendRegistrationMessage(user);
+        if (checkStudentRegistration) {
+            mailService.sendRegistrationMessage(user);
+        }
         return student;
     }
 

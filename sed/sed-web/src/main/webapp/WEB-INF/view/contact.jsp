@@ -73,7 +73,7 @@
                 </div>
                 <div id="success"></div>
                 <!-- For success/fail messages -->
-                <button type="submit" class="btn btn-primary"><spring:message code="contact.button.sendMessage"/></button>
+                <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-send"></span>&nbsp;&nbsp;<spring:message code="contact.button.sendMessage"/></button>
             </form>
         </div>
     </div>

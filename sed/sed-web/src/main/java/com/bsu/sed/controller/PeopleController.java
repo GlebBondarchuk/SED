@@ -35,7 +35,7 @@ public class PeopleController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/people/{login}")
+    @RequestMapping(value = "/people/{login:.+}")
     public ModelAndView getUserPage(@PathVariable("login") String login) {
         People people = peopleService.getByLogin(login);
         if (people == null) {

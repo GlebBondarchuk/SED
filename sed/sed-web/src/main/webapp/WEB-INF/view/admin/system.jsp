@@ -33,7 +33,7 @@
                         </c:choose>
                     </td>
                     <td><input class="form-control" type="text" name="description" value="${attribute.description}"/></td>
-                    <td><input class="form-control btn btn-danger" type="submit" name="Update" value="<spring:message code="button.update"/>"/></td>
+                    <td><button class="form-control btn btn-danger" type="submit" name="Update"><span class="glyphicon glyphicon-save"></span>&nbsp;&nbsp;<spring:message code="button.update"/></button></td>
                 </form>
             </tr>
         </c:forEach>

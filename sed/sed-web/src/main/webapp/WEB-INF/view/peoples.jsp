@@ -18,7 +18,7 @@
             <c:if test="${not empty people.user.login}">
                 <p><i class="fa fa-envelope-o"></i><a href="mailto:${people.user.email}"> ${people.user.email}</a></p>
             </c:if>
-            <a class="btn btn-primary" href="<c:url value="${applicationPath}/people/${people.user.login}"/>"><spring:message code="peoples.button.viewDetails"/></a>
+            <a class="btn btn-primary" href="<c:url value="${applicationPath}/people/${people.user.login}"/>"><span class="glyphicon glyphicon-info-sign"></span>&nbsp;&nbsp;<spring:message code="peoples.button.viewDetails"/></a>
         </div>
     </div>
     <c:if test="${not status.last}">

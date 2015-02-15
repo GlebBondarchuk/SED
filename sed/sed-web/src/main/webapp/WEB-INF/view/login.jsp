@@ -25,7 +25,9 @@
         <input class="form-control" type='password' name='j_password' placeholder="Password"/>
 
         <div class="buttons-holder">
-            <input class="btn btn-lg btn-primary btn-block" name="submit" type="submit" value="<spring:message code="button.signIn"/>"/>
+            <button class="btn btn-lg btn-primary btn-block" name="submit" type="submit">
+                <span class="glyphicon glyphicon-log-in"></span>&nbsp;&nbsp;<spring:message code="button.signIn"/>
+            </button>
         </div>
     </form>
 </div>
