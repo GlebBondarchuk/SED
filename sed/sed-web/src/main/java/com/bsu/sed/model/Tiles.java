@@ -11,6 +11,9 @@ public enum Tiles {
     EXCEPTION_PAGE("error.exception"),
     CONTACT_PAGE("sed-contact"),
     PEOPLES_PAGE("sed-peoples"),
+    STUDENTS_PAGE("sed-students"),
+    SEARCH_PAGE("sed-search"),
+    CONTENT_PAGE("sed-content"),
 
     //admin pages
     USERS_PAGE("sed-users"),

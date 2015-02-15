@@ -2,11 +2,15 @@ package com.bsu.sed.service;
 
 import com.bsu.sed.dao.ContentDao;
 import com.bsu.sed.dao.PeopleDao;
-import com.bsu.sed.model.dto.UserDto;
+import com.bsu.sed.dao.SystemAttributeDao;
+import com.bsu.sed.model.SystemAttributeKey;
+import com.bsu.sed.model.dto.PeopleDto;
 import com.bsu.sed.model.persistent.Content;
 import com.bsu.sed.model.persistent.People;
+import com.bsu.sed.model.persistent.User;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -20,20 +24,62 @@ import java.util.List;
 @Transactional
 public class PeopleServiceImpl implements PeopleService {
     @Autowired
+    private MailService mailService;
+    @Autowired
     private PeopleDao peopleDao;
-
     @Autowired
     private ContentDao contentDao;
+    @Autowired
+    private SystemAttributeDao systemAttributeDao;
+    @Autowired
+    private Md5PasswordEncoder passwordEncoder;
 
     @Override
-    public People update(UserDto dto, Long userId) {
-        People people = peopleDao.getByUserId(userId);
+    public People createPeople(PeopleDto dto) {
+        String emailMask = systemAttributeDao.get(SystemAttributeKey.EMAIL_MASK);
+        boolean checkPeopleRegistration = systemAttributeDao.getBoolean(SystemAttributeKey.CHECK_PEOPLE_REGISTRATION);
+        User user = new User();
+        user.setLogin(dto.getLogin());
+        user.setEmail(dto.getLogin() + emailMask);
+        user.setName(dto.getName());
+        String encoded = passwordEncoder.encodePassword(dto.getPassword(), null);
+        user.setPassword(encoded);
+        user.setRole(dto.getRole());
+        user.setPhone(dto.getPhone());
+        user.setPhoto(dto.getPhoto());
+        user.setDisabled(checkPeopleRegistration);
+
+        People people = new People();
+        people.setUser(user);
+        people.setAddress(dto.getAddress());
+        people.setPosition(dto.getPosition());
+        people.setHead(dto.isHead());
+
+        peopleDao.create(people);
+        mailService.sendRegistrationMessage(user);
+        return people;
+    }
+
+    @Override
+    public People getByLogin(String login) {
+        People people = peopleDao.getByLogin(login);
+        for (Content content : people.getContents()) {
+            Hibernate.initialize(content);
+            content.setHtml(new String(content.getContent(), Charset.forName("UTF-8")));
+        }
+        return people;
+    }
+
+    @Override
+    public People update(PeopleDto dto, String login) {
+        People people = peopleDao.getByLogin(login);
         people.setPosition(dto.getPosition());
         people.setAddress(dto.getAddress());
+        people.setHead(dto.isHead());
         people.getUser().setName(dto.getName());
         people.getUser().setPhone(dto.getPhone());
         people.getUser().setPhoto(dto.getPhoto());
-        people.getUser().setLogin(dto.getLogin());
+        people.getUser().setEmail(dto.getLogin());
         people = peopleDao.update(people);
         for (Content content : people.getContents()) {
             Hibernate.initialize(content);
@@ -43,8 +89,8 @@ public class PeopleServiceImpl implements PeopleService {
     }
 
     @Override
-    public People addContent(String contentName, String html, Long userId) {
-        People people = peopleDao.getByUserId(userId);
+    public People addContent(String contentName, String html, String login) {
+        People people = peopleDao.getByLogin(login);
         Content content = new Content();
         content.setName(contentName);
         content.setContent(html.getBytes(Charset.forName("UTF-8")));
@@ -55,8 +101,8 @@ public class PeopleServiceImpl implements PeopleService {
     }
 
     @Override
-    public People getByUserId(Long id) {
-        People people = peopleDao.getByUserId(id);
+    public People get(Long id) {
+        People people = peopleDao.load(id);
         if (people == null) {
             return null;
         }
@@ -70,5 +116,10 @@ public class PeopleServiceImpl implements PeopleService {
     @Override
     public List<People> find() {
         return peopleDao.getAll();
+    }
+
+    @Override
+    public People getHead() {
+        return peopleDao.getHead();
     }
 }

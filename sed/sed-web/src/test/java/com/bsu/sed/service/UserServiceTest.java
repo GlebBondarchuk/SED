@@ -1,8 +1,6 @@
 package com.bsu.sed.service;
 
 import com.bsu.sed.common.AbstractTransactionalIntegrationTest;
-import com.bsu.sed.model.Role;
-import com.bsu.sed.model.dto.UserDto;
 import com.bsu.sed.model.persistent.User;
 import org.junit.Assert;
 import org.junit.Test;
@@ -25,12 +23,6 @@ public class UserServiceTest extends AbstractTransactionalIntegrationTest {
         User user = userService.getByLogin(UserService.SYSTEM_USER);
         notNullTest(user);
         likeSystemUserTest(user);
-    }
-
-    @Test
-    public void createUserTest() {
-        UserDto user = createUser();
-        userService.create(user);
     }
 
     @Test
@@ -97,14 +89,5 @@ public class UserServiceTest extends AbstractTransactionalIntegrationTest {
         Assert.assertEquals(user.getName(), "System");
         Assert.assertEquals(user.getPassword(), "system");
         Assert.assertEquals(user.isDisabled(), true);
-    }
-
-    private UserDto createUser() {
-        UserDto user = new UserDto();
-        user.setName("User");
-        user.setPassword("Password");
-        user.setRole(Role.TEACHER);
-        user.setLogin("Login@gmail.com");
-        return user;
     }
 }

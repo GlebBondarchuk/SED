@@ -9,6 +9,7 @@ import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.tools.generic.EscapeTool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.velocity.VelocityEngineUtils;
 
@@ -28,6 +29,8 @@ public class MailBuilderImpl implements MailBuilder {
 
     @Autowired
     private VelocityEngine velocityEngine;
+    @Autowired
+    private Md5PasswordEncoder passwordEncoder;
 
     @Override
     public MailMessage buildRegistrationMessage(User user) {
@@ -35,6 +38,9 @@ public class MailBuilderImpl implements MailBuilder {
         Map<String, Object> model = getModel();
 
         message.setSubject("User Registration");
+
+        String encodedLogin = passwordEncoder.encodePassword(user.getLogin(), null);
+        model.put("login", encodedLogin);
         model.put("user", user);
 
         InlineResource image = new InlineResource("bsu", "/image/bsu.png");
@@ -45,7 +51,7 @@ public class MailBuilderImpl implements MailBuilder {
 
 
         message.setEmailBody(emailBody);
-        message.setRecipients(user.getLogin());
+        message.setRecipients(user.getEmail());
         message.setPriority(MessagePriority.NORMAL);
 
         return message;

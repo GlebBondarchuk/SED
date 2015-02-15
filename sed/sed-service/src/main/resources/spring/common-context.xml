@@ -8,4 +8,5 @@
     <import resource="classpath:spring/service-context.xml"/>
     <import resource="classpath:spring/persistence-context.xml"/>
     <import resource="classpath:spring/mail-context.xml"/>
+    <import resource="classpath:spring/sed-cache.xml"/>
 </beans>

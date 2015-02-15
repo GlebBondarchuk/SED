@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="secutiry" uri="http://www.springframework.org/security/tags" %>
 
 <c:set var="applicationPath" value="${pageContext.request.contextPath}" scope="application"/>
 
@@ -35,8 +36,8 @@
     <link href="${applicationPath}/resources/css/modern-business.css" rel="stylesheet">
 
     <%--http://schnawel007.github.io/bootstrap3-wysihtml5/--%>
-    <link rel="stylesheet" type="text/css" href="${applicationPath}/resources/css/bootstrap-wysihtml5.css" />
-    <link rel="stylesheet" type="text/css" href="${applicationPath}/resources/css/bootstrap3-wysiwyg5-color.css" />
+    <link rel="stylesheet" type="text/css" href="${applicationPath}/resources/css/bootstrap-wysihtml5.css"/>
+    <link rel="stylesheet" type="text/css" href="${applicationPath}/resources/css/bootstrap3-wysiwyg5-color.css"/>
     <%--<link href="${applicationPath}/resources/css/bootstrap-combined.min.css" rel="stylesheet">--%>
     <%--<link href="${applicationPath}/resources/css/bootstrap-wysihtml5-0.0.2.css" rel="stylesheet">--%>
 
@@ -107,7 +108,9 @@
 <%--<script src="${applicationPath}/resources/js/custom_image_and_upload_wysihtml5.js"></script>--%>
 <%--<script src="${applicationPath}/resources/js/jqueryupload.js"></script>--%>
 
-<script src="${applicationPath}/resources/js/wysihtml5-0.3.0.js"></script>
-<script src="${applicationPath}/resources/js/bootstrap3-wysihtml5.js"></script>
+<secutiry:authorize access="hasRole('ADMIN')">
+    <script src="${applicationPath}/resources/js/wysihtml5-0.3.0.js"></script>
+    <script src="${applicationPath}/resources/js/bootstrap3-wysihtml5.js"></script>
+</secutiry:authorize>
 </body>
 </html>

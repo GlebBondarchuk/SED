@@ -20,6 +20,7 @@ public class User extends BaseEntity {
 
     private Long id;
     private String login;
+    private String email;
     private String name;
     private String phone;
     private String password;
@@ -27,7 +28,6 @@ public class User extends BaseEntity {
     private String photo;
     private UserDetails details;
     private boolean disabled;
-//    private List<People> peoples;
 
     @Override
     @Id
@@ -51,7 +51,6 @@ public class User extends BaseEntity {
     }
 
     @NotEmpty
-    @com.bsu.sed.model.constraint.Email
     @Length(max = USER_LOGIN_MAX_LENGTH)
     @Column(name = "login")
     public String getLogin() {
@@ -60,6 +59,16 @@ public class User extends BaseEntity {
 
     public void setLogin(String login) {
         this.login = login;
+    }
+
+    @com.bsu.sed.model.constraint.Email
+    @Column(name = "email")
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @NotEmpty
@@ -123,13 +132,4 @@ public class User extends BaseEntity {
     public void setDetails(UserDetails details) {
         this.details = details;
     }
-
-//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    public List<People> getPeoples() {
-//        return peoples;
-//    }
-//
-//    public void setPeoples(List<People> peoples) {
-//        this.peoples = peoples;
-//    }
 }

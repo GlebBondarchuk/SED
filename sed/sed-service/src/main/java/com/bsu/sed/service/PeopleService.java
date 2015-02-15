@@ -1,6 +1,6 @@
 package com.bsu.sed.service;
 
-import com.bsu.sed.model.dto.UserDto;
+import com.bsu.sed.model.dto.PeopleDto;
 import com.bsu.sed.model.persistent.People;
 
 import java.util.List;
@@ -9,11 +9,17 @@ import java.util.List;
  * @author gbondarchuk
  */
 public interface PeopleService {
-    People update(UserDto dto, Long userId);
+    People createPeople(PeopleDto dto);
 
-    People addContent(String contentName, String html, Long userId);
+    People getByLogin(String login);
 
-    People getByUserId(Long id);
+    People update(PeopleDto dto, String login);
+
+    People addContent(String contentName, String html, String login);
+
+    People get(Long id);
 
     List<People> find();
+
+    People getHead();
 }

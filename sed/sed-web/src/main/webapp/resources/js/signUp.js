@@ -1,39 +1,32 @@
-$(function(){
-    $("#roleSelect").on("change", function(){
-        if($(this).val() == 'STUDENT') {
-            $("#details").hide();
-        } else {
-            $("#details").show();
-        }
-    });
+$(function () {
+    choseRole();
 });
 
 
-/**
- * Encode password to md5 string.
- * @param id of password input.
- */
-function encodePassword(id) {
-    var container = $("#" + id);
-    var password = container.val();
-    var encodedPassword = $.md5(password);
-    container.val(encodedPassword);
-}
+function choseRole() {
+    var roleSelect = $("#roleSelect");
 
-function setEmailValue(emailId, maskId) {
-    var email = $("#" + emailId);
-    var emailValue = email.val();
-    var maskValue = $("#" + maskId).text();
-    email.val(emailValue + maskValue);
-}
-
-function setNameHandler(inputNameId)  {
-    $('#' + inputNameId).bind('keypress', function (event) {
-        var regex = new RegExp("^[a-zA-Z]+$");
-        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
-        if (!regex.test(key)) {
-            event.preventDefault();
-            return false;
-        }
+    var teacher = $(".teacher");
+    var teacherFormControls = teacher.find(".form-control");
+    var student = $(".student");
+    var studentFormControls = student.find(".form-control");
+    onRoleChange(roleSelect.val(), teacher, teacherFormControls, student, studentFormControls);
+    roleSelect.on("change", function () {
+        onRoleChange($(this).val(), teacher, teacherFormControls, student, studentFormControls);
     });
+}
+
+
+function onRoleChange(role, teacher, teacherFormControls, student, studentFormControls) {
+    if (role == 'STUDENT') {
+        teacher.hide();
+        teacherFormControls.attr("disabled", "disabled");
+        studentFormControls.removeAttr("disabled");
+        student.show();
+    } else {
+        student.hide();
+        studentFormControls.attr("disabled", "disabled");
+        teacherFormControls.removeAttr("disabled");
+        teacher.show();
+    }
 }

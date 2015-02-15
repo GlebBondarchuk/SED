@@ -7,5 +7,9 @@ import com.bsu.sed.model.persistent.People;
  * @author gbondarchuk
  */
 public interface PeopleDao extends GenericDao<People, Long> {
-    People getByUserId(Long id);
+    People getHead();
+
+    People getByLogin(String login);
+
+    Long getUserIdByContentId(Long id);
 }

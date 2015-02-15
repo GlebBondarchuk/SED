@@ -1,13 +1,11 @@
 package com.bsu.sed.dao;
 
 import com.bsu.sed.dao.generic.AbstractDao;
-import com.bsu.sed.model.persistent.SystemAttribute;
 import com.bsu.sed.model.SystemAttributeKey;
+import com.bsu.sed.model.persistent.SystemAttribute;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
-
-import javax.transaction.Transactional;
 
 /**
  * @author gbondarchuk
@@ -37,5 +35,11 @@ public class SystemAttributeDaoImpl extends AbstractDao<SystemAttribute> impleme
     public int getInt(SystemAttributeKey key) {
         String value = getValue(key);
         return Integer.parseInt(value);
+    }
+
+    @Override
+    public boolean getBoolean(SystemAttributeKey key) {
+        String value = getValue(key);
+        return Boolean.parseBoolean(value);
     }
 }

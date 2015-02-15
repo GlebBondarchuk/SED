@@ -23,10 +23,13 @@
                 <p><i class="fa fa-phone"></i> ${people.user.phone}</p>
             </c:if>
             <c:if test="${not empty people.user.login}">
-                <p><i class="fa fa-envelope-o"></i><a href="mailto:${people.user.login}"> ${people.user.login}</a></p>
+                <p><i class="fa fa-envelope-o"></i><a href="mailto:${people.user.email}"> ${people.user.email}</a></p>
             </c:if>
             <c:if test="${not empty people.address}">
                 <p><i class="fa fa-home"></i> ${people.address}</p>
+            </c:if>
+            <c:if test="${people.head}">
+                <p><i class="fa fa-header"></i> <span class="alert-success">Head of the department</span></p>
             </c:if>
         </div>
     </div>
@@ -46,7 +49,7 @@
                 </c:choose>
             </div>
             <div class="col-md-10">
-                <form class="form-horizontal" role="form" action="<c:url value="${applicationPath}/user/${people.user.id}/edit/main"/>"
+                <form class="form-horizontal" role="form" action="<c:url value="${applicationPath}/people/${people.user.login}/edit"/>"
                       method="post">
                     <div class="form-group">
                         <div class="col-sm-10">
@@ -76,7 +79,7 @@
                         <div class="col-sm-10">
                             <div class="input-group">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
-                                <input type="email" class="form-control" name="login" placeholder="Email" value="${people.user.login}" required>
+                                <input type="email" class="form-control" name="login" placeholder="Email" value="${people.user.email}" required>
                             </div>
                         </div>
                     </div>
@@ -93,6 +96,17 @@
                             <div class="input-group">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-picture"></span></span>
                                 <input type="text" class="form-control" name="photo" placeholder="Photo Link" value="${people.user.photo}" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-header"></span></span>
+                                <select  name="head" class="form-control" title="Head of the department">
+                                    <option class="alert-success" ${people.head ? 'selected':''} value="true">true</option>
+                                    <option class="alert-danger" ${people.head ? '':'selected'} value="false">false</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -156,7 +170,7 @@
         <div class="col-lg-12">
             <c:if test="${not edit}">
                 <a class="btn btn-danger btn-primary"
-                   href="<c:url value="${applicationPath}/user/${people.user.id}/edit"/>" role="button"><spring:message
+                   href="<c:url value="${applicationPath}/people/${people.user.login}/edit"/>" role="button"><spring:message
                         code="people.button.editPage"/></a>
             </c:if>
             <c:if test="${edit}">
@@ -175,7 +189,7 @@
     <script>
         function editTab() {
             var activeContentId = $("#myTabContent").find(".active").attr('id');
-            window.location.href = "<c:url value="${applicationPath}/user/${people.user.id}/edit/tab/"/>" + activeContentId;
+            window.location.href = "<c:url value="${applicationPath}/people/${people.user.login}/edit/tab/"/>" + activeContentId;
         }
 
         function deleteTab() {
@@ -183,13 +197,13 @@
             bootbox.confirm("<spring:message code="dialog.sure"/>", function (confirmed) {
                 if (confirmed) {
                     var activeContentId = $("#myTabContent").find(".active").attr('id');
-                    window.location.href = "<c:url value="${applicationPath}/user/${people.user.id}/edit/tab/delete/"/>" + activeContentId;
+                    window.location.href = "<c:url value="${applicationPath}/people/${people.user.login}/edit/tab/delete/"/>" + activeContentId;
                 }
             });
         }
 
         function addTab() {
-            window.location.href = "<c:url value="${applicationPath}/user/${people.user.id}/addTab"/>";
+            window.location.href = "<c:url value="${applicationPath}/people/${people.user.login}/addTab"/>";
         }
     </script>
 </security:authorize>

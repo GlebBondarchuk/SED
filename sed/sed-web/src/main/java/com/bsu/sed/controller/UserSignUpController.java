@@ -3,11 +3,13 @@ package com.bsu.sed.controller;
 import com.bsu.sed.model.Role;
 import com.bsu.sed.model.SystemAttributeKey;
 import com.bsu.sed.model.Tiles;
-import com.bsu.sed.model.dto.UserDto;
+import com.bsu.sed.model.dto.StudentDto;
 import com.bsu.sed.model.persistent.User;
+import com.bsu.sed.service.StudentService;
 import com.bsu.sed.service.SystemAttributeService;
 import com.bsu.sed.service.UserService;
-import com.bsu.sed.validator.UserDetailsDtoValidator;
+import com.bsu.sed.utils.ErrorUtils;
+import com.bsu.sed.validator.StudentDtoValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -27,42 +29,50 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping("/signUp")
 public class UserSignUpController {
-
     @Autowired
-    private UserDetailsDtoValidator userDetailsDtoValidator;
+    private StudentDtoValidator studentDtoValidator;
+    @Autowired
+    private StudentService studentService;
     @Autowired
     private UserService userService;
     @Autowired
     private SystemAttributeService systemAttributeService;
+    @Autowired
+    private ErrorUtils errorUtils;
 
     @RequestMapping("")
     public ModelAndView getSignUpPage() {
-        String emailMsk = systemAttributeService.get(SystemAttributeKey.EMAIL_MASK);
+        String emailMask = systemAttributeService.get(SystemAttributeKey.EMAIL_MASK);
         ModelAndView modelAndView = new ModelAndView(Tiles.SIGN_UP_PAGE.getTileName());
-        modelAndView.addObject("roles", Role.values());
-        modelAndView.addObject("postURL", "/signUp");
-        modelAndView.addObject("emailMask", emailMsk);
+        modelAndView.addObject("emailMask", emailMask);
+        modelAndView.addObject("postUrl", "/signUp");
         return modelAndView;
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public ModelAndView SignUp(@Valid @ModelAttribute UserDto user, BindingResult result) {
-        userDetailsDtoValidator.validate(user, result);
-        ModelAndView modelAndView = new ModelAndView(Tiles.SIGN_UP_PAGE.getTileName());
+    public ModelAndView SignUp(@Valid @ModelAttribute StudentDto dto, BindingResult result) {
+        studentDtoValidator.validate(dto, result);
+        ModelAndView modelAndView = getSignUpPage();
         if (result.hasErrors()) {
-            modelAndView.addObject("errors", result.getAllErrors());
+            modelAndView.addObject("exception", errorUtils.getErrors(result));
+            modelAndView.addObject("dto", dto);
             return modelAndView;
         }
-        userService.create(user);
+        studentService.createStudent(dto);
         modelAndView.addObject("success", "Please, open <a href=\"http://webmail.bsu.by\" target=\"_blank\" class=\"alert-link\">email</a> to complete registration");
         return modelAndView;
     }
 
-    @RequestMapping(value = "/accept/{encodedPassword}")
-    public ModelAndView accept(@PathVariable String encodedPassword) {
-        User user = userService.accept(encodedPassword);
-        ModelAndView modelAndView = new ModelAndView(Tiles.USER_PAGE.getTileName());
-        modelAndView.addObject("user", user);
+    @RequestMapping(value = "/accept/{id}/{login}")
+    public ModelAndView accept(@PathVariable("id") Long id,
+                               @PathVariable("login") String login) {
+        User user = userService.accept(id, login);
+        ModelAndView modelAndView;
+        if (user.getRole().in(Role.TEACHER, Role.ADMIN)) {
+            modelAndView = new ModelAndView("redirect:/people/" + user.getLogin());
+        } else {
+            modelAndView = new ModelAndView("redirect:/student/" + user.getLogin());
+        }
         return modelAndView;
     }
 }

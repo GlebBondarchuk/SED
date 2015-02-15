@@ -14,6 +14,7 @@ public class People extends BaseEntity {
     private User user;
     private String position;
     private String address;
+    private boolean head;
     private List<Content> contents = new ArrayList<>();
 
     @Override
@@ -28,7 +29,7 @@ public class People extends BaseEntity {
         this.id = id;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", nullable = false)
     public User getUser() {
         return user;
@@ -54,6 +55,15 @@ public class People extends BaseEntity {
 
     public void setPosition(String position) {
         this.position = position;
+    }
+
+    @Column(name = "head")
+    public boolean isHead() {
+        return head;
+    }
+
+    public void setHead(boolean head) {
+        this.head = head;
     }
 
     @ManyToMany(cascade = CascadeType.ALL)

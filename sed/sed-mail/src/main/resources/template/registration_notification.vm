@@ -6,7 +6,7 @@
     <hr>
     Hello, $esc.html($user.name) <br>
     Please, click the link to complete the registration.
-    <a href="${serverUrl}/signUp/accept/$user.password">Accept</a>
+    <a href="${serverUrl}/signUp/accept/$user.id/$login">Accept</a>
     <hr>
 </div>
     #parse("/template/common/footer.vm")

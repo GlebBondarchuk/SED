@@ -21,10 +21,25 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><spring:message code="label.nav.information"/> <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><spring:message code="label.nav.information"/> <b
+                            class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="${applicationPath}/peoples"><spring:message code="label.nav.peoples"/></a>
+                        </li>
+                        <security:authorize access="isAuthenticated()">
+                            <li>
+                                <a href="${applicationPath}/students"><spring:message code="label.nav.students"/></a>
+                            </li>
+                        </security:authorize>
+                        <li>
+                            <a href="${applicationPath}/content/${educational.content.id}"><spring:message code="label.nav.educational"/></a>
+                        </li>
+                        <li>
+                            <a href="${applicationPath}/content/${scientific.content.id}"><spring:message code="label.nav.scientific"/></a>
+                        </li>
+                        <li>
+                            <a href="${applicationPath}/content/${conference.content.id}"><spring:message code="label.nav.conferences"/></a>
                         </li>
                         <li>
                             <a href="${applicationPath}/contact"><spring:message code="label.nav.contact"/></a>
@@ -44,15 +59,22 @@
                         </ul>
                     </li>
                 </security:authorize>
+                <li>
+                    <a href="${applicationPath}/search">Search</a>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <security:authorize access="isAnonymous()">
-                    <li><a href="${applicationPath}/signUp"><span class="glyphicon glyphicon-user"></span> <spring:message code="label.nav.signUp"/></a></li>
-                    <li><a href="${applicationPath}/login"><span class="glyphicon glyphicon-log-in"></span> <spring:message code="label.nav.SignIn"/></a></li>
+                    <li><a href="${applicationPath}/signUp"><span class="glyphicon glyphicon-user"></span> <spring:message
+                            code="label.nav.signUp"/></a></li>
+                    <li><a href="${applicationPath}/login"><span class="glyphicon glyphicon-log-in"></span> <spring:message code="label.nav.SignIn"/></a>
+                    </li>
                 </security:authorize>
                 <security:authorize access="isAuthenticated()">
-                    <li><a href="${applicationPath}/user/${userId}"><spring:message code="label.nav.welcome"/> <security:authentication property="principal.username"/></a></li>
-                    <li><a href="${applicationPath}/j_spring_security_logout"><span class="glyphicon glyphicon-log-out"></span> <spring:message code="label.nav.SignOut"/></a></li>
+                    <li><a href="${applicationPath}/user/${userId}"><spring:message code="label.nav.welcome"/> <security:authentication
+                            property="principal.username"/></a></li>
+                    <li><a href="${applicationPath}/j_spring_security_logout"><span class="glyphicon glyphicon-log-out"></span> <spring:message
+                            code="label.nav.SignOut"/></a></li>
                 </security:authorize>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="dLabel" role="button"
@@ -62,8 +84,10 @@
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                        <li><a href="?lang=ru"><i class="icon-flag-RU">&nbsp;&nbsp;&nbsp;&nbsp;</i><spring:message code="label.nav.language.russian"/></a></li>
-                        <li><a href="?lang=en"><i class="icon-flag-EN">&nbsp;&nbsp;&nbsp;&nbsp;</i><spring:message code="label.nav.language.english"/></a></li>
+                        <li><a href="?lang=ru"><i class="icon-flag-RU">&nbsp;&nbsp;&nbsp;&nbsp;</i><spring:message code="label.nav.language.russian"/></a>
+                        </li>
+                        <li><a href="?lang=en"><i class="icon-flag-EN">&nbsp;&nbsp;&nbsp;&nbsp;</i><spring:message code="label.nav.language.english"/></a>
+                        </li>
                     </ul>
                 </li>
             </ul>

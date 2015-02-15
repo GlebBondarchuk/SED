@@ -7,9 +7,6 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 /**
  * System Application Attributes.
@@ -25,6 +22,7 @@ public class SystemAttribute extends BaseEntity {
     private String value;
     private String displayName;
     private String description;
+    private boolean bit;
     private SystemAttributeCategory category;
 
     @Override
@@ -68,6 +66,15 @@ public class SystemAttribute extends BaseEntity {
 
     private void setDisplayName(String displayName) {
         this.displayName = displayName;
+    }
+
+    @Column(name = "bit")
+    public boolean isBit() {
+        return bit;
+    }
+
+    public void setBit(boolean bit) {
+        this.bit = bit;
     }
 
     @NotEmpty

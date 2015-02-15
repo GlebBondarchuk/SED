@@ -1,16 +1,11 @@
 package com.bsu.sed.service;
 
-import com.bsu.sed.dao.PeopleDao;
 import com.bsu.sed.dao.UserDao;
-import com.bsu.sed.model.MailMessage;
-import com.bsu.sed.model.Role;
+import com.bsu.sed.exception.UserAcceptingException;
 import com.bsu.sed.model.SortOrder;
-import com.bsu.sed.model.dto.UserDto;
-import com.bsu.sed.model.persistent.People;
 import com.bsu.sed.model.persistent.User;
-import com.bsu.sed.service.builder.MailBuilder;
-import com.bsu.sed.service.sender.MailSender;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -24,12 +19,9 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
+
     @Autowired
-    private PeopleDao peopleDao;
-    @Autowired
-    private MailBuilder mailBuilder;
-    @Autowired
-    private MailSender mailSender;
+    private Md5PasswordEncoder passwordEncoder;
 
     @Override
     public User getByLogin(String login) {
@@ -44,32 +36,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> find(SortOrder order, int limit, int offset) {
         return userDao.find(order, limit, offset);
-    }
-
-    @Override
-    public User create(UserDto details) {
-        User user = new User();
-        user.setLogin(details.getLogin());
-        user.setPassword(details.getPassword());
-        user.setPhone(details.getPhone());
-        user.setRole(details.getRole());
-        user.setName(details.getName());
-        user.setPhoto(details.getPhoto());
-        user.setDisabled(!user.getRole().in(Role.TEACHER, Role.ADMIN));
-        userDao.create(user);
-
-        if (user.getRole().in(Role.TEACHER, Role.ADMIN)) {
-            People people = new People();
-            people.setUser(user);
-            people.setAddress(details.getAddress());
-            people.setPosition(details.getPosition());
-            peopleDao.create(people);
-            return user;
-        }
-
-        MailMessage message = mailBuilder.buildRegistrationMessage(user);
-        mailSender.send(message);
-        return user;
     }
 
     @Override
@@ -93,17 +59,28 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User accept(String password) {
-        User user = userDao.getByPassword(password);
-        if (user.isDisabled()) {
+    public User accept(Long id, String login) {
+        User user = userDao.load(id);
+        String encodedLogin = passwordEncoder.encodePassword(user.getLogin(), null);
+        if (login.equals(encodedLogin)) {
             user.setDisabled(false);
-            userDao.update(user);
+            return userDao.update(user);
         }
-        return user;
+        throw new UserAcceptingException("User not accepted due to incorrect accepting data.");
     }
 
     @Override
     public User getByUsername(String username) {
         return userDao.getByUsername(username);
+    }
+
+    @Override
+    public boolean existByName(String name) {
+        return userDao.existByName(name);
+    }
+
+    @Override
+    public boolean existByLogin(String login) {
+        return userDao.existByLogin(login);
     }
 }

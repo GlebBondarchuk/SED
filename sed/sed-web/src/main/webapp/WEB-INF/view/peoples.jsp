@@ -1,6 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<!-- Project One -->
 
 <c:forEach var="people" items="${peoples}" varStatus="status">
     <div class="row">
@@ -17,9 +16,9 @@
                 <p><i class="fa fa-phone"></i> ${people.user.phone}</p>
             </c:if>
             <c:if test="${not empty people.user.login}">
-                <p><i class="fa fa-envelope-o"></i><a href="mailto:${people.user.login}"> ${people.user.login}</a></p>
+                <p><i class="fa fa-envelope-o"></i><a href="mailto:${people.user.email}"> ${people.user.email}</a></p>
             </c:if>
-            <a class="btn btn-primary" href="<c:url value="${applicationPath}/user/${people.user.id}"/>"><spring:message code="peoples.button.viewDetails"/></a>
+            <a class="btn btn-primary" href="<c:url value="${applicationPath}/people/${people.user.login}"/>"><spring:message code="peoples.button.viewDetails"/></a>
         </div>
     </div>
     <c:if test="${not status.last}">

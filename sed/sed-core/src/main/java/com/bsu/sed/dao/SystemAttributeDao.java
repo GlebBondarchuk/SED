@@ -24,4 +24,12 @@ public interface SystemAttributeDao extends GenericDao<SystemAttribute, Long> {
      * @return Integer attribute value.
      */
     int getInt(SystemAttributeKey key);
+
+    /**
+     * Get boolean system attribute value.
+     *
+     * @param key Key value.
+     * @return boolean attribute value.
+     */
+    boolean getBoolean(SystemAttributeKey key);
 }

@@ -23,18 +23,30 @@
         <put-attribute name="primary-content" value="/WEB-INF/view/login.jsp"/>
     </definition>
 
+    <!--content page-->
+    <definition name="sed-content" extends="sed-page-template">
+        <put-attribute name="primary-content" value="/WEB-INF/view/content.jsp"/>
+    </definition>
+
     <!--sign up page-->
     <definition name="sed-sign-up" extends="sed-page-template">
         <put-attribute name="title" cascade="true" value="label.signUp.title"/>
         <put-attribute name="subtitle" cascade="true" value="label.signUp.subtitle"/>
-        <put-attribute name="primary-content" value="/WEB-INF/view/signUp.jsp"/>
+        <put-attribute name="primary-content" value="/WEB-INF/view/sign-up.jsp"/>
     </definition>
 
     <!--user page-->
     <definition name="sed-user" extends="sed-page-template">
         <put-attribute name="title" cascade="true" value="label.user.subtitle"/>
         <put-attribute name="subtitle" cascade="true" value="label.user.subtitle"/>
-        <put-attribute name="primary-content" value="/WEB-INF/view/user.jsp"/>
+        <put-attribute name="primary-content" value="/WEB-INF/view/people.jsp"/>
+    </definition>
+
+    <!--search page-->
+    <definition name="sed-search" extends="sed-page-template">
+        <put-attribute name="title" cascade="true" value="label.search.title"/>
+        <put-attribute name="subtitle" cascade="true" value="label.search.subtitle"/>
+        <put-attribute name="primary-content" value="/WEB-INF/view/search.jsp"/>
     </definition>
 
     <!--contact page-->
@@ -49,6 +61,13 @@
         <put-attribute name="title" cascade="true" value="label.peoples.title"/>
         <put-attribute name="subtitle" cascade="true" value="label.peoples.subtitle"/>
         <put-attribute name="primary-content" value="/WEB-INF/view/peoples.jsp"/>
+    </definition>
+
+    <!--students page-->
+    <definition name="sed-students" extends="sed-page-template">
+        <put-attribute name="title" cascade="true" value="label.peoples.title"/>
+        <put-attribute name="subtitle" cascade="true" value="label.peoples.subtitle"/>
+        <put-attribute name="primary-content" value="/WEB-INF/view/students.jsp"/>
     </definition>
 
     <!--system page-->
@@ -69,14 +88,14 @@
     <definition name="sed-add-new-tab" extends="sed-page-template">
         <put-attribute name="title" cascade="true" value="label.nav.admin.users"/>
         <put-attribute name="subtitle" cascade="true" value="label.nav.admin.users"/>
-        <put-attribute name="primary-content" value="/WEB-INF/view/admin/userTab.jsp"/>
+        <put-attribute name="primary-content" value="/WEB-INF/view/admin/user-tab.jsp"/>
     </definition>
 
     <!--users page-->
     <definition name="sed-edit-tab" extends="sed-page-template">
         <put-attribute name="title" cascade="true" value="label.nav.admin.users"/>
         <put-attribute name="subtitle" cascade="true" value="label.nav.admin.users"/>
-        <put-attribute name="primary-content" value="/WEB-INF/view/admin/userTab.jsp"/>
+        <put-attribute name="primary-content" value="/WEB-INF/view/admin/user-tab.jsp"/>
     </definition>
 
     <!--main application page-->

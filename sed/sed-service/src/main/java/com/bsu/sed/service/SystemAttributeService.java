@@ -14,6 +14,8 @@ public interface SystemAttributeService {
 
     void update(SystemAttribute attribute);
 
+    void update(Long id, String value, String description);
+
     String get(SystemAttributeKey key);
 
     List<SystemAttribute> getAll();

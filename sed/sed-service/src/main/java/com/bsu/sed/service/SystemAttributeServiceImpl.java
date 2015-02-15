@@ -30,6 +30,14 @@ public class SystemAttributeServiceImpl implements SystemAttributeService {
     }
 
     @Override
+    public void update(Long id, String value, String description) {
+        SystemAttribute systemAttribute = systemAttributeDao.load(id);
+        systemAttribute.setValue(value);
+        systemAttribute.setDescription(description);
+        systemAttributeDao.update(systemAttribute);
+    }
+
+    @Override
     public String get(SystemAttributeKey key) {
         return systemAttributeDao.get(key);
     }

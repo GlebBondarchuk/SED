@@ -28,6 +28,7 @@ public class JsonUtils {
             json.addProperty("name", user.getName());
             json.addProperty("role", user.getRole().name());
             json.addProperty("login", user.getLogin());
+            json.addProperty("email", user.getEmail());
             json.addProperty("disabled", user.isDisabled());
             jsonArray.add(json);
         }

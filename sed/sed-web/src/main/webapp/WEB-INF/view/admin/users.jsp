@@ -20,8 +20,9 @@
                     <th data-field="state" data-checkbox="true"></th>
                     <th data-field="id" data-align="right" data-sortable="true">ID</th>
                     <th data-field="name" data-align="center" data-sortable="true">Name</th>
-                    <th data-field="role" data-sortable="true">Role</th>
+                    <th data-field="role" id="role" data-sortable="true">Role</th>
                     <th data-field="login" id="login" data-sortable="true">Login</th>
+                    <th data-field="email" id="email">Email</th>
                     <th data-field="disabled" data-sortable="false">Disabled</th>
                     <th data-field="operations" data-formatter="formatter" data-sortable="false" data-events="operationEvent">
                         Operations
@@ -30,7 +31,7 @@
                 </thead>
             </table>
         </div>
-        <a class="btn btn-danger btn-primary" href="<c:url value="${applicationPath}/admin/users/add"/>" role="button"><spring:message code="admin.users.addNew"/></a>
+        <a class="btn btn-danger btn-primary" href="<c:url value="${applicationPath}/admin/users/add"/>" role="button"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;<spring:message code="admin.users.addNew"/></a>
     </div>
 </div>
 <script>
@@ -54,7 +55,11 @@
 
     window.operationEvent = {
         'click .edit': function (e, value, row, index) {
-            window.location.href = "${applicationPath}/user/" + row.id + "/edit";
+            if(row.role == 'STUDENT') {
+                window.location.href = "${applicationPath}/student/" + row.login + "/edit";
+            }  else {
+                window.location.href = "${applicationPath}/people/" + row.login + "/edit";
+            }
         },
         'click .remove': function (e, value, row, index) {
             bootbox.setDefaults({locale: '${sed:getLangLowerCase()}'});

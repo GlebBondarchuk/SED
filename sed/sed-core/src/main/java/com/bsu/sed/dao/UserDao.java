@@ -30,4 +30,8 @@ public interface UserDao extends GenericDao<User, Long> {
     User getByUsername(String username);
 
     List<User> find(SortOrder order, int limit, int offset);
+
+    boolean existByName(String name);
+
+    boolean existByLogin(String login);
 }

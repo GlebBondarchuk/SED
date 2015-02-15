@@ -4,7 +4,7 @@
 <footer>
     <div class="row">
         <div class="col-lg-12">
-            <p><spring:message code="label.copyright"/><span class="wysiwyg-color-gray pull-right small"><i>Version: 1.0</i></span></p>
+            <p><spring:message code="label.copyright"/><span class="wysiwyg-color-gray pull-right small"><i>Version: 1.1</i></span></p>
         </div>
     </div>
 </footer>

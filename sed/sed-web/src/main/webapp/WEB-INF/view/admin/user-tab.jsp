@@ -25,27 +25,27 @@
                 <input onclick="editTab();" class="btn btn-danger btn-primary" type="button" value="<spring:message code="people.button.saveChanges"/>"/>
             </c:otherwise>
         </c:choose>
-        <a class="btn btn-danger btn-primary" href="<c:url value="${applicationPath}/user/${userId}/edit"/>" role="button"><spring:message code="people.button.cancel"/></a>
+        <a class="btn btn-danger btn-primary" href="<c:url value="${applicationPath}/people/${login}/edit"/>" role="button"><spring:message code="people.button.cancel"/></a>
     </div>
 </div>
 <script>
     function addTab() {
         $.ajax({
             type: "POST",
-            url: "<c:url value="${applicationPath}/user/${userId}/addTab"/>",
+            url: "<c:url value="${applicationPath}/people/${login}/addTab"/>",
             data: {contentName: $("#contentName").val(), content: $("#htmlContent").val()}
         }).done(function () {
-            window.location.href = "<c:url value="${applicationPath}/user/${userId}/edit"/>";
+            window.location.href = "<c:url value="${applicationPath}/people/${login}/edit"/>";
         })
     }
 
     function editTab() {
         $.ajax({
             type: "POST",
-            url: "<c:url value="${applicationPath}/user/${userId}/edit/tab/${content.id}"/>",
+            url: "<c:url value="${applicationPath}/people/${login}/edit/tab/${content.id}"/>",
             data: {contentName: $("#contentName").val(), content: $("#htmlContent").val()}
         }).done(function () {
-            window.location.href = "<c:url value="${applicationPath}/user/${userId}/edit"/>";
+            window.location.href = "<c:url value="${applicationPath}/people/${login}/edit"/>";
         })
     }
 </script>

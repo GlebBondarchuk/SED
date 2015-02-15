@@ -1,5 +1,6 @@
 package com.bsu.sed.controller.exception;
 
+import com.bsu.sed.exception.UserAcceptingException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.access.AccessDeniedException;
@@ -30,6 +31,15 @@ public class ExceptionHandlerController {
         modelAndView.addObject(EXCEPTION, e.getMessage());
         return modelAndView;
     }
+
+    @ExceptionHandler(UserAcceptingException.class)
+    public ModelAndView handleUserAcceptingException(UserAcceptingException e) {
+        log.warn(e.getMessage());
+        ModelAndView modelAndView = new ModelAndView(EXCEPTION_PAGE.getTileName());
+        modelAndView.addObject(EXCEPTION, e.getMessage());
+        return modelAndView;
+    }
+
 
     @ExceptionHandler(AccessDeniedException.class)
     public ModelAndView handleAccessDeniedExceptions(RuntimeException e) {

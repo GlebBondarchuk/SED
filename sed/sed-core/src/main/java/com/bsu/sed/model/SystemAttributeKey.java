@@ -11,5 +11,8 @@ public enum SystemAttributeKey {
     EMAIL_PROTOCOL,
     EMAIL_HOST,
     EMAIL_PORT,
-    EMAIL_MASK
+    EMAIL_MASK,
+
+    /* Peoples Attributes */
+    CHECK_PEOPLE_REGISTRATION
 }

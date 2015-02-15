@@ -4,7 +4,7 @@ import com.bsu.sed.model.Role;
 import com.bsu.sed.model.SortOrder;
 import com.bsu.sed.model.SystemAttributeKey;
 import com.bsu.sed.model.Tiles;
-import com.bsu.sed.model.dto.UserDto;
+import com.bsu.sed.model.dto.PeopleDto;
 import com.bsu.sed.model.persistent.People;
 import com.bsu.sed.model.persistent.SystemAttribute;
 import com.bsu.sed.model.persistent.User;
@@ -12,7 +12,7 @@ import com.bsu.sed.service.PeopleService;
 import com.bsu.sed.service.SystemAttributeService;
 import com.bsu.sed.service.UserService;
 import com.bsu.sed.utils.JsonUtils;
-import com.bsu.sed.validator.UserDetailsDtoValidator;
+import com.bsu.sed.validator.PeopleDtoValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -39,15 +39,7 @@ public class AdminController {
     @Autowired
     private PeopleService peopleService;
     @Autowired
-    private UserDetailsDtoValidator userDetailsDtoValidator;
-
-    @RequestMapping(value = "/system")
-    public ModelAndView getSystemPage() {
-        ModelAndView modelAndView = new ModelAndView(Tiles.SYSTEM_PAGE.getTileName());
-        List<SystemAttribute> systemAttributes = systemAttributeService.getAttributes();
-        modelAndView.addObject("attributes", systemAttributes);
-        return modelAndView;
-    }
+    private PeopleDtoValidator peopleDtoValidator;
 
     @RequestMapping(value = "/system/data")
     @ResponseBody
@@ -66,7 +58,6 @@ public class AdminController {
     public String getUsersData(@RequestParam("order") SortOrder order,
                                @RequestParam("limit") int limit,
                                @RequestParam("offset") int offset) {
-//        List<User> users = userService.find(order, limit, offset);
         List<User> users = userService.getAll();
         return JsonUtils.usersToJson(users);
     }
@@ -89,16 +80,14 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/users/add", method = RequestMethod.POST)
-    public ModelAndView saveUser(@Valid @ModelAttribute UserDto user, BindingResult result) {
-        userDetailsDtoValidator.validate(user, result);
+    public ModelAndView saveUser(@Valid @ModelAttribute PeopleDto peopleDto, BindingResult result) {
+        peopleDtoValidator.validate(peopleDto, result);
         ModelAndView modelAndView = new ModelAndView(Tiles.USER_PAGE.getTileName());
         if (result.hasErrors()) {
             modelAndView.addObject("errors", result.getAllErrors());
             return modelAndView;
         }
-        User created = userService.create(user);
-        People people = peopleService.getByUserId(created.getId());
-        modelAndView.addObject("user", created);
+        People people = peopleService.createPeople(peopleDto);
         modelAndView.addObject("people", people);
         return modelAndView;
     }

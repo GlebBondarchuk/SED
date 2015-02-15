@@ -43,7 +43,9 @@ public class ContentServiceImpl implements ContentService {
         contentDto.setId(content.getId());
         contentDto.setName(content.getName());
         contentDto.setUpdateDate(content.getUpdateDate());
-        contentDto.setHtml(new String(content.getContent(), Charset.forName("UTF-8")));
+        if (content.getContent() != null) {
+            contentDto.setHtml(new String(content.getContent(), Charset.forName("UTF-8")));
+        }
         return contentDto;
     }
 
