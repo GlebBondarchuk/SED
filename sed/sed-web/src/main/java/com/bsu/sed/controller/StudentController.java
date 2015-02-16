@@ -6,6 +6,7 @@ import com.bsu.sed.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -23,6 +24,15 @@ public class StudentController {
     @PreAuthorize("isAuthenticated()")
     @RequestMapping("/students")
     public ModelAndView getStudentsPage() {
+        List<Student> students = studentService.find();
+        ModelAndView modelAndView = new ModelAndView(Tiles.STUDENTS_PAGE.getTileName());
+        modelAndView.addObject("students", students);
+        return modelAndView;
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @RequestMapping("/student/{login:.+}")
+    public ModelAndView getStudentPage() {
         List<Student> students = studentService.find();
         ModelAndView modelAndView = new ModelAndView(Tiles.STUDENTS_PAGE.getTileName());
         modelAndView.addObject("students", students);

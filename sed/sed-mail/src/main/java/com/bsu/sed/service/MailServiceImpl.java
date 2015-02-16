@@ -10,12 +10,15 @@ import com.bsu.sed.service.sender.MailSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 /**
  * Attention! This service have to be used inside transactional components only.
  *
  * @author gbondarchuk
  */
 @Service
+@Transactional
 public class MailServiceImpl implements MailService {
     @Autowired
     private MailBuilder mailBuilder;

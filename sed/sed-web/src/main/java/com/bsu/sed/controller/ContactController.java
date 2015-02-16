@@ -27,7 +27,6 @@ public class ContactController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    @Transactional
     public ModelAndView sendMessage(@ModelAttribute ContactDto dto) {
         ModelAndView modelAndView = new ModelAndView(Tiles.CONTACT_PAGE.getTileName());
         mailService.sendContactMessage(dto);

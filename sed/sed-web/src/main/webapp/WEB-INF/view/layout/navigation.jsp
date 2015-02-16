@@ -71,8 +71,10 @@
                     </li>
                 </security:authorize>
                 <security:authorize access="isAuthenticated()">
-                    <li><a href="${applicationPath}/user/${userId}"><spring:message code="label.nav.welcome"/> <security:authentication
-                            property="principal.username"/></a></li>
+                    <li>
+                        <a href="${applicationPath}${userURL}"><spring:message code="label.nav.welcome"/>
+                        <security:authentication property="principal.username"/></a>
+                    </li>
                     <li><a href="${applicationPath}/j_spring_security_logout"><span class="glyphicon glyphicon-log-out"></span> <spring:message
                             code="label.nav.SignOut"/></a></li>
                 </security:authorize>

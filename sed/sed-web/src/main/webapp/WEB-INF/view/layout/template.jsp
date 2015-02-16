@@ -88,7 +88,7 @@
     </footer>
 </div>
 
-<script src="${applicationPath}/resources/js/jquery/jquery.md5.js"></script>
+<%--<script src="${applicationPath}/resources/js/jquery/jquery.md5.js"></script>--%>
 
 <%--Bootstrap Table--%>
 <script src="${applicationPath}/resources/js/bootstrap/table/bootstrap-table.js"></script>

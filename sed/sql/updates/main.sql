@@ -104,9 +104,9 @@ SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS sed_student;
 SET FOREIGN_KEY_CHECKS = 1;
 CREATE TABLE IF NOT EXISTS sed_student (
-  id      BIGINT      NOT NULL AUTO_INCREMENT,
-  user_id BIGINT UNIQUE,
-  course  VARCHAR(10) NOT NULL,
+  id            BIGINT      NOT NULL AUTO_INCREMENT,
+  user_id       BIGINT UNIQUE,
+  course        VARCHAR(10) NOT NULL,
   student_group VARCHAR(10) NOT NULL,
 
   PRIMARY KEY (id),
@@ -115,6 +115,9 @@ CREATE TABLE IF NOT EXISTS sed_student (
 )
   ENGINE = InnoDB
   DEFAULT CHARSET =utf8;
+
+INSERT INTO sed_student (user_id, course, student_group) VALUES (4, 0, 0);
+
 
 #---------------------------------------------------------------------------------------------------------
 #---------------------------------------------------------------------------------------------------------
@@ -136,6 +139,10 @@ CREATE TABLE IF NOT EXISTS sed_people (
 )
   ENGINE = InnoDB
   DEFAULT CHARSET =utf8;
+
+INSERT INTO sed_people (user_id, position) VALUES (2, 'admin');
+
+INSERT INTO sed_people (user_id, position) VALUES (3, 'teacher');
 
 #---------------------------------------------------------------------------------------------------------
 #---------------------------------------------------------------------------------------------------------

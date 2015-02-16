@@ -38,12 +38,12 @@ public class AuthenticationSuccessHandler implements org.springframework.securit
             response.sendRedirect(redirectURL);
             return;
         }
-        session.setAttribute("userId", authenticated.getId());
 
         String referer = request.getHeader(HttpHeaders.REFERER);
 
         for (GrantedAuthority authority : user.getAuthorities()) {
             if (authority.getAuthority().equals(Role.ADMIN.name())) {
+                session.setAttribute("userURL", "/people/" + authenticated.getLogin());
                 if (referer.contains(LOGIN_URL)) {
                     response.sendRedirect(request.getContextPath() + "/admin/users");
                 } else {
@@ -54,8 +54,13 @@ public class AuthenticationSuccessHandler implements org.springframework.securit
         }
 
         if (referer.contains(LOGIN_URL)) {
-            Long id = authenticated.getId();
-            redirectURL += "/user/" + id;
+            String login = authenticated.getLogin();
+            if (authenticated.getRole().equals(Role.TEACHER)) {
+                redirectURL += "/people/" + login;
+            } else {
+                redirectURL += "/student/" + login;
+            }
+            session.setAttribute("userURL", redirectURL);
             response.sendRedirect(redirectURL);
         } else {
             response.sendRedirect(referer);
