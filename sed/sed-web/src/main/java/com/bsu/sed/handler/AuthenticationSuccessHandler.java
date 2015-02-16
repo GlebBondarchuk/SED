@@ -45,7 +45,7 @@ public class AuthenticationSuccessHandler implements org.springframework.securit
         for (GrantedAuthority authority : user.getAuthorities()) {
             if (authority.getAuthority().equals(Role.ADMIN.name())) {
                 if (referer.contains(LOGIN_URL)) {
-                    response.sendRedirect(request.getContextPath() + "/admin/system");
+                    response.sendRedirect(request.getContextPath() + "/admin/users");
                 } else {
                     response.sendRedirect(referer);
                 }
