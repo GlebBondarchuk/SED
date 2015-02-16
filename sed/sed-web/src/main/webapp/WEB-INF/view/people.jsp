@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sed" uri="/tld/sed_library" %>
 
+<script src="${applicationPath}/resources/js/bootstrap/validator/validator.js"></script>
 
 <c:if test="${not edit}">
     <div class="row">
@@ -49,7 +50,7 @@
                 </c:choose>
             </div>
             <div class="col-md-10">
-                <form class="form-horizontal" role="form" action="<c:url value="${applicationPath}/people/${people.user.login}/edit"/>"
+                <form class="form-horizontal" role="form"  data-toggle="validator" action="<c:url value="${applicationPath}/people/${people.user.login}/edit"/>"
                       method="post">
                     <div class="form-group">
                         <div class="col-sm-10">
@@ -57,6 +58,7 @@
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
                                 <input type="text" class="form-control" name="name" placeholder="Name" value="${people.user.name}" required>
                             </div>
+                            <span class="help-block with-errors hidden"></span>
                         </div>
                     </div>
                     <div class="form-group">
@@ -66,6 +68,7 @@
                                 <input type="text" class="form-control" name="position" placeholder="Position" value="${people.position}" required>
                             </div>
                         </div>
+                        <span class="help-block with-errors hidden"></span>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-10">
@@ -73,6 +76,7 @@
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-phone"></span></span>
                                 <input type="text" class="form-control" name="phone" placeholder="Phone" value="${people.user.phone}" required>
                             </div>
+                            <span class="help-block with-errors hidden"></span>
                         </div>
                     </div>
                     <div class="form-group">
@@ -81,6 +85,7 @@
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
                                 <input type="email" class="form-control" name="login" placeholder="Email" value="${people.user.email}" required>
                             </div>
+                            <span class="help-block with-errors hidden"></span>
                         </div>
                     </div>
                     <div class="form-group">
@@ -89,14 +94,16 @@
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-home"></span></span>
                                 <input type="text" class="form-control" name="address" placeholder="Address" value="${people.address}" required>
                             </div>
+                            <span class="help-block with-errors hidden"></span>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-10">
                             <div class="input-group">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-picture"></span></span>
-                                <input type="text" class="form-control" name="photo" placeholder="Photo Link" value="${people.user.photo}" required>
+                                <input type="url" class="form-control" name="photo" placeholder="Photo Link" value="${people.user.photo}" required>
                             </div>
+                            <span class="help-block with-errors hidden"></span>
                         </div>
                     </div>
                     <div class="form-group">

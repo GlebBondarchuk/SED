@@ -33,13 +33,13 @@
                             </li>
                         </security:authorize>
                         <li>
-                            <a href="${applicationPath}/content/${educational.content.id}"><spring:message code="label.nav.educational"/></a>
+                            <a href="${applicationPath}/content/educational"><spring:message code="label.nav.educational"/></a>
                         </li>
                         <li>
-                            <a href="${applicationPath}/content/${scientific.content.id}"><spring:message code="label.nav.scientific"/></a>
+                            <a href="${applicationPath}/content/scientific"><spring:message code="label.nav.scientific"/></a>
                         </li>
                         <li>
-                            <a href="${applicationPath}/content/${conference.content.id}"><spring:message code="label.nav.conferences"/></a>
+                            <a href="${applicationPath}/content/conference"><spring:message code="label.nav.conferences"/></a>
                         </li>
                         <li>
                             <a href="${applicationPath}/contact"><spring:message code="label.nav.contact"/></a>

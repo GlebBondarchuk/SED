@@ -66,19 +66,19 @@
     <div class="col-md-4">
         <h2><spring:message code="label.nav.educational"/></h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe rem nisi accusamus error velit animi non ipsa placeat. Recusandae, suscipit, soluta quibusdam accusamus a veniam quaerat eveniet eligendi dolor consectetur.</p>
-        <a class="btn btn-default" href="${applicationPath}/content/${educational.content.id}"><span class="glyphicon glyphicon-info-sign"></span>&nbsp;&nbsp;More Info</a>
+        <a class="btn btn-default" href="${applicationPath}/content/educational"><span class="glyphicon glyphicon-info-sign"></span>&nbsp;&nbsp;More Info</a>
     </div>
     <!-- /.col-md-4 -->
     <div class="col-md-4">
         <h2><spring:message code="label.nav.scientific"/></h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe rem nisi accusamus error velit animi non ipsa placeat. Recusandae, suscipit, soluta quibusdam accusamus a veniam quaerat eveniet eligendi dolor consectetur.</p>
-        <a class="btn btn-default" href="${applicationPath}/content/${scientific.content.id}"><span class="glyphicon glyphicon-info-sign"></span>&nbsp;&nbsp;More Info</a>
+        <a class="btn btn-default" href="${applicationPath}/content/scientific"><span class="glyphicon glyphicon-info-sign"></span>&nbsp;&nbsp;More Info</a>
     </div>
     <!-- /.col-md-4 -->
     <div class="col-md-4">
         <h2><spring:message code="label.nav.conferences"/></h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe rem nisi accusamus error velit animi non ipsa placeat. Recusandae, suscipit, soluta quibusdam accusamus a veniam quaerat eveniet eligendi dolor consectetur.</p>
-        <a class="btn btn-default" href="${applicationPath}/content/${conference.content.id}"><span class="glyphicon glyphicon-info-sign"></span>&nbsp;&nbsp;More Info</a>
+        <a class="btn btn-default" href="${applicationPath}/content/conference"><span class="glyphicon glyphicon-info-sign"></span>&nbsp;&nbsp;More Info</a>
     </div>
     <!-- /.col-md-4 -->
 </div>
