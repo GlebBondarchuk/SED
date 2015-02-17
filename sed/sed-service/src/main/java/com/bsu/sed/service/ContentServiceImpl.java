@@ -20,15 +20,6 @@ public class ContentServiceImpl implements ContentService {
     private ContentDao contentDao;
 
     @Override
-    public void saveContent(String html) {
-        Content content = new Content();
-        content.setName("Test");
-        content.setContentType("text/html");
-        content.setContent(html.getBytes());
-        contentDao.create(content);
-    }
-
-    @Override
     public void updateContent(Long id, String contentName, String html) {
         Content content = contentDao.load(id);
         content.setContent(html.getBytes(Charset.forName("UTF-8")));

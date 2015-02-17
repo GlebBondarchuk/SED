@@ -14,6 +14,8 @@ public enum Tiles {
     STUDENTS_PAGE("sed-students"),
     SEARCH_PAGE("sed-search"),
     CONTENT_PAGE("sed-content"),
+    LIST_NEWS_PAGE("sed-list-news"),
+    ADD_NEWS("sed-add-news"),
 
     //admin pages
     USERS_PAGE("sed-users"),

@@ -6,7 +6,6 @@ import com.bsu.sed.model.dto.ContentDto;
  * @author gbondarchuk
  */
 public interface ContentService {
-    void saveContent(String html);
 
     void updateContent(Long id, String contentName, String html);
 

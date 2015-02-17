@@ -5,4 +5,10 @@
 
     <cache name="primaryCache" eternal="false" overflowToDisk="false"
            maxElementsInMemory="100" timeToLiveSeconds="1296000"/>
+
+    <cache name="studentsCache" eternal="false" overflowToDisk="false"
+           maxElementsInMemory="100" timeToLiveSeconds="1296000"/>
+
+    <cache name="peoplesCache" eternal="false" overflowToDisk="false"
+           maxElementsInMemory="100" timeToLiveSeconds="1296000"/>
 </ehcache>

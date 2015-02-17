@@ -3,12 +3,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags" %>
+
 <script src="${applicationPath}/resources/js/bootstrap/validator/validator.js"></script>
 <script src="${applicationPath}/resources/js/signUp.js"></script>
 
 <div class="row">
     <form id="signUpForm" data-toggle="validator" class="form-horizontal col-lg-12" role="form"
-          action="${applicationPath}${postUrl}" method="post">
+          action="${applicationPath}${postURL}" method="post">
         <div class="well well-sm"><strong><span class="glyphicon glyphicon-asterisk"></span>&nbsp;&nbsp;Required
             Field</strong></div>
 

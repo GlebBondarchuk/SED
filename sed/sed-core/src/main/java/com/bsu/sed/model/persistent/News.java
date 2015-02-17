@@ -27,7 +27,7 @@ public class News extends BaseEntity {
         this.id = id;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "creator")
     public User getCreator() {
         return creator;
@@ -37,7 +37,7 @@ public class News extends BaseEntity {
         this.creator = creator;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "content")
     public Content getContent() {
         return content;

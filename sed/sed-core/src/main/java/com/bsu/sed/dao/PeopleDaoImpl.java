@@ -10,6 +10,8 @@ import org.hibernate.criterion.Restrictions;
 import org.hibernate.type.LongType;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 
 /**
  * @author gbondarchuk
@@ -45,5 +47,13 @@ public class PeopleDaoImpl extends AbstractDao<People> implements PeopleDao {
                 .addScalar("id", LongType.INSTANCE);
         query.setParameter("contentId", id);
         return (Long) query.uniqueResult();
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<People> getAll() {
+        Session session = em.unwrap(Session.class);
+        Query query = session.createQuery("from People people where people.user.disabled = false");
+        return (List<People>) query.list();
     }
 }

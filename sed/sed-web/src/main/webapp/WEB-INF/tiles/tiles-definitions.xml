@@ -92,6 +92,20 @@
     </definition>
 
     <!--users page-->
+    <definition name="sed-list-news" extends="sed-page-template">
+        <put-attribute name="title" cascade="true" value="label.news.title"/>
+        <put-attribute name="subtitle" cascade="true" value="label.news.subtitle"/>
+        <put-attribute name="primary-content" value="/WEB-INF/view/list-news.jsp"/>
+    </definition>
+
+    <!--users page-->
+    <definition name="sed-add-news" extends="sed-page-template">
+        <put-attribute name="title" cascade="true" value="label.news.title"/>
+        <put-attribute name="subtitle" cascade="true" value="label.news.subtitle"/>
+        <put-attribute name="primary-content" value="/WEB-INF/view/admin/add-news.jsp"/>
+    </definition>
+
+    <!--users page-->
     <definition name="sed-edit-tab" extends="sed-page-template">
         <put-attribute name="title" cascade="true" value="label.nav.admin.users"/>
         <put-attribute name="subtitle" cascade="true" value="label.nav.admin.users"/>

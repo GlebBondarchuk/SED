@@ -18,15 +18,18 @@ function choseRole() {
 
 
 function onRoleChange(role, teacher, teacherFormControls, student, studentFormControls) {
+    var form = $("#signUpForm");
     if (role == 'STUDENT') {
         teacher.hide();
         teacherFormControls.attr("disabled", "disabled");
         studentFormControls.removeAttr("disabled");
         student.show();
+        form.attr('action', mainContextPath + '/signUp');
     } else {
         student.hide();
         studentFormControls.attr("disabled", "disabled");
         teacherFormControls.removeAttr("disabled");
         teacher.show();
+        form.attr('action', mainContextPath + '/admin/users/add');
     }
 }

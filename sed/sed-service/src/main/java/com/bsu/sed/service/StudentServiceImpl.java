@@ -47,7 +47,6 @@ public class StudentServiceImpl implements StudentService {
         student.setUser(user);
         student.setCourse(dto.getCourse());
         student.setGroup(dto.getGroup());
-
         studentDao.create(student);
         if (checkStudentRegistration) {
             mailService.sendRegistrationMessage(user);
@@ -56,6 +55,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+//    @Cacheable(value = "studentsCache")
     public List<Student> find() {
         return studentDao.getAll();
     }

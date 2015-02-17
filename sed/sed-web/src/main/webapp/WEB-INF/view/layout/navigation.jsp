@@ -42,6 +42,9 @@
                             <a href="${applicationPath}/content/conference"><spring:message code="label.nav.conferences"/></a>
                         </li>
                         <li>
+                            <a href="${applicationPath}/news"><spring:message code="label.news.title"/></a>
+                        </li>
+                        <li>
                             <a href="${applicationPath}/contact"><spring:message code="label.nav.contact"/></a>
                         </li>
                     </ul>

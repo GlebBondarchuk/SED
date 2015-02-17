@@ -112,5 +112,8 @@
     <script src="${applicationPath}/resources/js/wysihtml5-0.3.0.js"></script>
     <script src="${applicationPath}/resources/js/bootstrap3-wysihtml5.js"></script>
 </secutiry:authorize>
+<script>
+    var mainContextPath = "${pageContext.request.contextPath}";
+</script>
 </body>
 </html>

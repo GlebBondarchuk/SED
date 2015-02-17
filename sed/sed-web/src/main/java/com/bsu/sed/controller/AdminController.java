@@ -11,6 +11,7 @@ import com.bsu.sed.model.persistent.User;
 import com.bsu.sed.service.PeopleService;
 import com.bsu.sed.service.SystemAttributeService;
 import com.bsu.sed.service.UserService;
+import com.bsu.sed.utils.ErrorUtils;
 import com.bsu.sed.utils.JsonUtils;
 import com.bsu.sed.validator.PeopleDtoValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,8 @@ public class AdminController {
     private PeopleService peopleService;
     @Autowired
     private PeopleDtoValidator peopleDtoValidator;
+    @Autowired
+    private ErrorUtils errorUtils;
 
     @RequestMapping(value = "/system/data")
     @ResponseBody
@@ -84,7 +87,8 @@ public class AdminController {
         peopleDtoValidator.validate(peopleDto, result);
         ModelAndView modelAndView = new ModelAndView(Tiles.USER_PAGE.getTileName());
         if (result.hasErrors()) {
-            modelAndView.addObject("errors", result.getAllErrors());
+            modelAndView = getNewUserPage();
+            modelAndView.addObject("exception", errorUtils.getErrors(result));
             return modelAndView;
         }
         People people = peopleService.createPeople(peopleDto);
