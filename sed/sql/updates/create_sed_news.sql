@@ -5,6 +5,8 @@ CREATE TABLE IF NOT EXISTS sed_news (
   id           BIGINT    NOT NULL AUTO_INCREMENT,
   creator      BIGINT,
   content      BIGINT,
+  photo        VARCHAR(200),
+  simpleText   VARCHAR(1000),
   created_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 
   PRIMARY KEY (id),

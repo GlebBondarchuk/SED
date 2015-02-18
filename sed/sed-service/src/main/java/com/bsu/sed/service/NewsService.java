@@ -10,5 +10,11 @@ import java.util.List;
 public interface NewsService {
     List<News> find();
 
-    News create(String header, String html);
+    News create(String header, String html, String photo, String simpleText);
+
+    News get(Long id);
+
+    void delete(Long id);
+
+    News update(Long id, String header, String html, String photo, String simpleText);
 }

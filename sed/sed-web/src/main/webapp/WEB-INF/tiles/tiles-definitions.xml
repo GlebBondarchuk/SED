@@ -99,6 +99,13 @@
     </definition>
 
     <!--users page-->
+    <definition name="sed-news" extends="sed-page-template">
+        <put-attribute name="title" cascade="true" value="label.news.title"/>
+        <put-attribute name="subtitle" cascade="true" value="label.news.subtitle"/>
+        <put-attribute name="primary-content" value="/WEB-INF/view/news.jsp"/>
+    </definition>
+
+    <!--users page-->
     <definition name="sed-add-news" extends="sed-page-template">
         <put-attribute name="title" cascade="true" value="label.news.title"/>
         <put-attribute name="subtitle" cascade="true" value="label.news.subtitle"/>

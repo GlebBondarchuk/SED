@@ -9,6 +9,13 @@
         <h4>
             <input id="contentName" type="text" class="form-control" placeholder="Enter Content Name..."
                    value="${content.name}">
+            <br>
+            <input id="photo" type="url" class="form-control" placeholder="Enter Photo Url..."
+                   value="${photo.name}">
+            <br>
+            <textarea id="simpleText" style="resize: none" rows="5" class='form-control' title="" placeholder="Enter Simple Text Here..."><c:if test="${not empty news}">
+                ${news.simpleText}
+            </c:if></textarea>
         </h4>
                 <textarea id="htmlContent" style="resize: vertical" rows="30" class='html-editable form-control'
                           title="" placeholder="Enter Text Here...">
@@ -33,7 +40,12 @@
             $.ajax({
                 type: "POST",
                 url: "<c:url value="${applicationPath}/news/add/"/>",
-                data: {contentName: $("#contentName").val(), content: $("#htmlContent").val()}
+                data: {
+                    contentName: $("#contentName").val(),
+                    content: $("#htmlContent").val(),
+                    photo: $("#photo").val(),
+                    simpleText: $("#simpleText").val()
+                }
             }).done(function () {
                 window.location.href = "<c:url value="${applicationPath}/news"/>";
             })

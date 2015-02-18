@@ -29,7 +29,7 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
-    public News create(String header, String html) {
+    public News create(String header, String html, String photo, String simpleText) {
         Content content = new Content();
         content.setName(header);
         content.setContent(html.getBytes(Charset.forName("UTF-8")));
@@ -38,8 +38,28 @@ public class NewsServiceImpl implements NewsService {
 
         News news = new News();
         news.setContent(content);
+        news.setPhoto(photo);
+        news.setSimpleText(simpleText);
         news.setCreator(creator);
         newsDao.create(news);
         return news;
+    }
+
+    @Override
+    public News get(Long id) {
+        News news =  newsDao.load(id);
+        Content content = news.getContent();
+        content.setHtml(new String(content.getContent(), Charset.forName("UTF-8")));
+        return news;
+    }
+
+    @Override
+    public void delete(Long id) {
+        newsDao.delete(id);
+    }
+
+    @Override
+    public News update(Long id, String header, String html, String photo, String simpleText) {
+        return null;
     }
 }

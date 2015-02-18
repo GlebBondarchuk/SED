@@ -13,6 +13,8 @@ public class News extends BaseEntity {
     private Long id;
     private User creator;
     private Content content;
+    private String photo;
+    private String simpleText;
     private Date createdDate;
 
     @Override
@@ -45,6 +47,24 @@ public class News extends BaseEntity {
 
     public void setContent(Content content) {
         this.content = content;
+    }
+
+    @Column(name = "photo")
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    @Column(name = "simpleText")
+    public String getSimpleText() {
+        return simpleText;
+    }
+
+    public void setSimpleText(String simpleText) {
+        this.simpleText = simpleText;
     }
 
     @Column(name = "created_date")
