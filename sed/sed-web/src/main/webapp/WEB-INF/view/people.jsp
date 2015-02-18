@@ -23,7 +23,7 @@
             <c:if test="${not empty people.user.phone}">
                 <p><i class="fa fa-phone"></i> ${people.user.phone}</p>
             </c:if>
-            <c:if test="${not empty people.user.login}">
+            <c:if test="${not empty people.user.email}">
                 <p><i class="fa fa-envelope-o"></i><a href="mailto:${people.user.email}"> ${people.user.email}</a></p>
             </c:if>
             <c:if test="${not empty people.address}">

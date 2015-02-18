@@ -70,6 +70,13 @@
         <put-attribute name="primary-content" value="/WEB-INF/view/students.jsp"/>
     </definition>
 
+    <!--student page-->
+    <definition name="sed-student" extends="sed-page-template">
+        <put-attribute name="title" cascade="true" value="label.peoples.title"/>
+        <put-attribute name="subtitle" cascade="true" value="label.peoples.subtitle"/>
+        <put-attribute name="primary-content" value="/WEB-INF/view/student.jsp"/>
+    </definition>
+
     <!--system page-->
     <definition name="sed-system" extends="sed-page-template">
         <put-attribute name="title" cascade="true" value="label.system.title"/>

@@ -3,14 +3,19 @@ package com.bsu.sed.service;
 import com.bsu.sed.dao.StudentDao;
 import com.bsu.sed.dao.SystemAttributeDao;
 import com.bsu.sed.model.SystemAttributeKey;
+import com.bsu.sed.model.dto.PeopleDto;
 import com.bsu.sed.model.dto.StudentDto;
+import com.bsu.sed.model.persistent.Content;
+import com.bsu.sed.model.persistent.People;
 import com.bsu.sed.model.persistent.Student;
 import com.bsu.sed.model.persistent.User;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.nio.charset.Charset;
 import java.util.List;
 
 /**
@@ -58,5 +63,22 @@ public class StudentServiceImpl implements StudentService {
 //    @Cacheable(value = "studentsCache")
     public List<Student> find() {
         return studentDao.getAll();
+    }
+
+    @Override
+    public Student getByLogin(String login) {
+        return studentDao.getByLogin(login);
+    }
+
+    @Override
+    public Student update(StudentDto dto, String login) {
+        Student student = studentDao.getByLogin(login);
+        student.setCourse(dto.getCourse());
+        student.setGroup(dto.getGroup());
+        student.getUser().setName(dto.getName());
+        student.getUser().setPhone(dto.getPhone());
+        student.getUser().setPhoto(dto.getPhoto());
+        student.getUser().setEmail(dto.getLogin());
+        return studentDao.update(student);
     }
 }
