@@ -60,6 +60,12 @@ public class NewsServiceImpl implements NewsService {
 
     @Override
     public News update(Long id, String header, String html, String photo, String simpleText) {
-        return null;
+        News news = newsDao.load(id);
+        Content content = news.getContent();
+        content.setName(header);
+        content.setContent(html.getBytes(Charset.forName("UTF-8")));
+        news.setSimpleText(simpleText);
+        news.setPhoto(photo);
+        return  newsDao.update(news);
     }
 }

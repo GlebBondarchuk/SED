@@ -36,7 +36,7 @@
 
         <!-- Blog Search Well -->
         <div class="well">
-            <h4>Blog Search</h4>
+            <h4>News Search</h4>
 
             <div class="input-group">
                 <input type="text" class="form-control">
@@ -49,7 +49,7 @@
 
         <!-- Blog Categories Well -->
         <div class="well">
-            <h4>Blog Categories</h4>
+            <h4>News Categories</h4>
 
             <div class="row">
                 <div class="col-lg-6">

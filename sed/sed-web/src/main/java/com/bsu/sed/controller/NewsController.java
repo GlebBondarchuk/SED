@@ -38,7 +38,9 @@ public class NewsController {
 
     @RequestMapping(value = "/{id}/edit")
     public ModelAndView editNews(@PathVariable("id") Long id) {
-        ModelAndView modelAndView = getNewsPage(id);
+        News news = newsService.get(id);
+        ModelAndView modelAndView = new ModelAndView(Tiles.ADD_NEWS_PAGE.getTileName());
+        modelAndView.addObject("news", news);
         modelAndView.addObject("edit", true);
         return modelAndView;
     }

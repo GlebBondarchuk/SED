@@ -8,21 +8,14 @@
     <div class="col-lg-12">
         <h4>
             <input id="contentName" type="text" class="form-control" placeholder="Enter Content Name..."
-                   value="${content.name}">
+                   value="${news.content.name}">
             <br>
             <input id="photo" type="url" class="form-control" placeholder="Enter Photo Url..."
-                   value="${photo.name}">
+                   value="${news.photo}">
             <br>
-            <textarea id="simpleText" style="resize: none" rows="5" class='form-control' title="" placeholder="Enter Simple Text Here..."><c:if test="${not empty news}">
-                ${news.simpleText}
-            </c:if></textarea>
+            <textarea id="simpleText" style="resize: none" rows="5" class='form-control' title="" placeholder="Enter Simple Text Here..."><c:if test="${not empty news}">${news.simpleText}</c:if></textarea>
         </h4>
-                <textarea id="htmlContent" style="resize: vertical" rows="30" class='html-editable form-control'
-                          title="" placeholder="Enter Text Here...">
-                    <c:if test="${not empty content}">
-                        ${content.html}
-                    </c:if>
-                </textarea>
+                <textarea id="htmlContent" style="resize: vertical" rows="30" class='html-editable form-control' title="" placeholder="Enter Text Here..."><c:if test="${not empty news.content.html}">${news.content.html}</c:if></textarea>
     </div>
 </div>
 
@@ -30,13 +23,22 @@
     <hr>
     <div class="row">
         <div class="col-lg-12">
-            <button onclick="editContent();" class="btn btn-danger btn-primary" type="button">
-                <span class="glyphicon glyphicon-save"></span>&nbsp;&nbsp;<spring:message code="people.button.saveChanges"/>
-            </button>
+            <c:choose>
+                <c:when test="${edit}">
+                    <button onclick="updateNews();" class="btn btn-danger btn-primary" type="button">
+                        <span class="glyphicon glyphicon-save"></span>&nbsp;&nbsp;<spring:message code="people.button.saveChanges"/>
+                    </button>
+                </c:when>
+                <c:otherwise>
+                    <button onclick="saveNews();" class="btn btn-danger btn-primary" type="button">
+                        <span class="glyphicon glyphicon-save"></span>&nbsp;&nbsp;<spring:message code="people.button.save"/>
+                    </button>
+                </c:otherwise>
+            </c:choose>
         </div>
     </div>
     <script>
-        function editContent() {
+        function saveNews() {
             $.ajax({
                 type: "POST",
                 url: "<c:url value="${applicationPath}/news/add/"/>",
@@ -46,8 +48,23 @@
                     photo: $("#photo").val(),
                     simpleText: $("#simpleText").val()
                 }
-            }).done(function () {
+                }).done(function () {
                 window.location.href = "<c:url value="${applicationPath}/news"/>";
+            })
+        }
+
+        function updateNews() {
+            $.ajax({
+                type: "POST",
+                url: "<c:url value="${applicationPath}/news/${news.id}/edit"/>",
+                data: {
+                    contentName: $("#contentName").val(),
+                    content: $("#htmlContent").val(),
+                    photo: $("#photo").val(),
+                    simpleText: $("#simpleText").val()
+                }
+            }).done(function () {
+                window.location.href = "<c:url value="${applicationPath}/news/${news.id}"/>";
             })
         }
     </script>

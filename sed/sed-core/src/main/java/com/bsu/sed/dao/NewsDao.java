@@ -7,4 +7,5 @@ import com.bsu.sed.model.persistent.News;
  * @author gbondarchuk
  */
 public interface NewsDao extends GenericDao<News, Long> {
+   Long getNewsIdFromContentId(Long contentId);
 }
