@@ -40,6 +40,12 @@ public class SearchServiceImpl implements SearchService {
         return (List<SearchDto>) CollectionUtils.union(peopleResults, newsResults);
     }
 
+    @Override
+    public List<SearchDto> searchInNews(String search) {
+        List<Long> contentIds = searchDao.find(search);
+        return searchInNews(contentIds);
+    }
+
     private List<SearchDto> searchInPeopleProfiles(List<Long> ids) {
         List<SearchDto> results = new ArrayList<>();
         for (Long id : ids) {

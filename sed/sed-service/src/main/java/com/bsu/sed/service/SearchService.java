@@ -9,4 +9,6 @@ import java.util.List;
  */
 public interface SearchService {
     List<SearchDto> search(String search);
+
+    List<SearchDto> searchInNews(String search);
 }

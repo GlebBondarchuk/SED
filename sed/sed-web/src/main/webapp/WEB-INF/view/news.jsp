@@ -13,7 +13,7 @@
         <hr>
 
         <!-- Date/Time -->
-        <p><i class="fa fa-clock-o"></i> Posted on ${news.createdDate}</p>
+        <p><i class="fa fa-clock-o"></i>&nbsp;<spring:message code="news.postedOn"/>&nbsp;${news.createdDate}</p>
 
         <hr>
 
@@ -36,7 +36,7 @@
 
         <!-- Blog Search Well -->
         <div class="well">
-            <h4>News Search</h4>
+            <h4><spring:message code="news.search"/></h4>
 
             <div class="input-group">
                 <input type="text" class="form-control">
@@ -49,7 +49,7 @@
 
         <!-- Blog Categories Well -->
         <div class="well">
-            <h4>News Categories</h4>
+            <h4><spring:message code="news.categories"/></h4>
 
             <div class="row">
                 <div class="col-lg-6">
@@ -93,11 +93,11 @@
                 <div class="col-lg-12">
                     <a class="btn btn-danger btn-primary"
                        href="<c:url value="${applicationPath}/news/${news.id}/edit"/>" role="button">
-                        <span class="glyphicon glyphicon-edit"></span>&nbsp;&nbsp;<spring:message code="people.button.editPage"/>
+                        <span class="glyphicon glyphicon-edit"></span>&nbsp;&nbsp;<spring:message code="news.edit"/>
                     </a>
                     <a class="btn btn-danger btn-primary"
                        onclick="deleteNews();" role="button">
-                        <span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;<spring:message code="people.button.deleteTab"/>
+                        <span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;<spring:message code="news.delete"/>
                     </a>
                 </div>
             </div>

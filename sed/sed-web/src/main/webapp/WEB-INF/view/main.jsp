@@ -41,7 +41,7 @@
         </div>
         <br>
         <a class="btn btn-primary btn-lg" href="${applicationPath}/content/${departmentInfo.content.id}">
-            Call to Action!
+            <spring:message code="button.moreInfo"/>
         </a>
     </div>
     <!-- /.col-md-4 -->
@@ -54,7 +54,7 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="well text-center">
-            This is a well that is a great spot for a business tagline or phone number for easy access!
+            <spring:message code="main.wellText"/>
         </div>
     </div>
     <!-- /.col-lg-12 -->

@@ -16,14 +16,14 @@
                         by <a href="${applicationPath}/people/${news.creator.login}">${news.creator.name}</a>
                     </p>
 
-                    <p><i class="fa fa-clock-o"></i> Posted on ${news.createdDate}</p>
+                    <p><i class="fa fa-clock-o"></i>&nbsp;<spring:message code="news.postedOn"/>&nbsp;${news.createdDate}</p>
                     <hr>
                     <a href="${applicationPath}/news/${news.id}">
                         <img class="img-responsive img-hover" src="${news.photo}" alt="">
                     </a>
                     <hr>
                     <p>${news.simpleText}</p>
-                    <a class="btn btn-primary" href="${applicationPath}/news/${news.id}">Read More <i class="fa fa-angle-right"></i></a>
+                    <a class="btn btn-primary" href="${applicationPath}/news/${news.id}"><spring:message code="news.readMore"/>&nbsp;<i class="fa fa-angle-right"></i></a>
                     <hr>
                 </c:forEach>
 
@@ -50,20 +50,22 @@
 
         <!-- Blog Search Well -->
         <div class="well">
-            <h4>News Search</h4>
+            <h4><spring:message code="news.search"/></h4>
 
+            <form action="${applicationPath}/news/search" method="get">
             <div class="input-group">
-                <input type="text" class="form-control">
+                <input name="query" type="text" class="form-control">
                         <span class="input-group-btn">
-                            <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+                            <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
                         </span>
             </div>
             <!-- /.input-group -->
+            </form>
         </div>
 
         <!-- Blog Categories Well -->
         <div class="well">
-            <h4>News Categories</h4>
+            <h4><spring:message code="news.categories"/></h4>
 
             <div class="row">
                 <div class="col-lg-6">
@@ -106,7 +108,7 @@
         <security:authorize access="hasAnyRole('ADMIN','TEACHER')">
             <a href="${applicationPath}/news/add" class="btn btn-danger btn-primary" role="button">
                 <span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;
-                <spring:message code="people.button.addTab"/>
+                <spring:message code="news.button.add"/>
             </a>
         </security:authorize>
     </div>

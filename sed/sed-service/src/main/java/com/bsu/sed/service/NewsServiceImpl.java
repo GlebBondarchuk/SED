@@ -47,9 +47,11 @@ public class NewsServiceImpl implements NewsService {
 
     @Override
     public News get(Long id) {
-        News news =  newsDao.load(id);
-        Content content = news.getContent();
-        content.setHtml(new String(content.getContent(), Charset.forName("UTF-8")));
+        News news = newsDao.load(id);
+        if (news != null) {
+            Content content = news.getContent();
+            content.setHtml(new String(content.getContent(), Charset.forName("UTF-8")));
+        }
         return news;
     }
 
@@ -66,6 +68,6 @@ public class NewsServiceImpl implements NewsService {
         content.setContent(html.getBytes(Charset.forName("UTF-8")));
         news.setSimpleText(simpleText);
         news.setPhoto(photo);
-        return  newsDao.update(news);
+        return newsDao.update(news);
     }
 }

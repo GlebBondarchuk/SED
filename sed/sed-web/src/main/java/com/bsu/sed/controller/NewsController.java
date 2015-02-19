@@ -1,8 +1,10 @@
 package com.bsu.sed.controller;
 
 import com.bsu.sed.model.Tiles;
+import com.bsu.sed.model.dto.SearchDto;
 import com.bsu.sed.model.persistent.News;
 import com.bsu.sed.service.NewsService;
+import com.bsu.sed.service.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,8 @@ import java.util.List;
 public class NewsController {
     @Autowired
     private NewsService newsService;
+    @Autowired
+    private SearchService searchService;
 
     @RequestMapping
     public ModelAndView getListNewsPage() {
@@ -36,6 +40,7 @@ public class NewsController {
         return modelAndView;
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN','TEACHER')")
     @RequestMapping(value = "/{id}/edit")
     public ModelAndView editNews(@PathVariable("id") Long id) {
         News news = newsService.get(id);
@@ -45,6 +50,7 @@ public class NewsController {
         return modelAndView;
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN','TEACHER')")
     @RequestMapping(value = "/{id}/edit", method = RequestMethod.POST)
     public ModelAndView updateNews(@PathVariable("id") Long id,
                                    @RequestParam("content") String content,
@@ -56,6 +62,7 @@ public class NewsController {
     }
 
 
+    @PreAuthorize("hasAnyRole('ADMIN','TEACHER')")
     @RequestMapping("/{id}/delete")
     @ResponseBody
     public String deleteNews(@PathVariable("id") Long id) {
@@ -78,5 +85,13 @@ public class NewsController {
                                 @RequestParam("simpleText") String simpleText) {
         newsService.create(contentName, content, photo, simpleText);
         return "success";
+    }
+
+    @RequestMapping("/search")
+    public ModelAndView newsSearch(@RequestParam("query") String query) {
+        ModelAndView modelAndView = new ModelAndView(Tiles.SEARCH_PAGE.getTileName());
+        List<SearchDto> results = searchService.searchInNews(query);
+        modelAndView.addObject("results", results);
+        return modelAndView;
     }
 }
