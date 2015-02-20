@@ -108,7 +108,7 @@
 <%--<script src="${applicationPath}/resources/js/custom_image_and_upload_wysihtml5.js"></script>--%>
 <%--<script src="${applicationPath}/resources/js/jqueryupload.js"></script>--%>
 
-<secutiry:authorize access="hasRole('ADMIN')">
+<secutiry:authorize access="hasAnyRole('ADMIN','TEACHER')">
     <script src="${applicationPath}/resources/js/wysihtml5-0.3.0.js"></script>
     <script src="${applicationPath}/resources/js/bootstrap3-wysihtml5.js"></script>
 </secutiry:authorize>

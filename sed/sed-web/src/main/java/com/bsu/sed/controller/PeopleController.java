@@ -14,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -31,9 +32,12 @@ public class PeopleController {
     @RequestMapping("/peoples")
     public ModelAndView getPeoplesPage() {
         List<People> peoples = peopleService.find();
-        for (People people : peoples) {
-            if (people.getUser().getRole().in(Role.ADMIN)) {
-                peoples.remove(people);
+        Iterator<People> iterator = peoples.iterator();
+        while(iterator.hasNext()) {
+            People people = iterator.next();
+            if(people.getUser().getRole().in(Role.ADMIN)) {
+                iterator.remove();
+                break;
             }
         }
         ModelAndView modelAndView = new ModelAndView(Tiles.PEOPLES_PAGE.getTileName());
