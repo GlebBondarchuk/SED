@@ -26,17 +26,17 @@ VALUES ('System', 'system', 'ADMIN', 'sed.bsu', 'sed.bsu@gmail.com', TRUE);
   Admin User
  */
 INSERT INTO sed_user (name, password, role, login, email, disabled)
-VALUES ('Admin', '21232f297a57a5a743894a0e4a801fc3', 'ADMIN', 'admin', 'admin@bsu.by', FALSE);
+VALUES ('Admin', '21232f297a57a5a743894a0e4a801fc3', 'ADMIN', 'admin', 'admin', FALSE);
 
 /**
   Teacher User
  */
 INSERT INTO sed_user (name, password, role, login, email, disabled)
-VALUES ('Teacher', '8d788385431273d11e8b43bb78f3aa41', 'TEACHER', 'teacher', 'teacher@bsu.by', FALSE);
+VALUES ('Teacher', '8d788385431273d11e8b43bb78f3aa41', 'TEACHER', 'teacher', 'teacher', FALSE);
 
 /**
   Student User
  */
 INSERT INTO sed_user (name, password, role, login, email, disabled)
-VALUES ('Student', 'cd73502828457d15655bbd7a63fb0bc8', 'STUDENT', 'student', 'student@bsu.by', FALSE);
+VALUES ('Student', 'cd73502828457d15655bbd7a63fb0bc8', 'STUDENT', 'student', 'student', FALSE);
 

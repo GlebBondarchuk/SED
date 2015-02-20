@@ -19,12 +19,13 @@
             <div class="col-sm-10">
                 <div class="input-group">
                     <select id="roleSelect" class="form-control" name="role" title="">
-                        <security:authorize access="hasAnyRole('ADMIN','TEACHER')">
-                            <option><%=Role.TEACHER%>
-                            </option>
-                        </security:authorize>
-                        <option><%=Role.STUDENT%>
-                        </option>
+                        <%--<security:authorize access="hasAnyRole('ADMIN','TEACHER')">--%>
+                            <%--<option><%=Role.TEACHER%>--%>
+                            <%--</option>--%>
+                        <%--</security:authorize>--%>
+                        <%--<option><%=Role.STUDENT%>--%>
+                        <%--</option>--%>
+                        <option>${role}</option>
                     </select>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                 </div>

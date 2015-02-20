@@ -16,6 +16,8 @@ public interface UserService {
 
     User getByLogin(String login);
 
+    User getByEmail(String email);
+
     List<User> getAll();
 
     List<User> find(SortOrder order, int limit, int offset);

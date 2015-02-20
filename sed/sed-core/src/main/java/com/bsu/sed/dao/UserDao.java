@@ -20,12 +20,12 @@ public interface UserDao extends GenericDao<User, Long> {
     User getByLogin(String login);
 
     /**
-     * Get user by encoded password.
+     * Get user by email
      *
-     * @param password Encoded password.
+     * @param email Email
      * @return User object.
      */
-    User getByPassword(String password);
+    User getByEmail(String email);
 
     User getByUsername(String username);
 

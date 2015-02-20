@@ -76,7 +76,7 @@ public class AdminController {
     public ModelAndView getNewUserPage() {
         String emailMsk = systemAttributeService.get(SystemAttributeKey.EMAIL_MASK);
         ModelAndView modelAndView = new ModelAndView(Tiles.SIGN_UP_PAGE.getTileName());
-        modelAndView.addObject("roles", Role.values());
+        modelAndView.addObject("role", Role.TEACHER);
         modelAndView.addObject("postURL", "/admin/users/add");
         modelAndView.addObject("emailMask", emailMsk);
         return modelAndView;

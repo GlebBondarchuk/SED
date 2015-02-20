@@ -23,10 +23,10 @@ public class SedUserDetailsService implements UserDetailsService {
     private UserService userService;
 
     @Override
-    public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-        User user = userService.getByLogin(login);
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        User user = userService.getByEmail(email);
         if (user == null) {
-            throw new UsernameNotFoundException("Can't find user with login: " + login);
+            throw new UsernameNotFoundException("Can't find user with email: " + email);
         }
 
         if (Boolean.TRUE.equals(user.isDisabled())) {

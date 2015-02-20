@@ -5,7 +5,14 @@
     <div class="row">
         <div class="col-md-2">
             <a>
-                <img class="img-responsive img-hover" src="${people.user.photo}" alt="">
+                <c:choose>
+                    <c:when test="${not empty people.user.photo}">
+                        <img class="img-responsive img-hover" src="${people.user.photo}" alt="">
+                    </c:when>
+                    <c:otherwise>
+                        <img class="img-responsive img-hover" height="200" width="150" src="http://placehold.it/300x400" alt="">
+                    </c:otherwise>
+                </c:choose>
             </a>
         </div>
         <div class="col-md-10">

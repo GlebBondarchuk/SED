@@ -24,8 +24,8 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     }
 
     @Override
-    public User getByPassword(String password) {
-        return getByField("password", password);
+    public User getByEmail(String email) {
+        return getByField("email", email);
     }
 
     @Override

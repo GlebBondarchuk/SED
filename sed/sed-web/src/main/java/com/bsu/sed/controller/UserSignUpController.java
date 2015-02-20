@@ -44,6 +44,7 @@ public class UserSignUpController {
     public ModelAndView getSignUpPage() {
         String emailMask = systemAttributeService.get(SystemAttributeKey.EMAIL_MASK);
         ModelAndView modelAndView = new ModelAndView(Tiles.SIGN_UP_PAGE.getTileName());
+        modelAndView.addObject("role", Role.STUDENT);
         modelAndView.addObject("emailMask", emailMask);
         modelAndView.addObject("postURL", "/signUp");
         return modelAndView;

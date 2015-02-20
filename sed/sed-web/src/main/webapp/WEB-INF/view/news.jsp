@@ -17,10 +17,10 @@
 
         <hr>
 
-        <!-- Preview Image -->
-        <img class="img-responsive" src="${news.photo}" alt="">
+        <%--<!-- Preview Image -->--%>
+        <%--<img class="img-responsive" src="${news.photo}" alt="">--%>
 
-        <hr>
+        <%--<hr>--%>
 
         <!-- Post Content -->
         <p class="lead">${news.content.name}</p>
@@ -38,14 +38,17 @@
         <div class="well">
             <h4><spring:message code="news.search"/></h4>
 
-            <div class="input-group">
-                <input type="text" class="form-control">
+            <form action="${applicationPath}/news/search" method="get">
+                <div class="input-group">
+                    <input name="query" type="text" class="form-control">
                         <span class="input-group-btn">
-                            <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+                            <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
                         </span>
-            </div>
-            <!-- /.input-group -->
+                </div>
+                <!-- /.input-group -->
+            </form>
         </div>
+
 
         <!-- Blog Categories Well -->
         <div class="well">
