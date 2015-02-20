@@ -463,7 +463,7 @@
             <properties>
                 <custom.resource>bsu</custom.resource>
                 <documentRepositoryFolder>/sed</documentRepositoryFolder>
-                <serverUrl>sed-bsu.mycloud.by</serverUrl>
+                <serverUrl>sed-fpmi.mycloud.by</serverUrl>
                 <context-root>/</context-root>
                 <displayVersion>inline</displayVersion>
                 <dbURL>jdbc:mysql://mysql17001-sedbsu2015.mycloud.by/sed</dbURL>

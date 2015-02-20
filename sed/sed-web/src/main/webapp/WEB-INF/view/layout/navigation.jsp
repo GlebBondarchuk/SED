@@ -93,6 +93,8 @@
                         </li>
                         <li><a href="?lang=en"><i class="icon-flag-EN">&nbsp;&nbsp;&nbsp;&nbsp;</i><spring:message code="label.nav.language.english"/></a>
                         </li>
+                        <li><a href="?lang=cn"><i class="icon-flag-CN">&nbsp;&nbsp;&nbsp;&nbsp;</i><spring:message code="label.nav.language.chinese"/></a>
+                        </li>
                     </ul>
                 </li>
             </ul>

@@ -1,5 +1,6 @@
 package com.bsu.sed.controller;
 
+import com.bsu.sed.model.Role;
 import com.bsu.sed.model.Tiles;
 import com.bsu.sed.model.dto.ContentDto;
 import com.bsu.sed.model.dto.PeopleDto;
@@ -30,6 +31,11 @@ public class PeopleController {
     @RequestMapping("/peoples")
     public ModelAndView getPeoplesPage() {
         List<People> peoples = peopleService.find();
+        for (People people : peoples) {
+            if (people.getUser().getRole().in(Role.ADMIN)) {
+                peoples.remove(people);
+            }
+        }
         ModelAndView modelAndView = new ModelAndView(Tiles.PEOPLES_PAGE.getTileName());
         modelAndView.addObject("peoples", peoples);
         return modelAndView;

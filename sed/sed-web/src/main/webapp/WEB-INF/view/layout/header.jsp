@@ -13,7 +13,7 @@
         <h1 class="page-header">
             <c:choose>
                 <c:when test="${not empty title}">
-                   ${title}
+                    ${title}
                 </c:when>
                 <c:otherwise>
                     <c:if test="${not empty pageTitle}">
@@ -27,9 +27,14 @@
         <ol class="breadcrumb">
             <li><a href="${applicationPath}/"><spring:message code="label.nav.homepage"/></a>
             </li>
-            <c:if test="${not empty pageTitle}">
-                <li class="active"><spring:message code="${pageTitle}"/></li>
-            </c:if>
+            <c:choose>
+                <c:when test="${not empty pageTitle}">
+                    <li class="active"><spring:message code="${pageTitle}"/></li>
+                </c:when>
+                <c:otherwise>
+                    <li class="active">${title}</li>
+                </c:otherwise>
+            </c:choose>
         </ol>
     </div>
 </div>

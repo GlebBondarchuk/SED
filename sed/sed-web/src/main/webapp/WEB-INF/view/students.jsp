@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="col-md-1">
                 <a>
-                    <img class="img-responsive img-hover" width="60" height="80" src="http://fpmi.bsu.by/sm_full.aspx?guid=25893" alt="">
+                    <img class="img-responsive img-hover" width="60" height="80" src="${student.user.photo}" alt="">
                 </a>
             </div>
             <div class="col-md-11">

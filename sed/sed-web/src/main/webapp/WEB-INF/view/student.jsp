@@ -20,8 +20,8 @@
         </div>
         <div class="col-md-10">
             <h3>${student.user.name}</h3>
-            <h4>${student.course}</h4>
-            <h4>${student.group}</h4>
+            <h4>Course: ${student.course}</h4>
+            <h4>Group: ${student.group}</h4>
             <c:if test="${not empty student.user.phone}">
                 <p><i class="fa fa-phone"></i> ${student.user.phone}</p>
             </c:if>

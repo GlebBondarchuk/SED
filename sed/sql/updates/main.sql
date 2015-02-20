@@ -38,20 +38,9 @@ VALUES ('System', 'system', 'ADMIN', 'sed.bsu', 'sed.bsu@gmail.com', TRUE);
 /**
   Admin User
  */
-INSERT INTO sed_user (name, password, role, login, email, disabled)
-VALUES ('Admin', '21232f297a57a5a743894a0e4a801fc3', 'ADMIN', 'admin', 'admin', FALSE);
+INSERT INTO sed_user (id, name, password, role, login, email, disabled)
+VALUES (2, 'Admin', '21232f297a57a5a743894a0e4a801fc3', 'ADMIN', 'admin', 'admin', FALSE);
 
-/**
-  Teacher User
- */
-INSERT INTO sed_user (name, password, role, login, email, disabled)
-VALUES ('Teacher', '8d788385431273d11e8b43bb78f3aa41', 'TEACHER', 'teacher', 'teacher', FALSE);
-
-/**
-  Student User
- */
-INSERT INTO sed_user (name, password, role, login, email, disabled)
-VALUES ('Student', 'cd73502828457d15655bbd7a63fb0bc8', 'STUDENT', 'student', 'student', FALSE);
 
 #---------------------------------------------------------------------------------------------------------
 #---------------------------------------------------------------------------------------------------------
@@ -75,25 +64,25 @@ INSERT INTO sed_system (`key`, value, display_value, description, category)
 VALUES ('EMAIL', 'sed.bsu@gmail.com', 'System Email Server', 'Only for gmail accounts.', 'EMAIL');
 
 INSERT INTO sed_system (`key`, value, display_value, description, category)
-VALUES ('EMAIL_PASSWORD', 'sed.bsu2014', 'Email Password', '', 'EMAIL');
+VALUES ('EMAIL_PASSWORD', 'sed.bsu2014', 'Email Password', 'Email Password', 'EMAIL');
 
 INSERT INTO sed_system (`key`, value, display_value, description, category)
-VALUES ('EMAIL_PROTOCOL', 'smtp', 'Email Protocol', '', 'EMAIL');
+VALUES ('EMAIL_PROTOCOL', 'smtp', 'Email Protocol', 'Email Protocol', 'EMAIL');
 
 INSERT INTO sed_system (`key`, value, display_value, description, category)
-VALUES ('EMAIL_HOST', 'smtp.gmail.com', 'Email Host', '', 'EMAIL');
+VALUES ('EMAIL_HOST', 'smtp.gmail.com', 'Email Host', 'Email Host', 'EMAIL');
 
 INSERT INTO sed_system (`key`, value, display_value, description, category)
-VALUES ('EMAIL_PORT', '587', 'Email Port', '', 'EMAIL');
+VALUES ('EMAIL_PORT', '587', 'Email Port', 'Email Port', 'EMAIL');
 
 INSERT INTO sed_system (`key`, value, display_value, description, category)
-VALUES ('EMAIL_MASK', '@gmail.com', 'Email Mask', '', 'EMAIL');
+VALUES ('EMAIL_MASK', '@gmail.com', 'Email Mask', 'Email Mask', 'EMAIL');
 
 INSERT INTO sed_system (`key`, value, display_value, description, category, `bit`)
-VALUES ('CHECK_PEOPLE_REGISTRATION', 'true', 'Check Peoples Registration', '', 'PEOPLES', TRUE);
+VALUES ('CHECK_PEOPLE_REGISTRATION', 'true', 'Check Peoples Registration', 'Check Peoples Registration', 'PEOPLES', TRUE);
 
 INSERT INTO sed_system (`key`, value, display_value, description, category, `bit`)
-VALUES ('CHECK_STUDENT_REGISTRATION', 'true', 'Check Students Registration', '', 'STUDENTS', TRUE);
+VALUES ('CHECK_STUDENT_REGISTRATION', 'true', 'Check Students Registration', 'Check Student Registration', 'STUDENTS', TRUE);
 
 
 #---------------------------------------------------------------------------------------------------------
@@ -115,8 +104,6 @@ CREATE TABLE IF NOT EXISTS sed_student (
 )
   ENGINE = InnoDB
   DEFAULT CHARSET =utf8;
-
-INSERT INTO sed_student (user_id, course, student_group) VALUES (4, 0, 0);
 
 
 #---------------------------------------------------------------------------------------------------------
@@ -141,8 +128,6 @@ CREATE TABLE IF NOT EXISTS sed_people (
   DEFAULT CHARSET =utf8;
 
 INSERT INTO sed_people (user_id, position) VALUES (2, 'admin');
-
-INSERT INTO sed_people (user_id, position) VALUES (3, 'teacher');
 
 #---------------------------------------------------------------------------------------------------------
 #---------------------------------------------------------------------------------------------------------
