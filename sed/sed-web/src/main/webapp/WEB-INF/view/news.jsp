@@ -36,9 +36,9 @@
         <div class="well">
             <h4><spring:message code="news.search"/></h4>
 
-            <form action="${applicationPath}/news/search" method="get">
+            <form action="${applicationPath}/news/${limit}/0" method="get">
                 <div class="input-group">
-                    <input name="query" type="text" class="form-control">
+                    <input name="query" type="text" class="form-control" value="${query}">
                         <span class="input-group-btn">
                             <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
                         </span>

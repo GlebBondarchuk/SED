@@ -9,3 +9,4 @@ CREATE TABLE IF NOT EXISTS sed_news_url (
   PRIMARY KEY (id)
 )
   ENGINE = InnoDB;
+  DEFAULT CHARSET =utf8;

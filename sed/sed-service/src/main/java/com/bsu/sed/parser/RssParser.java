@@ -33,6 +33,7 @@ public class RssParser {
             parse(url);
             return true;
         } catch (IOException | FeedException e) {
+            e.printStackTrace();
             return false;
         }
     }

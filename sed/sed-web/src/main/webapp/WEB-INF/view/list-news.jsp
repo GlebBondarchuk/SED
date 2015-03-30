@@ -49,7 +49,7 @@
                     <%--<img class="img-responsive img-hover" src="${news.photo}" alt="">--%>
                     <%--</a>--%>
                     <%--<hr>--%>
-                    <%--<p>${news.simpleText}</p>--%>
+                    <p>${news.simpleText}</p>
                     <a class="btn btn-primary" href="${applicationPath}/news/${news.id}">
                         <spring:message code="news.readMore"/>
                         &nbsp;<i class="fa fa-angle-right"></i></a>

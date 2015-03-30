@@ -8,6 +8,7 @@ import com.bsu.sed.service.UserService;
 import com.bsu.sed.service.news.NewsService;
 import com.bsu.sed.service.news.NewsUrlService;
 import com.bsu.sed.utils.ParseUtils;
+import com.sun.syndication.feed.synd.SyndContent;
 import com.sun.syndication.feed.synd.SyndEnclosure;
 import com.sun.syndication.feed.synd.SyndEntry;
 import com.sun.syndication.feed.synd.SyndFeed;
@@ -64,13 +65,17 @@ public class NewsUpdateProcess extends ProcessExecutor {
             News news = new News();
             news.setCreator(userService.getByLogin(UserService.SYSTEM_USER));
             String text = entry.getTitle();
-            if (!meets(text, searchWords)) {
+            SyndContent syndContent = entry.getDescription();
+            String description = syndContent.getValue();
+
+            if (!meets(text, searchWords) && !meets(description, searchWords)) {
                 continue;
             }
-            news.setSimpleText(entry.getTitle());
+            news.setSimpleText(description);
             Content content = new Content();
             content.setName(entry.getTitle());
             content.setContent(entry.getLink().getBytes(Charset.forName("UTF-8")));
+
             List enclosures = entry.getEnclosures();
             if (CollectionUtils.isNotEmpty(enclosures)) {
                 for (Object value : enclosures) {
