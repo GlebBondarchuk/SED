@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS sed_news (
 
   PRIMARY KEY (id),
   FOREIGN KEY (creator) REFERENCES sed_user (id),
-  FOREIGN KEY (content) REFERENCES sed_content (id)
+  FOREIGN KEY (content) REFERENCES sed_content (id) ON DELETE CASCADE
 )
   ENGINE = InnoDB
   DEFAULT CHARSET =utf8;

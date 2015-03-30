@@ -15,5 +15,9 @@ public enum SystemAttributeKey {
 
     /* Peoples Attributes */
     CHECK_PEOPLE_REGISTRATION,
-    CHECK_STUDENT_REGISTRATION
+    CHECK_STUDENT_REGISTRATION,
+
+    /* News Attributes */
+    NEWS_PAGE_LIMIT,
+    NEWS_DELETE_AFTER;
 }

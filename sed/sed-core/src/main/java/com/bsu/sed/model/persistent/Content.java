@@ -2,6 +2,7 @@ package com.bsu.sed.model.persistent;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author gbondarchuk
@@ -15,6 +16,7 @@ public class Content extends BaseEntity {
     private Date updateDate;
     private String contentType;
     private User creator;
+    private List<News> news;
     private String html;
 
     @Override
@@ -57,6 +59,14 @@ public class Content extends BaseEntity {
         this.contentType = contentType;
     }
 
+    @OneToMany(mappedBy = "content", orphanRemoval = true)
+    public List<News> getNews() {
+        return news;
+    }
+
+    public void setNews(List<News> news) {
+        this.news = news;
+    }
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "creator")
@@ -83,6 +93,6 @@ public class Content extends BaseEntity {
 
     @Transient
     public String getHtml() {
-       return html;
+        return html;
     }
 }

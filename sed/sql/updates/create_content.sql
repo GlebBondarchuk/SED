@@ -13,7 +13,8 @@ CREATE TABLE IF NOT EXISTS sed_content (
     ON DELETE SET NULL
 )
   ENGINE = InnoDB
-  DEFAULT CHARSET =utf8;
+  DEFAULT CHARSET =utf8
+  DEFAULT COLLATE utf8_general_ci;
 
 INSERT INTO sed_content (name)
 VALUES ('Educational');

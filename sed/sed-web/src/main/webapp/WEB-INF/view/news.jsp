@@ -17,14 +17,12 @@
 
         <hr>
 
-        <%--<!-- Preview Image -->--%>
-        <%--<img class="img-responsive" src="${news.photo}" alt="">--%>
-
-        <%--<hr>--%>
 
         <!-- Post Content -->
         <p class="lead">${news.content.name}</p>
 
+        <img class="img-responsive img-hover" src="${news.photo}" alt="">
+        <hr>
         <p>${news.content.html}</p>
 
         <hr>
@@ -95,11 +93,11 @@
             <div class="row">
                 <div class="col-lg-12">
                     <a class="btn btn-danger btn-primary"
-                       href="<c:url value="${applicationPath}/news/${news.id}/edit"/>" role="button">
+                       href="<c:url value="/news/${news.id}/edit"/>" role="button">
                         <span class="glyphicon glyphicon-edit"></span>&nbsp;&nbsp;<spring:message code="news.edit"/>
                     </a>
                     <a class="btn btn-danger btn-primary"
-                       onclick="deleteNews();" role="button">
+                       onclick="deleteNews('${news.id}');" role="button">
                         <span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;<spring:message code="news.delete"/>
                     </a>
                 </div>
@@ -110,18 +108,18 @@
 </div>
 <!-- /.row -->
 
-<security:authorize access="hasRole('ADMIN')">
 
+<security:authorize access="hasRole('ADMIN')">
     <script>
-        function deleteNews() {
+        function deleteNews(id) {
             bootbox.setDefaults({locale: '${sed:getLangLowerCase()}'});
-            bootbox.confirm("<spring:message code="dialog.sure"/>", function (confirmed) {
+            bootbox.confirm("<spring:message code='dialog.sure'/>", function (confirmed) {
                 if (confirmed) {
                     $.ajax({
                         type: "POST",
-                        url: "<c:url value="${applicationPath}/news/${news.id}/delete"/>"
+                        url: mainContextPath + "/news/" + id + "/delete"
                     }).done(function () {
-                        window.location.href = "<c:url value="${applicationPath}/news"/>";
+                        window.location.href = '<c:url value="/news"/>';
                     });
                 }
             });

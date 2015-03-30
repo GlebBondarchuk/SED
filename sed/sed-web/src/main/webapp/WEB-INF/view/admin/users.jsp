@@ -31,7 +31,7 @@
                 </thead>
             </table>
         </div>
-        <a class="btn btn-danger btn-primary" href="<c:url value="${applicationPath}/admin/users/add"/>" role="button"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;<spring:message code="admin.users.addNew"/></a>
+        <a class="btn btn-danger btn-primary" href="<c:url value="/admin/users/add"/>" role="button"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;<spring:message code="admin.users.addNew"/></a>
     </div>
 </div>
 <script>

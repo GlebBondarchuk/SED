@@ -69,6 +69,8 @@
         <!--Transliteration-->
         <transliteration.version>0.1.1</transliteration.version>
 
+        <jsoup.parse.version>1.8.1</jsoup.parse.version>
+
         <project.build.source>1.7</project.build.source>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
@@ -89,6 +91,12 @@
                 <groupId>com.bsu.sed</groupId>
                 <artifactId>sed-service</artifactId>
                 <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jsoup</groupId>
+                <artifactId>jsoup</artifactId>
+                <version>${jsoup.parse.version}</version>
             </dependency>
 
             <!--Transliteration-->

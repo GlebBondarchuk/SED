@@ -8,4 +8,5 @@
         <property name="basename" value="i18n.messages_en"/>
     </bean>
 
+    <bean id="sedApplicationListener" class="com.bsu.sed.listener.SedApplicationListener"/>
 </beans>

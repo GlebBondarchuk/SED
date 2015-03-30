@@ -50,7 +50,7 @@
                 </c:choose>
             </div>
             <div class="col-md-10">
-                <form class="form-horizontal" role="form"  data-toggle="validator" action="<c:url value="${applicationPath}/people/${people.user.login}/edit"/>"
+                <form class="form-horizontal" role="form"  data-toggle="validator" action="<c:url value="/people/${people.user.login}/edit"/>"
                       method="post">
                     <div class="form-group">
                         <div class="col-sm-10">
@@ -179,7 +179,7 @@
         <div class="col-lg-12">
             <c:if test="${not edit}">
                 <a class="btn btn-danger btn-primary"
-                   href="<c:url value="${applicationPath}/people/${people.user.login}/edit"/>" role="button">
+                   href="<c:url value="/people/${people.user.login}/edit"/>" role="button">
                     <span class="glyphicon glyphicon-edit"></span>&nbsp;&nbsp;<spring:message code="people.button.editPage"/>
                 </a>
             </c:if>
@@ -198,7 +198,7 @@
     <script>
         function editTab() {
             var activeContentId = $("#myTabContent").find(".active").attr('id');
-            window.location.href = "<c:url value="${applicationPath}/people/${people.user.login}/edit/tab/"/>" + activeContentId;
+            window.location.href = "<c:url value="/people/${people.user.login}/edit/tab/"/>" + activeContentId;
         }
 
         function deleteTab() {
@@ -206,13 +206,13 @@
             bootbox.confirm("<spring:message code="dialog.sure"/>", function (confirmed) {
                 if (confirmed) {
                     var activeContentId = $("#myTabContent").find(".active").attr('id');
-                    window.location.href = "<c:url value="${applicationPath}/people/${people.user.login}/edit/tab/delete/"/>" + activeContentId;
+                    window.location.href = "<c:url value="/people/${people.user.login}/edit/tab/delete/"/>" + activeContentId;
                 }
             });
         }
 
         function addTab() {
-            window.location.href = "<c:url value="${applicationPath}/people/${people.user.login}/addTab"/>";
+            window.location.href = "<c:url value="/people/${people.user.login}/addTab"/>";
         }
     </script>
 </security:authorize>

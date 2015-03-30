@@ -23,7 +23,9 @@ public enum Tiles {
     USERS_PAGE("sed-users"),
     SYSTEM_PAGE("sed-system"),
     ADD_NEW_TAB("sed-add-new-tab"),
-    EDIT_TAB("sed-edit-tab");
+    EDIT_TAB("sed-edit-tab"),
+    NEWS_URL_PAGE("sed-news-url"),
+    BACKGROUND_PROCESSES_PAGE("sed-process");
 
     private String tileName;
 

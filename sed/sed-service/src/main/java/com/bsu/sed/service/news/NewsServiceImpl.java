@@ -1,15 +1,17 @@
-package com.bsu.sed.service;
+package com.bsu.sed.service.news;
 
 import com.bsu.sed.dao.NewsDao;
 import com.bsu.sed.model.persistent.Content;
 import com.bsu.sed.model.persistent.News;
 import com.bsu.sed.model.persistent.User;
+import com.bsu.sed.service.UserService;
 import com.bsu.sed.utils.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.nio.charset.Charset;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,8 +26,8 @@ public class NewsServiceImpl implements NewsService {
     private UserService userService;
 
     @Override
-    public List<News> find() {
-        return newsDao.getAll();
+    public List<News> find(int limit, int offset, String query) {
+        return newsDao.getSortedNews(limit, offset, query);
     }
 
     @Override
@@ -69,5 +71,22 @@ public class NewsServiceImpl implements NewsService {
         news.setSimpleText(simpleText);
         news.setPhoto(photo);
         return newsDao.update(news);
+    }
+
+    @Override
+    public void create(List<News> news) {
+       for(News value : news) {
+           newsDao.create(value);
+       }
+    }
+
+    @Override
+    public long count(String query) {
+        return newsDao.count(query);
+    }
+
+    @Override
+    public void deleteNewsBeforeDate(Date date) {
+         newsDao.deleteNewsBeforeDate(date);
     }
 }

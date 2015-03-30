@@ -1,10 +1,10 @@
 package com.bsu.sed.controller;
 
 import com.bsu.sed.model.Tiles;
-import com.bsu.sed.model.dto.SearchDto;
 import com.bsu.sed.model.persistent.News;
-import com.bsu.sed.service.NewsService;
 import com.bsu.sed.service.SearchService;
+import com.bsu.sed.service.SystemAttributeService;
+import com.bsu.sed.service.news.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+
+import static com.bsu.sed.model.SystemAttributeKey.NEWS_PAGE_LIMIT;
 
 /**
  * @author gbondarchuk
@@ -23,12 +25,27 @@ public class NewsController {
     private NewsService newsService;
     @Autowired
     private SearchService searchService;
+    @Autowired
+    private SystemAttributeService systemAttributeService;
 
-    @RequestMapping
-    public ModelAndView getListNewsPage() {
-        List<News> newsList = newsService.find();
+    @RequestMapping(value = "/{limit}/{offset}")
+    public ModelAndView getLimitListNewsPage(@PathVariable("limit") Integer limit,
+                                             @PathVariable("offset") Integer offset,
+                                             @RequestParam(value = "query", required = false) String query) {
+        List<News> newsList = newsService.find(limit, offset, query);
         ModelAndView modelAndView = new ModelAndView(Tiles.LIST_NEWS_PAGE.getTileName());
         modelAndView.addObject("newsList", newsList);
+        modelAndView.addObject("query", query);
+        modelAndView.addObject("count", newsService.count(query));
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "")
+    public ModelAndView getListNewsPage() {
+        int limit = systemAttributeService.getInt(NEWS_PAGE_LIMIT);
+        ModelAndView modelAndView = getLimitListNewsPage(limit, 0, null);
+        modelAndView.addObject("limit", limit);
+        modelAndView.addObject("offset", 0);
         return modelAndView;
     }
 
@@ -80,18 +97,10 @@ public class NewsController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
     public String addNews(@RequestParam("content") String content,
-                                @RequestParam("contentName") String contentName,
-                                @RequestParam("photo") String photo,
-                                @RequestParam("simpleText") String simpleText) {
+                          @RequestParam("contentName") String contentName,
+                          @RequestParam("photo") String photo,
+                          @RequestParam("simpleText") String simpleText) {
         newsService.create(contentName, content, photo, simpleText);
         return "success";
-    }
-
-    @RequestMapping("/search")
-    public ModelAndView newsSearch(@RequestParam("query") String query) {
-        ModelAndView modelAndView = new ModelAndView(Tiles.SEARCH_PAGE.getTileName());
-        List<SearchDto> results = searchService.searchInNews(query);
-        modelAndView.addObject("results", results);
-        return modelAndView;
     }
 }

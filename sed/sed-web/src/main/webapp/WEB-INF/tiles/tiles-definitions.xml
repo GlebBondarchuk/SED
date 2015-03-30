@@ -105,11 +105,25 @@
         <put-attribute name="primary-content" value="/WEB-INF/view/list-news.jsp"/>
     </definition>
 
-    <!--users page-->
+    <!--news page-->
     <definition name="sed-news" extends="sed-page-template">
         <put-attribute name="title" cascade="true" value="label.news.title"/>
         <put-attribute name="subtitle" cascade="true" value="label.news.subtitle"/>
         <put-attribute name="primary-content" value="/WEB-INF/view/news.jsp"/>
+    </definition>
+
+    <!--news url page-->
+    <definition name="sed-news-url" extends="sed-page-template">
+        <put-attribute name="title" cascade="true" value="label.news.title"/>
+        <put-attribute name="subtitle" cascade="true" value="label.news.subtitle"/>
+        <put-attribute name="primary-content" value="/WEB-INF/view/admin/news-url.jsp"/>
+    </definition>
+
+    <!--background processes page-->
+    <definition name="sed-process" extends="sed-page-template">
+        <put-attribute name="title" cascade="true" value="label.news.title"/>
+        <put-attribute name="subtitle" cascade="true" value="label.news.subtitle"/>
+        <put-attribute name="primary-content" value="/WEB-INF/view/admin/background-processes.jsp"/>
     </definition>
 
     <!--users page-->

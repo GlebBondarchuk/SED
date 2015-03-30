@@ -59,6 +59,12 @@
                             <li>
                                 <a href="${applicationPath}/admin/users"><spring:message code="label.nav.admin.users"/></a>
                             </li>
+                            <li>
+                                <a href="${applicationPath}/admin/news/">News Configuration</a>
+                            </li>
+                            <li>
+                                <a href="${applicationPath}/admin/processes/">Background Processes</a>
+                            </li>
                         </ul>
                     </li>
                 </security:authorize>

@@ -41,7 +41,7 @@
         function saveNews() {
             $.ajax({
                 type: "POST",
-                url: "<c:url value="${applicationPath}/news/add/"/>",
+                url: "<c:url value="/news/add/"/>",
                 data: {
                     contentName: $("#contentName").val(),
                     content: $("#htmlContent").val(),
@@ -49,14 +49,14 @@
                     simpleText: $("#simpleText").val()
                 }
                 }).done(function () {
-                window.location.href = "<c:url value="${applicationPath}/news"/>";
+                window.location.href = "<c:url value="/news"/>";
             })
         }
 
         function updateNews() {
             $.ajax({
                 type: "POST",
-                url: "<c:url value="${applicationPath}/news/${news.id}/edit"/>",
+                url: "<c:url value="/news/${news.id}/edit"/>",
                 data: {
                     contentName: $("#contentName").val(),
                     content: $("#htmlContent").val(),
@@ -64,7 +64,7 @@
                     simpleText: $("#simpleText").val()
                 }
             }).done(function () {
-                window.location.href = "<c:url value="${applicationPath}/news/${news.id}"/>";
+                window.location.href = "<c:url value="/news/${news.id}"/>";
             })
         }
     </script>

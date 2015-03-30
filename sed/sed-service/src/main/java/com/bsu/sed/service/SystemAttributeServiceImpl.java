@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -30,8 +31,8 @@ public class SystemAttributeServiceImpl implements SystemAttributeService {
     }
 
     @Override
-    public void update(Long id, String value, String description) {
-        SystemAttribute systemAttribute = systemAttributeDao.load(id);
+    public void update(SystemAttributeKey key, String value, String description) {
+        SystemAttribute systemAttribute = systemAttributeDao.getAttribute(key);
         systemAttribute.setValue(value);
         systemAttribute.setDescription(description);
         systemAttributeDao.update(systemAttribute);
@@ -40,6 +41,16 @@ public class SystemAttributeServiceImpl implements SystemAttributeService {
     @Override
     public String get(SystemAttributeKey key) {
         return systemAttributeDao.get(key);
+    }
+
+    @Override
+    public int getInt(SystemAttributeKey key) {
+        return systemAttributeDao.getInt(key);
+    }
+
+    @Override
+    public Date getDate(SystemAttributeKey key) {
+        return systemAttributeDao.getDate(key);
     }
 
     @Override

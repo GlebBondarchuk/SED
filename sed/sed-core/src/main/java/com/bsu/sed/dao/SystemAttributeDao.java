@@ -4,6 +4,8 @@ import com.bsu.sed.dao.generic.GenericDao;
 import com.bsu.sed.model.persistent.SystemAttribute;
 import com.bsu.sed.model.SystemAttributeKey;
 
+import java.util.Date;
+
 /**
  * @author gbondarchuk
  */
@@ -32,4 +34,8 @@ public interface SystemAttributeDao extends GenericDao<SystemAttribute, Long> {
      * @return boolean attribute value.
      */
     boolean getBoolean(SystemAttributeKey key);
+
+    Date getDate(SystemAttributeKey key);
+
+    SystemAttribute getAttribute(SystemAttributeKey key);
 }

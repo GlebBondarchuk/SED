@@ -12,4 +12,7 @@
 
     <bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.Md5PasswordEncoder"/>
 
+    <bean id="scheduler" name="scheduler"
+          class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+    </bean>
 </beans>

@@ -23,6 +23,7 @@ public class SystemAttribute extends BaseEntity {
     private String displayName;
     private String description;
     private boolean bit;
+    private boolean date;
     private SystemAttributeCategory category;
 
     @Override
@@ -75,6 +76,15 @@ public class SystemAttribute extends BaseEntity {
 
     public void setBit(boolean bit) {
         this.bit = bit;
+    }
+
+    @Column(name = "date")
+    public boolean isDate() {
+        return date;
+    }
+
+    public void setDate(boolean date) {
+        this.date = date;
     }
 
     @NotEmpty

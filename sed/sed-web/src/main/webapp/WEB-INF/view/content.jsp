@@ -34,7 +34,7 @@
             <c:choose>
                 <c:when test="${not edit}">
                     <a class="btn btn-danger btn-primary"
-                       href="<c:url value="${applicationPath}/content/${content.id}/edit"/>" role="button">
+                       href="<c:url value="/content/${content.id}/edit"/>" role="button">
                         <span class="glyphicon glyphicon-edit"></span>&nbsp;&nbsp;<spring:message code="people.button.editPage"/>
                     </a>
                 </c:when>
@@ -49,10 +49,10 @@
         function editContent() {
             $.ajax({
                 type: "POST",
-                url: "<c:url value="${applicationPath}/content/${content.id}/edit"/>",
+                url: "<c:url value="/content/${content.id}/edit"/>",
                 data: {contentName: $("#contentName").val(), content: $("#htmlContent").val()}
             }).done(function () {
-                window.location.href = "<c:url value="${applicationPath}/content/${content.id}"/>";
+                window.location.href = "<c:url value="/content/${content.id}"/>";
             })
         }
     </script>

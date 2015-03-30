@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS sed_system (
   description   VARCHAR(200) NOT NULL,
   display_value VARCHAR(100) NOT NULL,
   `bit`         BIT          NOT NULL         DEFAULT FALSE,
+  `date`        BIT          NOT NULL         DEFAULT FALSE,
   category      VARCHAR(50)  NOT NULL,
   PRIMARY KEY (id)
 )
@@ -35,4 +36,10 @@ VALUES ('CHECK_PEOPLE_REGISTRATION', 'true', 'Check Peoples Registration', '', '
 
 INSERT INTO sed_system (`key`, value, display_value, description, category, `bit`)
 VALUES ('CHECK_STUDENT_REGISTRATION', 'true', 'Check Students Registration', '', 'STUDENTS', TRUE);
+
+INSERT INTO sed_system (`key`, value, display_value, description, category)
+VALUES ('NEWS_PAGE_LIMIT', '5', 'News Page Limit', '', 'NEWS');
+
+INSERT INTO sed_system (`key`, value, display_value, description, category, `date`)
+VALUES ('NEWS_DELETE_AFTER', '31/03/2015 15:09', 'News showing duration', 'Remove news after X weeks passed', 'NEWS', TRUE);
 

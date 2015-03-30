@@ -3,9 +3,12 @@ package com.bsu.sed.dao;
 import com.bsu.sed.dao.generic.AbstractDao;
 import com.bsu.sed.model.SystemAttributeKey;
 import com.bsu.sed.model.persistent.SystemAttribute;
+import com.bsu.sed.utils.DateUtils;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
+
+import java.util.Date;
 
 /**
  * @author gbondarchuk
@@ -19,27 +22,38 @@ public class SystemAttributeDaoImpl extends AbstractDao<SystemAttribute> impleme
      * @param key Attribute identifier.
      * @return Attribute value as string.
      */
-    private String getValue(SystemAttributeKey key) {
+    private SystemAttribute getValue(SystemAttributeKey key) {
         Session session = em.unwrap(Session.class);
-        Query query = session.createQuery("select system.value from SystemAttribute system where system.key = :key");
+        Query query = session.createQuery("select system from SystemAttribute system where system.key = :key");
         query.setParameter("key", key);
-        return (String) query.uniqueResult();
+        return (SystemAttribute) query.uniqueResult();
     }
 
     @Override
     public String get(SystemAttributeKey key) {
-        return getValue(key);
+        return getValue(key).getValue();
     }
 
     @Override
     public int getInt(SystemAttributeKey key) {
-        String value = getValue(key);
+        String value = getValue(key).getValue();
         return Integer.parseInt(value);
     }
 
     @Override
     public boolean getBoolean(SystemAttributeKey key) {
-        String value = getValue(key);
+        String value = getValue(key).getValue();
         return Boolean.parseBoolean(value);
+    }
+
+    @Override
+    public Date getDate(SystemAttributeKey key) {
+        String value = getValue(key).getValue();
+        return DateUtils.parse(value);
+    }
+
+    @Override
+    public SystemAttribute getAttribute(SystemAttributeKey key) {
+        return getValue(key);
     }
 }

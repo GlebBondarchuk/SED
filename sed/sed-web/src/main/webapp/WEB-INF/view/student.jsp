@@ -49,7 +49,7 @@
             </div>
             <div class="col-md-10">
                 <form class="form-horizontal" role="form" data-toggle="validator"
-                      action="<c:url value="${applicationPath}/student/${student.user.login}/edit"/>"
+                      action="<c:url value="/student/${student.user.login}/edit"/>"
                       method="post">
                     <div class="form-group">
                         <div class="col-sm-10">
