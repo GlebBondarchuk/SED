@@ -4,11 +4,26 @@
     <!--<defaultCache eternal="true" maxElementsInMemory="100" overflowToDisk="false"/>-->
 
     <cache name="primaryCache" eternal="false" overflowToDisk="false"
-           maxElementsInMemory="100" timeToLiveSeconds="1296000"/>
+           maxElementsInMemory="100" timeToLiveSeconds="86400"/>
 
     <cache name="studentsCache" eternal="false" overflowToDisk="false"
-           maxElementsInMemory="100" timeToLiveSeconds="1296000"/>
+           maxElementsInMemory="100" timeToLiveSeconds="86400"/>
 
     <cache name="peoplesCache" eternal="false" overflowToDisk="false"
-           maxElementsInMemory="100" timeToLiveSeconds="1296000"/>
+           maxElementsInMemory="100" timeToLiveSeconds="86400"/>
+
+    <cache name="textCache" eternal="false" overflowToDisk="false"
+           maxElementsInMemory="100" timeToLiveSeconds="86400"/>
+
+    <cache name="notificationCache" eternal="false" overflowToDisk="false"
+           maxElementsInMemory="100" timeToLiveSeconds="300"/>
+
+    <cache name="imageCache" eternal="false" overflowToDisk="false"
+           maxElementsInMemory="100" timeToLiveSeconds="86400"/>
+
+    <cache name="systemCache" eternal="false" overflowToDisk="false"
+           maxElementsInMemory="100" timeToLiveSeconds="86400"/>
+
+    <cache name="siteMapCache" eternal="false" overflowToDisk="false"
+           maxElementsInMemory="100" timeToLiveSeconds="86400"/>
 </ehcache>

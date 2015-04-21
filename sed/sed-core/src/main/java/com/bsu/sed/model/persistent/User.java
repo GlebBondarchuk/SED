@@ -7,6 +7,8 @@ import org.hibernate.validator.constraints.NotEmpty;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import java.util.List;
+
 import static com.bsu.sed.model.constraint.ConstraintConstants.*;
 
 /**
@@ -26,8 +28,9 @@ public class User extends BaseEntity {
     private String password;
     private Role role;
     private String photo;
-    private UserDetails details;
     private boolean disabled;
+    private boolean newsSubscriber;
+    private List<Document> documents;
 
     @Override
     @Id
@@ -123,13 +126,12 @@ public class User extends BaseEntity {
         this.role = role;
     }
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "details", nullable = true)
-    public UserDetails getDetails() {
-        return details;
+    @Column(name = "news_subscriber")
+    public boolean isNewsSubscriber() {
+        return newsSubscriber;
     }
 
-    public void setDetails(UserDetails details) {
-        this.details = details;
+    public void setNewsSubscriber(boolean newsSubscriber) {
+        this.newsSubscriber = newsSubscriber;
     }
 }

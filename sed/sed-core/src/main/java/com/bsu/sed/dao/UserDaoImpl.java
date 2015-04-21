@@ -1,6 +1,7 @@
 package com.bsu.sed.dao;
 
 import com.bsu.sed.dao.generic.AbstractDao;
+import com.bsu.sed.dao.generic.browsable.AbstractBrowsableDao;
 import com.bsu.sed.model.SortOrder;
 import com.bsu.sed.model.persistent.User;
 import org.hibernate.Criteria;
@@ -16,7 +17,7 @@ import java.util.List;
  * @author gbondarchuk
  */
 @Repository
-public class UserDaoImpl extends AbstractDao<User> implements UserDao {
+public class UserDaoImpl extends AbstractBrowsableDao<User> implements UserDao {
 
     @Override
     public User getByLogin(String login) {
@@ -67,5 +68,30 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     @Override
     public boolean existByLogin(String login) {
         return existByField("login", login);
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<String> getNewsSubscribers() {
+        Session session = em.unwrap(Session.class);
+        Query query = session.createQuery("SELECT email FROM User user WHERE user.newsSubscriber=TRUE and user.disabled=FALSE");
+        return query.list();
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<User> getEnabled() {
+        Session session = em.unwrap(Session.class);
+        Query query = session.createQuery("SELECT user FROM User user WHERE user.disabled=FALSE");
+        return query.list();
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<User> get(List<Long> userIds) {
+        Session session = em.unwrap(Session.class);
+        Query query = session.createQuery("SELECT user FROM User user WHERE user.id in (:userIds)")
+                .setParameterList("userIds", userIds);
+        return query.list();
     }
 }

@@ -1,5 +1,7 @@
 package com.bsu.sed.model.persistent;
 
+import com.bsu.sed.model.Role;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -17,6 +19,8 @@ public class Content extends BaseEntity {
     private String contentType;
     private User creator;
     private List<News> news;
+    private boolean isStatic;
+    private Role role;
     private String html;
 
     @Override
@@ -87,6 +91,15 @@ public class Content extends BaseEntity {
         this.updateDate = updateDate;
     }
 
+    @Column(name = "static")
+    public boolean isStatic() {
+        return isStatic;
+    }
+
+    public void setStatic(boolean isStatic) {
+        this.isStatic = isStatic;
+    }
+
     public void setHtml(String html) {
         this.html = html;
     }
@@ -94,5 +107,15 @@ public class Content extends BaseEntity {
     @Transient
     public String getHtml() {
         return html;
+    }
+
+    @Column(name = "role")
+    @Enumerated(EnumType.STRING)
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }

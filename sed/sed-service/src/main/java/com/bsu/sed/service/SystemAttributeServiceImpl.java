@@ -3,10 +3,14 @@ package com.bsu.sed.service;
 import com.bsu.sed.dao.SystemAttributeDao;
 import com.bsu.sed.model.SystemAttributeKey;
 import com.bsu.sed.model.persistent.SystemAttribute;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -22,7 +26,7 @@ public class SystemAttributeServiceImpl implements SystemAttributeService {
 
     @Override
     public List<SystemAttribute> getAttributes() {
-        return systemAttributeDao.getAll();
+        return systemAttributeDao.getAttributesSortedByCategory();
     }
 
     @Override
@@ -36,6 +40,9 @@ public class SystemAttributeServiceImpl implements SystemAttributeService {
         systemAttribute.setValue(value);
         systemAttribute.setDescription(description);
         systemAttributeDao.update(systemAttribute);
+        if(key.equals(SystemAttributeKey.IMAGE_URLS)) {
+            systemAttributeDao.evict(key);
+        }
     }
 
     @Override
@@ -56,5 +63,15 @@ public class SystemAttributeServiceImpl implements SystemAttributeService {
     @Override
     public List<SystemAttribute> getAll() {
         return systemAttributeDao.getAll();
+    }
+
+    @Override
+    @Cacheable(value = "systemCache")
+    public List<String> getList(SystemAttributeKey imageUrls) {
+        String line = systemAttributeDao.get(SystemAttributeKey.IMAGE_URLS);
+        if (StringUtils.isNotBlank(line)) {
+            return Arrays.asList(line.split(","));
+        }
+        return new ArrayList<>();
     }
 }

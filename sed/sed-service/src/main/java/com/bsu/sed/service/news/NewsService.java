@@ -1,6 +1,7 @@
 package com.bsu.sed.service.news;
 
 import com.bsu.sed.model.persistent.News;
+import com.bsu.sed.service.BrowsableService;
 
 import java.util.Date;
 import java.util.List;
@@ -8,8 +9,8 @@ import java.util.List;
 /**
  * @author gbondarchuk
  */
-public interface NewsService {
-    List<News> find(int limit, int offset, String query);
+public interface NewsService extends BrowsableService {
+    List<News> find(int limit, int offset, String query, String category);
 
     News create(String header, String html, String photo, String simpleText);
 
@@ -21,7 +22,13 @@ public interface NewsService {
 
     void create(List<News> news);
 
-    long count(String query);
+    long count(String query, String category);
 
-    void deleteNewsBeforeDate(Date date);
+    int deleteNewsToDate(Date to);
+
+    boolean exists(String name);
+
+    List<List<String>> getNewsCategories();
+
+    void fix(boolean fix, Long id);
 }

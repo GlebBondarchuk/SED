@@ -29,9 +29,11 @@
             <c:if test="${not empty people.address}">
                 <p><i class="fa fa-home"></i> ${people.address}</p>
             </c:if>
-            <c:if test="${people.head}">
-                <p><i class="fa fa-header"></i> <span class="alert-success">Head of the department</span></p>
-            </c:if>
+            <security:authorize access="hasAnyRole('ADMIN','TEACHER')">
+                <c:if test="${people.user.newsSubscriber}">
+                    <p><i class="fa fa-hacker-news"></i> <span class="alert-success"><spring:message code="label.people.subscribed"/></span></p>
+                </c:if>
+            </security:authorize>
         </div>
     </div>
 </c:if>
@@ -50,7 +52,7 @@
                 </c:choose>
             </div>
             <div class="col-md-10">
-                <form class="form-horizontal" role="form"  data-toggle="validator" action="<c:url value="/people/${people.user.login}/edit"/>"
+                <form class="form-horizontal" role="form" data-toggle="validator" action="<c:url value="/people/${people.user.login}/edit"/>"
                       method="post">
                     <div class="form-group">
                         <div class="col-sm-10">
@@ -109,10 +111,10 @@
                     <div class="form-group">
                         <div class="col-sm-10">
                             <div class="input-group">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-header"></span></span>
-                                <select  name="head" class="form-control" title="Head of the department">
-                                    <option class="alert-success" ${people.head ? 'selected':''} value="true">true</option>
-                                    <option class="alert-danger" ${people.head ? '':'selected'} value="false">false</option>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-bitcoin"></span></span>
+                                <select name="newsSubscriber" class="form-control" title="Subscribe to Department News">
+                                    <option class="alert-success" ${people.user.newsSubscriber ? 'selected':''} value="true">true</option>
+                                    <option class="alert-danger" ${people.user.newsSubscriber ? '':'selected'} value="false">false</option>
                                 </select>
                             </div>
                         </div>
@@ -157,14 +159,14 @@
                         <div class="tab-pane fade active in" id="${content.id}">
                             <br>
                                 ${content.html}
-                            <i class="wysiwyg-color-gray pull-right">Updated: ${content.updateDate}</i>
+                            <i class="wysiwyg-color-gray pull-right"><spring:message code="label.people.contentUpdated"/>: ${content.updateDate}</i>
                         </div>
                     </c:when>
                     <c:otherwise>
                         <div class="tab-pane fade in" id="${content.id}">
                             <br>
                                 ${content.html}
-                            <i class="wysiwyg-color-gray pull-right">Updated: ${content.updateDate}</i>
+                            <i class="wysiwyg-color-gray pull-right"><spring:message code="label.people.contentUpdated"/>: ${content.updateDate}</i>
                         </div>
                     </c:otherwise>
                 </c:choose>
@@ -186,10 +188,13 @@
             <c:if test="${edit}">
                 <div>
                     <c:if test="${not empty people.contents}">
-                        <a class="btn btn-danger btn-primary" onclick="editTab();" role="button"><span class="glyphicon glyphicon-edit"></span>&nbsp;&nbsp;<spring:message code="people.button.editTab"/></a>
-                        <a class="btn btn-danger btn-primary" onclick="deleteTab();" role="button"><span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;<spring:message code="people.button.deleteTab"/></a>
+                        <a class="btn btn-danger btn-primary" onclick="editTab();" role="button"><span
+                                class="glyphicon glyphicon-edit"></span>&nbsp;&nbsp;<spring:message code="people.button.editTab"/></a>
+                        <a class="btn btn-danger btn-primary" onclick="deleteTab();" role="button"><span
+                                class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;<spring:message code="people.button.deleteTab"/></a>
                     </c:if>
-                    <a class="btn btn-danger btn-primary" onclick="addTab();" role="button"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;<spring:message code="people.button.addTab"/></a>
+                    <a class="btn btn-danger btn-primary" onclick="addTab();" role="button"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;<spring:message
+                            code="people.button.addTab"/></a>
                 </div>
             </c:if>
         </div>

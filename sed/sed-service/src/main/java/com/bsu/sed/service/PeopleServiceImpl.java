@@ -8,6 +8,7 @@ import com.bsu.sed.model.dto.PeopleDto;
 import com.bsu.sed.model.persistent.Content;
 import com.bsu.sed.model.persistent.People;
 import com.bsu.sed.model.persistent.User;
+import org.apache.commons.collections.CollectionUtils;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
@@ -53,7 +54,6 @@ public class PeopleServiceImpl implements PeopleService {
         people.setUser(user);
         people.setAddress(dto.getAddress());
         people.setPosition(dto.getPosition());
-        people.setHead(dto.isHead());
 
         peopleDao.create(people);
         if (checkPeopleRegistration) {
@@ -65,9 +65,11 @@ public class PeopleServiceImpl implements PeopleService {
     @Override
     public People getByLogin(String login) {
         People people = peopleDao.getByLogin(login);
-        for (Content content : people.getContents()) {
-            Hibernate.initialize(content);
-            content.setHtml(new String(content.getContent(), Charset.forName("UTF-8")));
+        if (CollectionUtils.isNotEmpty(people.getContents())) {
+            for (Content content : people.getContents()) {
+                Hibernate.initialize(content);
+                content.setHtml(new String(content.getContent(), Charset.forName("UTF-8")));
+            }
         }
         return people;
     }
@@ -77,11 +79,11 @@ public class PeopleServiceImpl implements PeopleService {
         People people = peopleDao.getByLogin(login);
         people.setPosition(dto.getPosition());
         people.setAddress(dto.getAddress());
-        people.setHead(dto.isHead());
         people.getUser().setName(dto.getName());
         people.getUser().setPhone(dto.getPhone());
         people.getUser().setPhoto(dto.getPhoto());
         people.getUser().setEmail(dto.getLogin());
+        people.getUser().setNewsSubscriber(dto.isNewsSubscriber());
         people = peopleDao.update(people);
         for (Content content : people.getContents()) {
             Hibernate.initialize(content);
@@ -118,10 +120,5 @@ public class PeopleServiceImpl implements PeopleService {
     @Override
     public List<People> find() {
         return peopleDao.getAll();
-    }
-
-    @Override
-    public People getHead() {
-        return peopleDao.getHead();
     }
 }

@@ -45,8 +45,8 @@ public class StudentController {
         return modelAndView;
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
-    @RequestMapping(value = "/student/{login}/edit", method = RequestMethod.GET)
+    @PreAuthorize("hasAnyRole('ADMIN','TEACHER')")
+    @RequestMapping(value = "/student/{login}/edit")
     public ModelAndView getEditUserPage(@PathVariable("login") String login) {
         ModelAndView modelAndView = getStudentPage(login);
         modelAndView.addObject("edit", true);

@@ -1,0 +1,11 @@
+.foreign-html {
+    word-wrap:break-word;
+}
+
+.foreign-html img {
+    max-width: 730px;
+}
+
+.foreign-html iframe {
+    max-width: 730px;
+}

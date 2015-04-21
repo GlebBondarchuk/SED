@@ -20,8 +20,8 @@
         </div>
         <div class="col-md-10">
             <h3>${student.user.name}</h3>
-            <h4>Course: ${student.course}</h4>
-            <h4>Group: ${student.group}</h4>
+            <h4><spring:message code="label.students.course"/>: ${student.course}</h4>
+            <h4><spring:message code="label.students.group"/>: ${student.group}</h4>
             <c:if test="${not empty student.user.phone}">
                 <p><i class="fa fa-phone"></i> ${student.user.phone}</p>
             </c:if>
@@ -65,7 +65,7 @@
                         <div class="col-sm-10">
                             <div class="input-group">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                                <input type="text" class="form-control" name="course" placeholder="Name"
+                                <input type="text" class="form-control" name="course" placeholder="Course"
                                        value="${student.course}" required>
                             </div>
                             <span class="help-block with-errors hidden"></span>
@@ -75,7 +75,7 @@
                         <div class="col-sm-10">
                             <div class="input-group">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                                <input type="text" class="form-control" name="group" placeholder="Name"
+                                <input type="text" class="form-control" name="group" placeholder="Group"
                                        value="${student.group}" required>
                             </div>
                             <span class="help-block with-errors hidden"></span>

@@ -28,7 +28,7 @@ public class BackgroundProcessController {
     @Autowired
     private ScheduleService scheduleService;
 
-    @RequestMapping("")
+    @RequestMapping
     public ModelAndView getProcessesPage() throws ParseException, SchedulerException {
         List<BackgroundProcessDto> processes = scheduleService.find();
         ModelAndView modelAndView = new ModelAndView(Tiles.BACKGROUND_PROCESSES_PAGE.getTileName());

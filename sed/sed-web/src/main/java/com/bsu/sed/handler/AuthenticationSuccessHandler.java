@@ -23,6 +23,7 @@ import java.io.IOException;
 @Component
 public class AuthenticationSuccessHandler implements org.springframework.security.web.authentication.AuthenticationSuccessHandler {
     private static final String LOGIN_URL = "/login";
+    public static final String AUTHENTICATED_USER_ID = "authenticatedUserId";
 
     @Autowired
     private UserService userService;
@@ -32,7 +33,10 @@ public class AuthenticationSuccessHandler implements org.springframework.securit
         HttpSession session = request.getSession();
         User user = (User) authentication.getPrincipal();
         String username = user.getUsername();
+
         com.bsu.sed.model.persistent.User authenticated = userService.getByUsername(username);
+        session.setAttribute(AUTHENTICATED_USER_ID, authenticated.getId());
+
         String redirectURL = request.getContextPath();
         if (authenticated == null) {
             response.sendRedirect(redirectURL);
@@ -43,9 +47,9 @@ public class AuthenticationSuccessHandler implements org.springframework.securit
 
         for (GrantedAuthority authority : user.getAuthorities()) {
             if (authority.getAuthority().equals(Role.ADMIN.name())) {
-                session.setAttribute("userURL", "/people/" + authenticated.getLogin());
+                session.setAttribute("userURL", redirectURL + "/people/" + authenticated.getLogin());
                 if (referer.contains(LOGIN_URL)) {
-                    response.sendRedirect(request.getContextPath() + "/admin/users");
+                    response.sendRedirect(redirectURL + "/admin/users");
                 } else {
                     response.sendRedirect(referer);
                 }

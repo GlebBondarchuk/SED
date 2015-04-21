@@ -1,8 +1,8 @@
-<%@ page import="com.bsu.sed.model.Role" %>
 <%@ page import="com.bsu.sed.model.constraint.ConstraintConstants" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <script src="${applicationPath}/resources/js/bootstrap/validator/validator.js"></script>
 <script src="${applicationPath}/resources/js/signUp.js"></script>
@@ -10,11 +10,10 @@
 <div class="row">
     <form id="signUpForm" data-toggle="validator" class="form-horizontal col-lg-12" role="form"
           action="${applicationPath}${postURL}" method="post">
-        <div class="well well-sm"><strong><span class="glyphicon glyphicon-asterisk"></span>&nbsp;&nbsp;Required
-            Field</strong></div>
+        <div class="well well-sm"><strong><span class="glyphicon glyphicon-asterisk"></span>&nbsp;&nbsp;<spring:message code="label.signUp.required"/></strong></div>
 
         <div class="form-group">
-            <label class="col-sm-2 control-label">Role</label>
+            <label class="col-sm-2 control-label"><spring:message code="label.signUp.role"/></label>
 
             <div class="col-sm-10">
                 <div class="input-group">
@@ -27,7 +26,7 @@
         </div>
 
         <div class="form-group">
-            <label class="col-sm-2 control-label">Full Name</label>
+            <label class="col-sm-2 control-label"><spring:message code="label.signUp.fullName"/></label>
 
             <div class="col-sm-10">
                 <div class="input-group">
@@ -40,7 +39,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-2 control-label">Email</label>
+            <label class="col-sm-2 control-label"><spring:message code="label.signUp.email"/></label>
 
             <div class="col-sm-10">
                 <div class="input-group">
@@ -54,7 +53,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-2 control-label">Phone</label>
+            <label class="col-sm-2 control-label"><spring:message code="label.signUp.phone"/></label>
 
             <div class="col-sm-10">
                 <div class="input-group">
@@ -64,7 +63,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-2 control-label">Link to Photo</label>
+            <label class="col-sm-2 control-label"><spring:message code="label.signUp.photoLink"/></label>
 
             <div class="col-sm-10">
                 <div class="input-group">
@@ -78,7 +77,7 @@
         </div>
         <security:authorize access="hasAnyRole('ADMIN','TEACHER')">
             <div class="form-group teacher">
-                <label class="col-sm-2 control-label">Position</label>
+                <label class="col-sm-2 control-label"><spring:message code="label.signUp.position"/></label>
 
                 <div class="col-sm-10">
                     <div class="input-group">
@@ -91,7 +90,7 @@
                 </div>
             </div>
             <div class="form-group teacher">
-                <label class="col-sm-2 control-label">Address</label>
+                <label class="col-sm-2 control-label"><spring:message code="label.signUp.address"/></label>
 
                 <div class="col-sm-10">
                     <div class="input-group">
@@ -103,7 +102,7 @@
             </div>
         </security:authorize>
         <div class="form-group student">
-            <label class="col-sm-2 control-label">Course</label>
+            <label class="col-sm-2 control-label"><spring:message code="label.signUp.course"/></label>
 
             <div class="col-sm-10">
                 <div class="input-group">
@@ -115,7 +114,7 @@
             </div>
         </div>
         <div class="form-group student">
-            <label class="col-sm-2 control-label">Group</label>
+            <label class="col-sm-2 control-label"><spring:message code="label.signUp.group"/></label>
 
             <div class="col-sm-10">
                 <div class="input-group">
@@ -127,7 +126,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-2 control-label">Password</label>
+            <label class="col-sm-2 control-label"><spring:message code="label.signUp.password"/></label>
 
             <div class="col-sm-10">
                 <div class="input-group">
@@ -139,7 +138,7 @@
             </div>
         </div>
         <div class="form-group has-feedback">
-            <label class="col-sm-2 control-label">Confirm Password</label>
+            <label class="col-sm-2 control-label"><spring:message code="label.signUp.confirmPassword"/></label>
 
             <div class="col-sm-10">
                 <div class="input-group">
@@ -153,6 +152,6 @@
             </div>
         </div>
 
-        <button type="submit" name="submit" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Sign Up</button>
+        <button type="submit" name="submit" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;<spring:message code="label.signUp.signUp"/></button>
     </form>
 </div>

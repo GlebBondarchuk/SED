@@ -10,11 +10,8 @@ CREATE TABLE IF NOT EXISTS sed_user (
   login    VARCHAR(50)       NOT NULL UNIQUE,
   phone    VARCHAR(50),
   photo    VARCHAR(100),
-  details  BIGINT                     DEFAULT NULL,
   disabled BIT DEFAULT FALSE NOT NULL,
-  PRIMARY KEY (id),
-  FOREIGN KEY (details) REFERENCES sed_user_details (id)
-    ON DELETE CASCADE
+  PRIMARY KEY (id)
 )
   ENGINE = InnoDB
   DEFAULT CHARSET =utf8;
@@ -26,7 +23,7 @@ VALUES ('System', 'system', 'ADMIN', 'sed.bsu', 'sed.bsu@gmail.com', TRUE);
   Admin User
  */
 INSERT INTO sed_user (name, password, role, login, email, disabled)
-VALUES ('Admin', '21232f297a57a5a743894a0e4a801fc3', 'ADMIN', 'admin', 'admin', FALSE);
+VALUES ('Admin', '21232f297a57a5a743894a0e4a801fc3', 'ADMIN', 'admin@gmail.com', 'admin', FALSE);
 
 /**
   Teacher User

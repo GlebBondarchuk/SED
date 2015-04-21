@@ -1,6 +1,7 @@
 package com.bsu.sed.model.persistent;
 
 import com.bsu.sed.model.DocumentCategory;
+import com.bsu.sed.model.Role;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -11,13 +12,15 @@ import java.util.Date;
 @Entity(name = "Document")
 @Table(name = "sed_document")
 public class Document extends BaseEntity {
+
     private Long id;
     private String name;
+    private String path;
     private Date createdDate;
     private String contentType;
     private User creator;
+    private Role role;
     private DocumentCategory category;
-
 
     @Override
     @Id
@@ -69,7 +72,7 @@ public class Document extends BaseEntity {
         this.creator = creator;
     }
 
-    @Column(name="category")
+    @Column(name = "category")
     @Enumerated(EnumType.STRING)
     public DocumentCategory getCategory() {
         return category;
@@ -77,5 +80,24 @@ public class Document extends BaseEntity {
 
     public void setCategory(DocumentCategory category) {
         this.category = category;
+    }
+
+    @Column(name = "path")
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    @Column(name = "role")
+    @Enumerated(EnumType.STRING)
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }

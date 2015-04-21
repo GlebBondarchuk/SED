@@ -3,6 +3,7 @@ package com.bsu.sed.dao;
 import com.bsu.sed.dao.generic.AbstractDao;
 import com.bsu.sed.model.BackgroundProcessKey;
 import com.bsu.sed.model.persistent.BackgroundProcess;
+import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
@@ -30,6 +31,14 @@ public class BackgroundProcessDaoImpl extends AbstractDao<BackgroundProcess> imp
         query.setParameter("process", key.name());
         query.setParameter("cron", cron);
         query.executeUpdate();
+    }
+
+    @Override
+    public boolean isDisabled(BackgroundProcessKey backgroundProcessKey) {
+        Session session = em.unwrap(Session.class);
+        Query query = session.createSQLQuery("SELECT job.disabled FROM sed_process job WHERE job.process = :process");
+        query.setParameter("process", backgroundProcessKey.name());
+        return (boolean) query.uniqueResult();
     }
 
     private void changeProcessStatus(BackgroundProcessKey key, boolean enabled) {

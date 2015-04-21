@@ -1,5 +1,7 @@
 package com.bsu.sed.model.dto;
 
+import com.bsu.sed.model.Role;
+
 import java.util.Date;
 
 /**
@@ -12,6 +14,8 @@ public class ContentDto {
     private String html;
     private String name;
     private Date updateDate;
+    private Role role;
+    private boolean isStatic;
 
     public Long getId() {
         return id;
@@ -43,5 +47,21 @@ public class ContentDto {
 
     public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
+    }
+
+    public boolean isStatic() {
+        return isStatic;
+    }
+
+    public void setStatic(boolean isStatic) {
+        this.isStatic = isStatic;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }

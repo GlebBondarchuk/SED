@@ -9,4 +9,6 @@
     </bean>
 
     <bean id="sedApplicationListener" class="com.bsu.sed.listener.SedApplicationListener"/>
+
+    <bean id="sedSessionListener" class="com.bsu.sed.listener.SedSessionListener"/>
 </beans>

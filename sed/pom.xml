@@ -456,8 +456,8 @@
             </activation>
             <properties>
                 <custom.resource>bsu</custom.resource>
-                <documentRepositoryFolder>/sed</documentRepositoryFolder>
-                <serverUrl>http://localhost:8080</serverUrl>
+                <documentRepositoryFolder>E://sed</documentRepositoryFolder>
+                <serverUrl>http://localhost:8980/sed</serverUrl>
                 <context-root>/</context-root>
                 <displayVersion>inline</displayVersion>
                 <dbURL>jdbc:mysql://localhost:3306/sed</dbURL>
@@ -470,8 +470,8 @@
             <id>hosting</id>
             <properties>
                 <custom.resource>bsu</custom.resource>
-                <documentRepositoryFolder>/sed</documentRepositoryFolder>
-                <serverUrl>sed-fpmi.mycloud.by</serverUrl>
+                <documentRepositoryFolder>/home</documentRepositoryFolder>
+                <serverUrl>sed-bsu.mycloud.by</serverUrl>
                 <context-root>/</context-root>
                 <displayVersion>inline</displayVersion>
                 <dbURL>jdbc:mysql://mysql17001-sedbsu2015.mycloud.by/sed</dbURL>

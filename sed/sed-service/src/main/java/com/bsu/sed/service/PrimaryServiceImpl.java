@@ -21,7 +21,7 @@ public class PrimaryServiceImpl implements PrimaryService {
     private PrimaryDao primaryDao;
 
     @Override
-//    @Cacheable(value = "primaryCache")
+    @Cacheable(value = "primaryCache")
     public Primary get(ContentKey key) {
         Primary primary = primaryDao.get(key);
         if (primary == null) {

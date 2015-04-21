@@ -4,7 +4,11 @@ public enum SystemAttributeCategory {
     EMAIL("label.system.email"),
     PEOPLES("label.system.people"),
     STUDENTS("label.system.student"),
-    NEWS("label.system.news");
+    NEWS("label.system.news"),
+    GALLERY("label.system.news"),
+    SEARCH("label.system.news"),
+    IMAGE("label.system.news"),
+    CONTACT("label.system.news");
 
     private String displayMessageKey;
 

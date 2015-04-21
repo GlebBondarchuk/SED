@@ -2,6 +2,9 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sed" uri="/tld/sed_library" %>
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+
+<link href="${applicationPath}/resources/css/news.css" rel="stylesheet">
 
 <div class="row">
 
@@ -20,11 +23,13 @@
 
         <!-- Post Content -->
         <p class="lead">${news.content.name}</p>
-
-        <img class="img-responsive img-hover" src="${news.photo}" alt="">
-        <hr>
-        <p>${news.content.html}</p>
-
+        <c:if test="${not empty news.photo}">
+            <c:forTokens var="photo" items="${news.photo}" delims=",">
+                <img class="img-responsive img-hover" src="${photo}" alt="">
+                <hr>
+            </c:forTokens>
+        </c:if>
+        <div class="foreign-html"><p>${news.content.html}</p></div>
         <hr>
 
     </div>
@@ -51,42 +56,19 @@
         <!-- Blog Categories Well -->
         <div class="well">
             <h4><spring:message code="news.categories"/></h4>
-
-            <div class="row">
-                <div class="col-lg-6">
-                    <ul class="list-unstyled">
-                        <li><a href="#">Category Name</a>
-                        </li>
-                        <li><a href="#">Category Name</a>
-                        </li>
-                        <li><a href="#">Category Name</a>
-                        </li>
-                        <li><a href="#">Category Name</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-lg-6">
-                    <ul class="list-unstyled">
-                        <li><a href="#">Category Name</a>
-                        </li>
-                        <li><a href="#">Category Name</a>
-                        </li>
-                        <li><a href="#">Category Name</a>
-                        </li>
-                        <li><a href="#">Category Name</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <!-- /.row -->
+            <tiles:insertAttribute name="categories"/>
         </div>
 
         <!-- Side Widget Well -->
         <div class="well">
-            <h4>Side Widget Well</h4>
-
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat
-                tempore quos aspernatur vero.</p>
+            <p>
+                ${newsText.text}
+                <security:authorize access="hasRole('ADMIN')">
+                    <a href="${applicationPath}/text/${newsText.id}">
+                        <i class="glyphicon glyphicon-edit"></i>
+                    </a>
+                </security:authorize>
+            </p>
         </div>
         <security:authorize access="hasRole('ADMIN')">
             <hr>

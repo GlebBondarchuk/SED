@@ -6,35 +6,47 @@ import java.util.Map;
  * @author gbondarchuk
  */
 public class NewsUrlDto {
-    private Map<Long, String> url;
-    private Map<Long, String> searchWords;
-    private Map<Long, Boolean> disabled;
+    private Long id;
+    private String url;
+    private String searchWords;
+    private boolean disabled;
 
-    public Map<Long, String> getUrl() {
-        return url;
-    }
-
-    public void setUrl(Map<Long, String> url) {
+    public NewsUrlDto(Long id, String url, String searchWords, boolean disabled) {
+        this.id = id;
         this.url = url;
-    }
-
-    public Map<Long, String> getSearchWords() {
-        return searchWords;
-    }
-
-    public void setSearchWords(Map<Long, String> searchWords) {
         this.searchWords = searchWords;
-    }
-
-    public Map<Long, Boolean> getDisabled() {
-        return disabled;
-    }
-
-    public void setDisabled(Map<Long, Boolean> disabled) {
         this.disabled = disabled;
     }
 
-    public boolean isNull() {
-        return url == null || searchWords == null;
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getSearchWords() {
+        return searchWords;
+    }
+
+    public void setSearchWords(String searchWords) {
+        this.searchWords = searchWords;
+    }
+
+    public boolean isDisabled() {
+        return disabled;
+    }
+
+    public void setDisabled(boolean disabled) {
+        this.disabled = disabled;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

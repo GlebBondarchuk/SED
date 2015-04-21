@@ -35,6 +35,12 @@
             <version>2.2.4</version>
         </dependency>
 
+        <!--Google Json-->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+        </dependency>
+
         <!--Apache-->
         <dependency>
             <groupId>commons-lang</groupId>

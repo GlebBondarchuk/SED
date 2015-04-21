@@ -93,6 +93,11 @@
                 "</li>";
         },
 
+        "video": function (t, e) {
+            var i = e && e.size ? " btn-" + e.size : "";
+            return "<li class='wysihtml5-toolbar-video'><div class='bootstrap-wysihtml5-insert-video-modal modal fade'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'><button type='button' class='close' data-dismiss='modal'><span aria-hidden='true'>×</span><span class='sr-only'>Close</span></button><h4 class='modal-title'>" + t.video.insert + "</h4></div><div class='modal-body'><input type='text' data-wysihtml5-dialog-field='src' placeholder='https://' class='bootstrap-wysihtml5-insert-video-url form-control'><br/><div class='btn-group bootstrap-wysihtml5-insert-video-format' data-toggle='buttons'><label class='btn btn-default active' title='" + t.video.widescreen + "'><input type='radio' data-value='wide' name='options' checked> 16:9</label><label class='btn btn-default' title='" + t.video.tv + "'><input type='radio' data-value='tv' name='options'> &nbsp;4:3&nbsp;</label></div><i class='glyphicon glyphicon-question-sign pull-right' title='" + t.video.supported + ": &#10;YouTube, &#10;Vimeo, &#10;Metacafe, &#10;DailyMotion, &#10;Vbox7'></i><br/><br/><div class='alert alert-danger' style='visibility:hidden;' role='alert'>" + t.video.invalid + "</div></div><div class='modal-footer'><button type='button' class='btn btn-default' data-dismiss='modal'>" + t.video.cancel + "</button><button type='button' class='btn btn-primary' data-dismiss='modal'>" + t.video.insert + "</button></div></div></div></div><button type='button' class='btn " + i + " btn-default' title='" + t.video.insert + "' tabindex='-1' data-toggle='modal' data-target='.bootstrap-wysihtml5-insert-video-modal'><i class='glyphicon glyphicon-facetime-video'></i></button></li>"
+        },
+
         "html": function(locale, options) {
             var size = (options && options.size) ? ' btn-'+options.size : '';
             return "<li>" +
@@ -204,6 +209,10 @@
                     if(key === "image") {
                         this.initInsertImage(toolbar);
                     }
+
+                    if(key === "video") {
+                        this.initInsertVideo(toolbar);
+                    }
                 }
             }
 
@@ -289,6 +298,29 @@
                     return true;
                 }
             });
+        },
+
+        initInsertVideo: function (t) {
+            var e, i = this, a = t.find(".bootstrap-wysihtml5-insert-video-modal"), l = a.find(".bootstrap-wysihtml5-insert-video-url"), s = a.find(".btn-primary"), o = (l.val(), a.find(".alert-danger")), n = function () {
+                o.css("visibility", "hidden");
+                var t = l.val(), s = !1;
+                if (/^(https?\:\/\/(www\.)?(m\.)?youtube.com\/)/i.test(t) || /^(https?\:\/\/(www\.)?youtu.be\/)/i.test(t)) {
+                    var n = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/, d = t.match(n);
+                    d && 11 == d[7].length && (s = d[7], s = "//www.youtube.com/embed/" + s)
+                } else/^(https?\:\/\/(www\.)?(player\.)?vimeo.com\/)/i.test(t) ? s = "//player.vimeo.com/video/" + t.split("/").pop() + "?title=0&byline=0&portrait=0&badge=0" : /^(https?\:\/\/(www\.)?dailymotion.com\/)/i.test(t) ? s = t.replace("/video/", "/embed/video/") : /^(https?\:\/\/(www\.)?vbox7.com\/play:)/i.test(t) ? s = t.replace("/play:", "/emb/external.php?vid=") : /^(https?\:\/\/(www\.)?metacafe.com\/w(atch)?)/i.test(t) && (s = t.replace(/\/w(atch)?\//, "embed"));
+                if (!s)return o.css("visibility", "visible"), !1;
+                var r = a.find(".bootstrap-wysihtml5-insert-video-format input:checked").data("value");
+                i.editor.currentView.element.focus(), e && (i.editor.composer.selection.setBookmark(e), e = null), i.editor.composer.commands.exec("insertVideo", s, r), l.val("")
+            };
+            l.keypress(function (t) {
+                return 13 == t.which ? (n(), a.modal("hide"), !1) : void 0
+            }), s.click(n), a.on("shown.bs.modal", function () {
+                l.focus()
+            }), a.on("hidden.bs.modal", function () {
+                o.css("visibility", "hidden"), l.val(""), setTimeout(function () {
+                    i.editor.currentView.element.focus()
+                })
+            })
         },
 
         initInsertLink: function(toolbar) {
@@ -402,6 +434,7 @@
         "link": true,
         "image": true,
         "size": 'sm',
+        "video":true,
         events: {},
         parserRules: {
             classes: {
@@ -421,7 +454,10 @@
                 "wysiwyg-color-blue" : 1,
                 "wysiwyg-color-teal" : 1,
                 "wysiwyg-color-aqua" : 1,
-                "wysiwyg-color-orange" : 1
+                "wysiwyg-color-orange" : 1,
+                "embed-responsive" : 1,
+                "embed-responsive-16by9" : 1,
+                "embed-responsive-item" : 1
             },
             tags: {
                 "b":  {},
@@ -438,7 +474,9 @@
                 "h6": {},
                 "blockquote": {},
                 "u": 1,
-                "img": {
+                "img": { "add_class": {
+                    "align": "align_img"
+                },
                     "check_attributes": {
                         "width": "numbers",
                         "alt": "alt",
@@ -446,6 +484,8 @@
                         "height": "numbers"
                     }
                 },
+
+                iframe: {check_attributes: { src: "url", "style": "any", width: "any", height: "any"}, set_attributes: {frameborder: "any"}, "add_class": {"align": "align_img"}},
                 "a":  {
                     check_attributes: {
                         'href': "url", // important to avoid XSS
@@ -454,13 +494,14 @@
                     }
                 },
                 "span": 1,
+                table: 1,
                 "div": 1,
                 // to allow save and edit files with code tag hacks
                 "code": 1,
                 "pre": 1
             }
         },
-        stylesheets: ["/resources/css/bootstrap3-wysiwyg5-color.css"], // (path_to_project/lib/css/bootstrap3-wysiwyg5-color.css)
+        stylesheets: [ mainContextPath + "/resources/css/bootstrap3-wysihtml5-editor.min.css"], // (path_to_project/lib/css/bootstrap3-wysiwyg5-color.css)
         locale: "en"
     };
 
@@ -499,6 +540,7 @@
                 insert: "Insert image",
                 cancel: "Cancel"
             },
+            video: {insert: "Insert Video", cancel: "Cancel", widescreen: "Widescreen", tv: "TV", supported: "Supported video formats", invalid: "Invalid video URL"},
             html: {
                 edit: "Edit HTML"
             },
@@ -518,4 +560,21 @@
         }
     };
 
-}(window.jQuery, window.wysihtml5);
+}(window.jQuery, window.wysihtml5), function (t) {
+    var e = "";
+    t.commands.insertVideo = {
+        exec: function (e, i, a, l) {
+            var s, o, n = e.doc, d = this.state(e);
+            return d ? (e.selection.setBefore(d), o = d.parentNode, o.removeChild(d), t.dom.removeEmptyTextNodes(o), "A" !== o.nodeName || o.firstChild || (e.selection.setAfter(o), o.parentNode.removeChild(o)), void t.quirks.redraw(e.element)) : (s = n.createElement("DIV"), d = n.createElement("IFRAME"), s.className = "embed-responsive " + ("tv" == l ? "embed-responsive-4by3" : "embed-responsive-16by9"), d.className = "embed-responsive-item", s.appendChild(d), d.src = a, d.setAttribute("allowFullScreen", ""), e.selection.insertNode(s), void(t.browser.hasProblemsSettingCaretAfterImg() ? (textNode = n.createTextNode(t.INVISIBLE_SPACE), e.selection.insertNode(textNode), e.selection.setAfter(textNode)) : e.selection.setAfter(s)))
+        }, state: function (i) {
+            var a, l, s, o = i.doc;
+            return t.dom.hasElementWithTagName(o, e) && (a = i.selection.getSelectedNode(o)) ? a.nodeName === e ? a : a.nodeType !== t.ELEMENT_NODE ? !1 : (l = i.selection.getText(o), (l = t.lang.string(l).trim()) ? !1 : (s = i.selection.getNodes(o, t.ELEMENT_NODE, function (t) {
+                return "IFRAME" === t.nodeName
+            }), 1 !== s.length ? !1 : s[0])) : !1
+        }, value: function (t) {
+            var e = this.state(t);
+            return e && e.src
+        }
+    }
+}(wysihtml5);
+

@@ -9,4 +9,8 @@ import com.bsu.sed.model.persistent.Primary;
  */
 public interface PrimaryDao extends GenericDao<Primary, Long> {
     Primary get(ContentKey key);
+
+    ContentKey get(Long contentId);
+
+    void evict(ContentKey key);
 }

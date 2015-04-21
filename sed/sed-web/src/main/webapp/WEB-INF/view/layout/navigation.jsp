@@ -3,6 +3,9 @@
 <%@ taglib uri="/tld/sed_library" prefix="sed" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+
+<%--<link href="${applicationPath}/resources/css/bootstrap/bootstrap-submenu.css" rel="stylesheet">--%>
+
 <!-- Navigation -->
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
@@ -23,7 +26,16 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><spring:message code="label.nav.information"/> <b
                             class="caret"></b></a>
-                    <ul class="dropdown-menu">
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <a href="${applicationPath}/map"><spring:message code="label.nav.map"/></a>
+                        </li>
+                        <li>
+                            <a href="${applicationPath}/statistics"><spring:message code="label.nav.statistics"/></a>
+                        </li>
+                        <li>
+                            <a href="${applicationPath}/notification"><spring:message code="label.nav.notifications"/></a>
+                        </li>
                         <li>
                             <a href="${applicationPath}/peoples"><spring:message code="label.nav.peoples"/></a>
                         </li>
@@ -47,6 +59,9 @@
                         <li>
                             <a href="${applicationPath}/contact"><spring:message code="label.nav.contact"/></a>
                         </li>
+                        <li>
+                            <a href="${applicationPath}/gallery"><spring:message code="label.nav.gallery"/></a>
+                        </li>
                     </ul>
                 </li>
                 <security:authorize access="hasRole('ADMIN')">
@@ -60,17 +75,37 @@
                                 <a href="${applicationPath}/admin/users"><spring:message code="label.nav.admin.users"/></a>
                             </li>
                             <li>
-                                <a href="${applicationPath}/admin/news/">News Configuration</a>
+                                <a href="${applicationPath}/admin/news-url"><spring:message code="label.nav.newsSettings"/></a>
                             </li>
                             <li>
-                                <a href="${applicationPath}/admin/processes/">Background Processes</a>
+                                <a href="${applicationPath}/admin/news"><spring:message code="label.nav.news"/></a>
+                            </li>
+                            <li>
+                                <a href="${applicationPath}/admin/processes"><spring:message code="label.nav.backgroundProcesses"/></a>
+                            </li>
+                            <li>
+                                <a href="${applicationPath}/documents"><spring:message code="label.nav.documents"/></a>
+                            </li>
+                            <li>
+                                <a href="${applicationPath}/content"><spring:message code="label.nav.contents"/></a>
+                            </li>
+                            <li>
+                                <a href="${applicationPath}/text"><spring:message code="label.nav.text"/></a>
+                            </li>
+                            <li>
+                                <a href="${applicationPath}/content/create"><spring:message code="label.nav.newPage"/></a>
                             </li>
                         </ul>
                     </li>
                 </security:authorize>
                 <li>
-                    <a href="${applicationPath}/search">Search</a>
+                    <a href="${applicationPath}/search"><spring:message code="label.nav.search"/></a>
                 </li>
+                <security:authorize access="isAuthenticated()">
+                    <li>
+                        <a href="${applicationPath}/notification"><span id="notificationCount" class="badge"></span></a>
+                    </li>
+                </security:authorize>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <security:authorize access="isAnonymous()">
@@ -81,8 +116,8 @@
                 </security:authorize>
                 <security:authorize access="isAuthenticated()">
                     <li>
-                        <a href="${applicationPath}${userURL}"><spring:message code="label.nav.welcome"/>
-                        <security:authentication property="principal.username"/></a>
+                        <a href="${userURL}"><spring:message code="label.nav.welcome"/>
+                            <security:authentication property="principal.username"/></a>
                     </li>
                     <li><a href="${applicationPath}/j_spring_security_logout"><span class="glyphicon glyphicon-log-out"></span> <spring:message
                             code="label.nav.SignOut"/></a></li>
@@ -109,3 +144,16 @@
     </div>
     <!-- /.container -->
 </nav>
+<security:authorize access="isAuthenticated()">
+    <script>
+        $(function () {
+            $.ajax('${applicationPath}/notification/count').done(function (data) {
+                if (data && $.isNumeric(data)) { //don't allow 0 value and non-numeric values
+                    $('#notificationCount').html(data)
+                }
+            });
+        })
+    </script>
+</security:authorize>
+
+<%--<script src="${applicationPath}/resources/js/bootstrap/bootstrap-submenu.js"></script>--%>

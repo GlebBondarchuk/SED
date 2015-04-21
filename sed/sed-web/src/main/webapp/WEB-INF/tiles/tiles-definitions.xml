@@ -35,6 +35,27 @@
         <put-attribute name="primary-content" value="/WEB-INF/view/sign-up.jsp"/>
     </definition>
 
+    <!--text page-->
+    <definition name="sed_text" extends="sed-page-template">
+        <put-attribute name="title" cascade="true" value="label.signUp.title"/>
+        <put-attribute name="subtitle" cascade="true" value="label.signUp.subtitle"/>
+        <put-attribute name="primary-content" value="/WEB-INF/view/admin/table/text.jsp"/>
+    </definition>
+
+    <!--text page-->
+    <definition name="sed_notifications" extends="sed-page-template">
+        <put-attribute name="title" cascade="true" value="label.signUp.title"/>
+        <put-attribute name="subtitle" cascade="true" value="label.signUp.subtitle"/>
+        <put-attribute name="primary-content" value="/WEB-INF/view/notifications.jsp"/>
+    </definition>
+
+    <!--edit text page-->
+    <definition name="edit_sed_text" extends="sed-page-template">
+        <put-attribute name="title" cascade="true" value="label.signUp.title"/>
+        <put-attribute name="subtitle" cascade="true" value="label.signUp.subtitle"/>
+        <put-attribute name="primary-content" value="/WEB-INF/view/admin/text-edit.jsp"/>
+    </definition>
+
     <!--user page-->
     <definition name="sed-user" extends="sed-page-template">
         <put-attribute name="title" cascade="true" value="label.user.subtitle"/>
@@ -88,7 +109,7 @@
     <definition name="sed-users" extends="sed-page-template">
         <put-attribute name="title" cascade="true" value="label.nav.admin.users"/>
         <put-attribute name="subtitle" cascade="true" value="label.nav.admin.users"/>
-        <put-attribute name="primary-content" value="/WEB-INF/view/admin/users.jsp"/>
+        <put-attribute name="primary-content" value="/WEB-INF/view/admin/table/users.jsp"/>
     </definition>
 
     <!--users page-->
@@ -103,6 +124,7 @@
         <put-attribute name="title" cascade="true" value="label.news.title"/>
         <put-attribute name="subtitle" cascade="true" value="label.news.subtitle"/>
         <put-attribute name="primary-content" value="/WEB-INF/view/list-news.jsp"/>
+        <put-attribute name="categories" cascade="true" value="/WEB-INF/view/news-categories.jsp"/>
     </definition>
 
     <!--news page-->
@@ -110,13 +132,21 @@
         <put-attribute name="title" cascade="true" value="label.news.title"/>
         <put-attribute name="subtitle" cascade="true" value="label.news.subtitle"/>
         <put-attribute name="primary-content" value="/WEB-INF/view/news.jsp"/>
+        <put-attribute name="categories" cascade="true" value="/WEB-INF/view/news-categories.jsp"/>
     </definition>
 
     <!--news url page-->
     <definition name="sed-news-url" extends="sed-page-template">
         <put-attribute name="title" cascade="true" value="label.news.title"/>
         <put-attribute name="subtitle" cascade="true" value="label.news.subtitle"/>
-        <put-attribute name="primary-content" value="/WEB-INF/view/admin/news-url.jsp"/>
+        <put-attribute name="primary-content" value="/WEB-INF/view/admin/table/news-url.jsp"/>
+    </definition>
+
+    <!--news url edit page-->
+    <definition name="sed-news-url-edit" extends="sed-page-template">
+        <put-attribute name="title" cascade="true" value="label.news.title"/>
+        <put-attribute name="subtitle" cascade="true" value="label.news.subtitle"/>
+        <put-attribute name="primary-content" value="/WEB-INF/view/admin/news-url-edit.jsp"/>
     </definition>
 
     <!--background processes page-->
@@ -138,6 +168,50 @@
         <put-attribute name="title" cascade="true" value="label.nav.admin.users"/>
         <put-attribute name="subtitle" cascade="true" value="label.nav.admin.users"/>
         <put-attribute name="primary-content" value="/WEB-INF/view/admin/user-tab.jsp"/>
+    </definition>
+
+    <!--documents page-->
+    <definition name="sed-documents" extends="sed-page-template">
+        <put-attribute name="title" cascade="true" value="label.nav.admin.users"/>
+        <put-attribute name="subtitle" cascade="true" value="label.nav.admin.users"/>
+        <put-attribute name="primary-content" value="/WEB-INF/view/admin/table/documents.jsp"/>
+    </definition>
+
+    <definition name="sed-contents" extends="sed-page-template">
+        <put-attribute name="title" cascade="true" value="label.nav.admin.users"/>
+        <put-attribute name="subtitle" cascade="true" value="label.nav.admin.users"/>
+        <put-attribute name="primary-content" value="/WEB-INF/view/admin/table/contents.jsp"/>
+    </definition>
+
+    <definition name="sed-admin-news" extends="sed-page-template">
+        <put-attribute name="title" cascade="true" value="label.nav.admin.users"/>
+        <put-attribute name="subtitle" cascade="true" value="label.nav.admin.users"/>
+        <put-attribute name="primary-content" value="/WEB-INF/view/admin/table/news.jsp"/>
+    </definition>
+
+    <!--gallery page-->
+    <definition name="sed-gallery" extends="sed-page-template">
+        <put-attribute name="title" cascade="true" value="label.nav.admin.users"/>
+        <put-attribute name="subtitle" cascade="true" value="label.nav.admin.users"/>
+        <put-attribute name="primary-content" value="/WEB-INF/view/gallery.jsp"/>
+    </definition>
+
+    <definition name="sed-site-map" extends="sed-page-template">
+        <put-attribute name="title" cascade="true" value="label.nav.admin.users"/>
+        <put-attribute name="subtitle" cascade="true" value="label.nav.admin.users"/>
+        <put-attribute name="primary-content" value="/WEB-INF/view/site-map.jsp"/>
+    </definition>
+
+    <definition name="sed-site-map-add" extends="sed-page-template">
+        <put-attribute name="title" cascade="true" value="label.nav.admin.users"/>
+        <put-attribute name="subtitle" cascade="true" value="label.nav.admin.users"/>
+        <put-attribute name="primary-content" value="/WEB-INF/view/admin/site-map-add.jsp"/>
+    </definition>
+
+    <definition name="sed-statistics" extends="sed-page-template">
+        <put-attribute name="title" cascade="true" value="label.nav.admin.users"/>
+        <put-attribute name="subtitle" cascade="true" value="label.nav.admin.users"/>
+        <put-attribute name="primary-content" value="/WEB-INF/view/statistics.jsp"/>
     </definition>
 
     <!--main application page-->

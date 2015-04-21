@@ -110,7 +110,7 @@ public class PeopleController {
     public String updateEditUserPage(@PathVariable("id") Long contentId,
                                      @RequestParam("content") String content,
                                      @RequestParam("contentName") String contentName) {
-        contentService.updateContent(contentId, contentName, content);
+        contentService.updateContent(contentId, contentName, content, null);
         return "success";
     }
 

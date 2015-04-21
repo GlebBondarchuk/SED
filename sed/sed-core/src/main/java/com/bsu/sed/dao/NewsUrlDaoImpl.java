@@ -1,6 +1,7 @@
 package com.bsu.sed.dao;
 
 import com.bsu.sed.dao.generic.AbstractDao;
+import com.bsu.sed.dao.generic.browsable.AbstractBrowsableDao;
 import com.bsu.sed.model.persistent.NewsUrl;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
@@ -13,7 +14,7 @@ import java.util.List;
  * @author gbondarchuk
  */
 @Repository
-public class NewsUrlDaoImpl extends AbstractDao<NewsUrl> implements NewsUrlDao {
+public class NewsUrlDaoImpl extends AbstractBrowsableDao<NewsUrl> implements NewsUrlDao {
 
     @Override
     @SuppressWarnings("unchecked")

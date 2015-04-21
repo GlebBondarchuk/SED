@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * @author gbondarchuk
  */
-public interface UserService {
+public interface UserService extends BrowsableService {
     /**
      * System user.
      */
@@ -34,7 +34,15 @@ public interface UserService {
 
     User getByUsername(String username);
 
+    User getSystem();
+
     boolean existByName(String name);
 
     boolean existByLogin(String login);
+
+    List<String> getNewsSubscribers();
+
+    List<User> getEnabled();
+
+    void enable(Long id, boolean enable);
 }

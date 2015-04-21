@@ -3,6 +3,7 @@ package com.bsu.sed.service.schedule;
 import com.bsu.sed.model.BackgroundProcessKey;
 import com.bsu.sed.model.dto.BackgroundProcessDto;
 import org.quartz.SchedulerException;
+import org.quartz.UnableToInterruptJobException;
 
 import java.text.ParseException;
 import java.util.List;

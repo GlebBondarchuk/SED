@@ -15,7 +15,9 @@ public class News extends BaseEntity {
     private Content content;
     private String photo;
     private String simpleText;
+    private String category;
     private Date createdDate;
+    private boolean fixed;
 
     @Override
     @Id
@@ -67,6 +69,15 @@ public class News extends BaseEntity {
         this.simpleText = simpleText;
     }
 
+    @Column(name = "category")
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
     @Column(name = "created_date")
     @Temporal(TemporalType.TIMESTAMP)
     public Date getCreatedDate() {
@@ -75,5 +86,14 @@ public class News extends BaseEntity {
 
     public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
+    }
+
+    @Column(name = "fixed")
+    public boolean isFixed() {
+        return fixed;
+    }
+
+    public void setFixed(boolean fixed) {
+        this.fixed = fixed;
     }
 }

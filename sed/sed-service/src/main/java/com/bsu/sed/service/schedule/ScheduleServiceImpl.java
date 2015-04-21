@@ -118,11 +118,13 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     private void pauseProcess(String processName) throws SchedulerException {
-        scheduler.pauseJob(JobKey.jobKey(processName, Scheduler.DEFAULT_GROUP));
+        scheduler.pauseTrigger(TriggerKey.triggerKey(processName + "Trigger", Scheduler.DEFAULT_GROUP));
+//        scheduler.pauseJob(JobKey.jobKey(processName, Scheduler.DEFAULT_GROUP));
     }
 
     private void resumeProcess(String processName) throws SchedulerException {
-        scheduler.resumeJob(JobKey.jobKey(processName, Scheduler.DEFAULT_GROUP));
+        scheduler.resumeTrigger(TriggerKey.triggerKey(processName + "Trigger", Scheduler.DEFAULT_GROUP));
+//        scheduler.resumeJob(JobKey.jobKey(processName, Scheduler.DEFAULT_GROUP));
     }
 
     private void rescheduleProcess(String processName, String cron) throws ParseException, SchedulerException {
@@ -131,6 +133,9 @@ public class ScheduleServiceImpl implements ScheduleService {
                 .withIdentity(processName + "Trigger")
                 .build();
         scheduler.rescheduleJob(TriggerKey.triggerKey(processName + "Trigger", Scheduler.DEFAULT_GROUP), cronTrigger);
+        if(backgroundProcessDao.isDisabled(BackgroundProcessKey.valueOf(processName))) {
+            pauseProcess(processName);
+        }
     }
 
     private MethodInvokingJobDetailFactoryBean createDefaultProcess() {

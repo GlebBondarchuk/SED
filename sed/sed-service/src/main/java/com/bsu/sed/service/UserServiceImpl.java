@@ -3,12 +3,16 @@ package com.bsu.sed.service;
 import com.bsu.sed.dao.UserDao;
 import com.bsu.sed.exception.UserAcceptingException;
 import com.bsu.sed.model.SortOrder;
+import com.bsu.sed.model.persistent.Document;
 import com.bsu.sed.model.persistent.User;
+import com.bsu.sed.utils.JsonUtils;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -55,6 +59,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void delete(Long id) {
+        User user = userDao.load(id);
+        if(user.getLogin().equals(SYSTEM_USER)) {
+            throw new RuntimeException("System User can't be deleted");
+        }
         userDao.delete(id);
     }
 
@@ -80,6 +88,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User getSystem() {
+        return getByLogin(SYSTEM_USER);
+    }
+
+    @Override
     public boolean existByName(String name) {
         return userDao.existByName(name);
     }
@@ -87,5 +100,38 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean existByLogin(String login) {
         return userDao.existByLogin(login);
+    }
+
+    @Override
+    public List<String> getNewsSubscribers() {
+        return userDao.getNewsSubscribers();
+    }
+
+    @Override
+    public List<User> getEnabled() {
+        return userDao.getEnabled();
+    }
+
+    @Override
+    public void enable(Long id, boolean enable) {
+        User user = userDao.load(id);
+        if(user.getLogin().equals(SYSTEM_USER)) {
+            return;
+        }
+        user.setDisabled(!enable);
+        userDao.update(user);
+    }
+
+    @Override
+    public String getJson(int limit, int offset, String search, String sort, SortOrder order) {
+        List<String> searchFields = Arrays.asList("name", "login", "email");
+        List<User> users = userDao.find(searchFields, limit, offset, search, sort, order);
+        long total = userDao.count(searchFields, search);
+        return JsonUtils.usersToJson(users, total);
+    }
+
+    @Override
+    public void delete(List<Long> ids) {
+        userDao.delete(ids);
     }
 }

@@ -18,6 +18,9 @@ public enum Tiles {
     ADD_NEWS_PAGE("sed-add-news"),
     NEWS_PAGE("sed-news"),
     STUDENT_PAGE("sed-student"),
+    SITE_MAP("sed-site-map"),
+    STATISTICS_PAGE("sed-statistics"),
+    NOTIFICATIONS_PAGE("sed_notifications"),
 
     //admin pages
     USERS_PAGE("sed-users"),
@@ -25,7 +28,16 @@ public enum Tiles {
     ADD_NEW_TAB("sed-add-new-tab"),
     EDIT_TAB("sed-edit-tab"),
     NEWS_URL_PAGE("sed-news-url"),
-    BACKGROUND_PROCESSES_PAGE("sed-process");
+    BACKGROUND_PROCESSES_PAGE("sed-process"),
+    DOCUMENTS_PAGE("sed-documents"),
+    GALLERY_PAGE("sed-gallery"),
+    CREATE_PAGE("create-page"),
+    CONTENTS_PAGE("sed-contents"),
+    SITE_MAP_ADD("sed-site-map-add"),
+    NES_URL_EDIT("sed-news-url-edit"),
+    ADMIN_NEWS_PAGE("sed-admin-news"),
+    TEXT_PAGE("sed_text"),
+    EDIT_TEXT_PAGE("edit_sed_text");
 
     private String tileName;
 

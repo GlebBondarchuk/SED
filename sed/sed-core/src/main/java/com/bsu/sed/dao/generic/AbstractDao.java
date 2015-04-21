@@ -18,7 +18,7 @@ public abstract class AbstractDao<T> implements GenericDao<T, Long> {
     @PersistenceContext
     protected EntityManager em;
 
-    private Class<T> type;
+    protected Class<T> type;
 
     @SuppressWarnings("unchecked")
     public AbstractDao() {

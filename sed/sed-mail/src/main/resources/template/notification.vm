@@ -1,0 +1,14 @@
+<html>
+<body>
+    #parse("/template/common/styles.vm")
+    #parse("/template/common/header.vm")
+<div id="user" style="$bodyMainStyle">
+    <hr>
+    <h3>$message <a href="${serverUrl}/notification">--></a></h3>
+    <i>from: $from.name</i>
+    <br>
+    <hr>
+</div>
+    #parse("/template/common/footer.vm")
+</body>
+</html>

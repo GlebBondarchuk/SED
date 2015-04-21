@@ -1,6 +1,7 @@
 package com.bsu.sed.dao;
 
 import com.bsu.sed.dao.generic.GenericDao;
+import com.bsu.sed.dao.generic.browsable.BrowsableDao;
 import com.bsu.sed.model.SortOrder;
 import com.bsu.sed.model.persistent.User;
 
@@ -9,7 +10,7 @@ import java.util.List;
 /**
  * @author gbondarchuk
  */
-public interface UserDao extends GenericDao<User, Long> {
+public interface UserDao extends BrowsableDao<User> {
 
     /**
      * Get user by login name.
@@ -34,4 +35,10 @@ public interface UserDao extends GenericDao<User, Long> {
     boolean existByName(String name);
 
     boolean existByLogin(String login);
+
+    List<String> getNewsSubscribers();
+
+    List<User> getEnabled();
+
+    List<User> get(List<Long> userIds);
 }

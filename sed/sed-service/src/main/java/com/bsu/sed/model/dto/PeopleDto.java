@@ -19,6 +19,7 @@ public class PeopleDto {
     private String position;
     private String address;
     private boolean head;
+    private boolean newsSubscriber;
     private String password;
     private String confirmPassword;
 
@@ -110,5 +111,13 @@ public class PeopleDto {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public boolean isNewsSubscriber() {
+        return newsSubscriber;
+    }
+
+    public void setNewsSubscriber(boolean newsSubscriber) {
+        this.newsSubscriber = newsSubscriber;
     }
 }

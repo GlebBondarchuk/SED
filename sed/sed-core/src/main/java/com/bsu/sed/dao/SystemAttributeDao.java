@@ -5,6 +5,7 @@ import com.bsu.sed.model.persistent.SystemAttribute;
 import com.bsu.sed.model.SystemAttributeKey;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author gbondarchuk
@@ -38,4 +39,8 @@ public interface SystemAttributeDao extends GenericDao<SystemAttribute, Long> {
     Date getDate(SystemAttributeKey key);
 
     SystemAttribute getAttribute(SystemAttributeKey key);
+
+    List<SystemAttribute> getAttributesSortedByCategory();
+
+    void evict(SystemAttributeKey key);
 }

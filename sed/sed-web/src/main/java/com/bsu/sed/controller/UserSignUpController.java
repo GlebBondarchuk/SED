@@ -4,6 +4,7 @@ import com.bsu.sed.model.Role;
 import com.bsu.sed.model.SystemAttributeKey;
 import com.bsu.sed.model.Tiles;
 import com.bsu.sed.model.dto.StudentDto;
+import com.bsu.sed.model.persistent.SystemAttribute;
 import com.bsu.sed.model.persistent.User;
 import com.bsu.sed.service.StudentService;
 import com.bsu.sed.service.SystemAttributeService;
@@ -40,7 +41,7 @@ public class UserSignUpController {
     @Autowired
     private ErrorUtils errorUtils;
 
-    @RequestMapping("")
+    @RequestMapping
     public ModelAndView getSignUpPage() {
         String emailMask = systemAttributeService.get(SystemAttributeKey.EMAIL_MASK);
         ModelAndView modelAndView = new ModelAndView(Tiles.SIGN_UP_PAGE.getTileName());
@@ -52,6 +53,7 @@ public class UserSignUpController {
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     public ModelAndView SignUp(@Valid @ModelAttribute StudentDto dto, BindingResult result) {
+        String emailServer = systemAttributeService.get(SystemAttributeKey.EMAIL_SERVER);
         studentDtoValidator.validate(dto, result);
         ModelAndView modelAndView = getSignUpPage();
         if (result.hasErrors()) {
@@ -60,7 +62,7 @@ public class UserSignUpController {
             return modelAndView;
         }
         studentService.createStudent(dto);
-        modelAndView.addObject("success", "Please, open <a href=\"http://webmail.bsu.by\" target=\"_blank\" class=\"alert-link\">email</a> to complete registration");
+        modelAndView.addObject("success", "Please, open <a href=\"" + emailServer + "\" target=\"_blank\" class=\"alert-link\">email</a> to complete registration");
         return modelAndView;
     }
 

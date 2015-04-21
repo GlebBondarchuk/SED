@@ -8,12 +8,16 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
 import javax.servlet.http.HttpServletRequest;
 
-import static com.bsu.sed.model.Tiles.*;
+import java.nio.file.NoSuchFileException;
+
+import static com.bsu.sed.model.Tiles.EXCEPTION_PAGE;
+import static com.bsu.sed.model.Tiles.LOGIN_PAGE;
 
 /**
  * Global controller for handling exceptions.
@@ -38,11 +42,29 @@ public class ExceptionHandlerController {
         return modelAndView;
     }
 
+    @ExceptionHandler(MaxUploadSizeExceededException.class)
+    public ModelAndView handleMaxUploadSizeExceededException(MaxUploadSizeExceededException e, HttpServletRequest request) {
+        log.warn(e.getMessage());
+        ModelAndView modelAndView = new ModelAndView(EXCEPTION_PAGE.getTileName());
+        modelAndView.addObject(EXCEPTION, e.getMessage());
+        modelAndView.addObject(REFERER, request.getHeader(HttpHeaders.REFERER));
+        return modelAndView;
+    }
+
     @ExceptionHandler(UserAcceptingException.class)
     public ModelAndView handleUserAcceptingException(UserAcceptingException e, HttpServletRequest request) {
         log.warn(e.getMessage());
         ModelAndView modelAndView = new ModelAndView(EXCEPTION_PAGE.getTileName());
         modelAndView.addObject(EXCEPTION, e.getMessage());
+        modelAndView.addObject(REFERER, request.getHeader(HttpHeaders.REFERER));
+        return modelAndView;
+    }
+
+    @ExceptionHandler(NoSuchFileException.class)
+    public ModelAndView handleNoSuchFileException(NoSuchFileException e, HttpServletRequest request) {
+        log.warn(e.getMessage());
+        ModelAndView modelAndView = new ModelAndView(EXCEPTION_PAGE.getTileName());
+        modelAndView.addObject(EXCEPTION, "File not found");
         modelAndView.addObject(REFERER, request.getHeader(HttpHeaders.REFERER));
         return modelAndView;
     }

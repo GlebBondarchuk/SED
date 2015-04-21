@@ -14,7 +14,7 @@ import java.util.*;
 public class SecurityUtils {
     public static String getAuthenticatedUserName() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if(authentication != null) {
+        if (authentication != null) {
             return authentication.getName();
         }
         return null;
@@ -34,5 +34,14 @@ public class SecurityUtils {
 
     public static boolean hasAnyRole(Role... roles) {
         return CollectionUtils.containsAny(getAuthenticatedRoles(), Arrays.asList(roles));
+    }
+
+    public static boolean isAccepted(Role role) {
+        for (Role value : getAuthenticatedUserRoles()) {
+            if (role.getRank() <= value.getRank()) {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -56,20 +56,34 @@ public class AdminController {
         return new ModelAndView(Tiles.USERS_PAGE.getTileName());
     }
 
+    @RequestMapping(value = "/users/enable/{id}")
+    @ResponseBody
+    public String enableUser(@PathVariable Long id,
+                                   @RequestParam("enable") boolean enable) {
+        userService.enable(id, enable);
+        return "";
+    }
+
     @RequestMapping(value = "/users/data")
     @ResponseBody
-    public String getUsersData(@RequestParam("order") SortOrder order,
-                               @RequestParam("limit") int limit,
-                               @RequestParam("offset") int offset) {
-        List<User> users = userService.getAll();
-        return JsonUtils.usersToJson(users);
+    public String getUsersData(@RequestParam("limit") int limit,
+                               @RequestParam("offset") int offset,
+                               @RequestParam(value = "search", required = false) String search,
+                               @RequestParam(value = "sort", required = false) String sort,
+                               @RequestParam(value = "order", required = false) SortOrder order) {
+        return userService.getJson(limit, offset, search, sort, order);
     }
 
     @RequestMapping(value = "/users/remove/{id}")
     @ResponseBody
     public String removeUser(@PathVariable Long id) {
-        userService.delete(id);
-        return "";
+        try {
+            userService.delete(id);
+            return "";
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+            return e.getMessage();
+        }
     }
 
     @RequestMapping(value = "/users/add")

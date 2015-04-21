@@ -14,4 +14,6 @@ public interface BackgroundProcessDao extends GenericDao<BackgroundProcess, Long
     void enableProcess(BackgroundProcessKey key);
 
     void rescheduleProcess(BackgroundProcessKey key, String cron);
+
+    boolean isDisabled(BackgroundProcessKey backgroundProcessKey);
 }

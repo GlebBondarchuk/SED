@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS sed_process (
   description VARCHAR(250)       NOT NULL,
   displayName VARCHAR(70)        NOT NULL,
   disabled    BIT                         DEFAULT FALSE,
-  cron        VARCHAR(50)        NOT NULL,
+  cron        VARCHAR(150)        NOT NULL,
   PRIMARY KEY (id)
 )
   ENGINE = InnoDB;

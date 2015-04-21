@@ -1,0 +1,1 @@
+ALTER TABLE sed_user ADD COLUMN news_subscriber BIT DEFAULT FALSE;

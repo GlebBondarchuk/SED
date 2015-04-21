@@ -1,8 +1,12 @@
 package com.bsu.sed.controller;
 
 import com.bsu.sed.dto.ContactDto;
+import com.bsu.sed.model.SystemAttributeKey;
+import com.bsu.sed.model.TextKey;
 import com.bsu.sed.model.Tiles;
 import com.bsu.sed.service.MailService;
+import com.bsu.sed.service.SystemAttributeService;
+import com.bsu.sed.service.TextService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,10 +24,17 @@ import javax.transaction.Transactional;
 public class ContactController {
     @Autowired
     private MailService mailService;
+    @Autowired
+    private TextService textService;
+    @Autowired
+    private SystemAttributeService systemAttributeService;
 
-    @RequestMapping("")
+    @RequestMapping
     public ModelAndView getContactPage() {
-        return new ModelAndView(Tiles.CONTACT_PAGE.getTileName());
+        ModelAndView modelAndView = new ModelAndView(Tiles.CONTACT_PAGE.getTileName());
+        modelAndView.addObject("contactDetails", textService.get(TextKey.CONTACT_DETAILS));
+        modelAndView.addObject("mapURL", systemAttributeService.get(SystemAttributeKey.MAP_URL));
+        return modelAndView;
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)

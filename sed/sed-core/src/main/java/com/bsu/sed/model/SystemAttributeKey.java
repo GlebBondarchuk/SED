@@ -12,6 +12,7 @@ public enum SystemAttributeKey {
     EMAIL_HOST,
     EMAIL_PORT,
     EMAIL_MASK,
+    EMAIL_SERVER,
 
     /* Peoples Attributes */
     CHECK_PEOPLE_REGISTRATION,
@@ -19,5 +20,12 @@ public enum SystemAttributeKey {
 
     /* News Attributes */
     NEWS_PAGE_LIMIT,
-    NEWS_DELETE_AFTER;
+    NEWS_SHOWING_PERIOD,
+
+    GALLERY_PAGE_LIMIT,
+
+    SEARCH_PAGE_LIMIT,
+
+    IMAGE_URLS,
+    MAP_URL
 }

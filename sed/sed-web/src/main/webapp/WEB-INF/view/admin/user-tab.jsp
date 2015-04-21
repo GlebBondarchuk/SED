@@ -7,7 +7,7 @@
         <h4>
             <input id="contentName" type="text" class="form-control" placeholder="Enter Tab Name..." value="${content.name}">
         </h4>
-        <textarea id="htmlContent" style="resize: vertical" rows="20" class='html-editable form-control'
+        <textarea maxlength="16777215" id="htmlContent" style="resize: vertical" rows="20" class='html-editable form-control'
                   title="" placeholder="Enter Text Here...">
             <c:if test="${not empty content}">
                 ${content.html}

@@ -24,4 +24,6 @@ public interface SystemAttributeService {
     Date getDate(SystemAttributeKey key);
 
     List<SystemAttribute> getAll();
+
+    List<String> getList(SystemAttributeKey imageUrls);
 }

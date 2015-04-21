@@ -7,63 +7,64 @@
 <script src="${applicationPath}/resources/js/bootstrap/datepicker/moment-with-locales.js"></script>
 <script src="${applicationPath}/resources/js/bootstrap/datepicker/bootstrap-datetimepicker.min.js"></script>
 
+<script src="${applicationPath}/resources/js/bootstrap/validator/validator.js"></script>
 
 <div class="row">
     <div class="col-lg-12">
-        <form:form action="${applicationPath}/admin/system" method="post" commandName="dto">
+        <form:form action="${applicationPath}/admin/system" method="post" commandName="dto" data-toggle="validator">
             <div class="panel-group" id="accordion">
-                <c:forEach var="category" items="${categorizedAttributes.keySet()}" varStatus="varStatus">
-                    <div class="panel panel-info">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a class="accordion-toggle" data-toggle="collapse" href="#${category}">
-                                    <h3 class="panel-title"><spring:message code="${category.displayMessageKey}"/></h3>
-                                </a>
-                            </h4>
-                        </div>
-                        <div id="${category}" class="panel-collapse collapse ${varStatus.first ? 'in' : ''}">
-                            <table class="table table-striped table-bordered">
-                                <thead>
+                <div class="panel-collapse ${varStatus.first ? 'in' : ''}">
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Value</th>
+                            <th>Description</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach var="category" items="${categorizedAttributes.keySet()}" varStatus="varStatus">
+                            <c:forEach var="attribute" items="${categorizedAttributes.get(category)}">
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Value</th>
-                                    <th>Description</th>
+                                    <td>${attribute.displayName}</td>
+                                    <td hidden="hidden">
+                                        <input class="form-control" type="text" name="id" value="${attribute.id}" required/>
+                                        <span class="help-block with-errors hidden"></span>
+                                    </td>
+                                    <td class="form-group">
+                                        <c:choose>
+                                            <c:when test="${attribute.bit}">
+                                                <select name="values['${attribute.key}']" class="form-control" title="" required>
+                                                    <option class="alert-success" ${attribute.value ? 'selected':''} value="true">true</option>
+                                                    <option class="alert-danger" ${attribute.value ? '':'selected'} value="false">false</option>
+                                                </select>
+                                                <span class="help-block with-errors hidden"></span>
+                                            </c:when>
+                                            <c:when test="${attribute.date}">
+                                                <input maxlength="350" class="form-control date" type="text" name="values['${attribute.key}']"
+                                                       value="${attribute.value}" required/>
+                                                <span class="help-block with-errors hidden"></span>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <input maxlength="350" class="form-control" type="text" name="values['${attribute.key}']"
+                                                       value="${attribute.value}" required/>
+                                                <span class="help-block with-errors hidden"></span>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </td>
+                                    <td class="form-group">
+                                        <input maxlength="200" class="form-control" type="text" name="descriptions['${attribute.key}']"
+                                               value="${attribute.description}" required/>
+                                        <span class="help-block with-errors hidden"></span>
+                                    </td>
                                 </tr>
-                                </thead>
-                                <tbody>
-                                <c:forEach var="attribute" items="${categorizedAttributes.get(category)}">
-                                    <tr>
-                                        <td>${attribute.displayName}</td>
-                                        <td hidden="hidden"><input class="form-control" type="text" name="id" value="${attribute.id}"/></td>
-                                        <td>
-                                            <c:choose>
-                                                <c:when test="${attribute.bit}">
-                                                    <select name="values['${attribute.key}']" class="form-control" title="">
-                                                        <option class="alert-success" ${attribute.value ? 'selected':''} value="true">true</option>
-                                                        <option class="alert-danger" ${attribute.value ? '':'selected'} value="false">false</option>
-                                                    </select>
-                                                </c:when>
-                                                <c:when test="${attribute.date}">
-                                                    <input class="form-control date" type="text" name="values['${attribute.key}']"
-                                                           value="${attribute.value}"/>
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <input class="form-control" type="text" name="values['${attribute.key}']"
-                                                           value="${attribute.value}"/>
-                                                </c:otherwise>
-                                            </c:choose>
-                                        </td>
-                                        <td>
-                                            <input class="form-control" type="text" name="descriptions['${attribute.key}']"
-                                                   value="${attribute.description}"/>
-                                        </td>
-                                    </tr>
-                                </c:forEach>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </c:forEach>
+                            </c:forEach>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+
+
             </div>
             <button class="btn btn-danger btn-primary" type="submit" name="Update">
                 <span class="glyphicon glyphicon-save"></span>&nbsp;&nbsp;<spring:message code="button.update"/>

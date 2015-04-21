@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 
 import javax.mail.internet.MimeMessage;
 import javax.transaction.Transactional;
+import java.nio.charset.Charset;
 import java.util.List;
 
 /**
@@ -62,7 +63,7 @@ public class MailSenderImpl implements MailSender {
         MimeMessagePreparator preparator = new MimeMessagePreparator() {
             @Override
             public void prepare(MimeMessage mimeMessage) throws Exception {
-                MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, multipart);
+                MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, multipart, "UTF-8");
                 helper.setTo(message.getRecipients());
                 helper.setSubject(message.getSubject());
                 helper.setText(message.getEmailBody(), true);

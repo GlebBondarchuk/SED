@@ -1,0 +1,18 @@
+<html>
+<body>
+    #parse("/template/common/styles.vm")
+    #parse("/template/common/header.vm")
+<div id="user" style="$bodyMainStyle">
+    <hr>
+    #foreach($value in $news)
+        <h3>$value.content.name</h3>
+        <br>
+        <div style="width: 550px;">$value.simpleText</div>
+        <br>
+        <a href="${serverUrl}/news/$value.id">Read More</a>
+        <hr>
+    #end
+</div>
+    #parse("/template/common/footer.vm")
+</body>
+</html>

@@ -4,5 +4,6 @@ package com.bsu.sed.model;
  * @author gbondarchuk
  */
 public enum DocumentCategory {
-    PROFILE_PHOTO
+    PROFILE_PHOTO,
+    DOC
 }

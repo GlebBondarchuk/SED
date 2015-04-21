@@ -8,5 +8,6 @@ public enum ContentKey {
     SCIENTIFIC_WORK,
     CONFERENCE,
 
+    MAIN_CONTENT,
     DEPARTMENT_INFO
 }

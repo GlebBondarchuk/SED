@@ -24,8 +24,6 @@
     <!-- Bootstrap Core CSS -->
     <link href="${applicationPath}/resources/css/bootstrap/core/bootstrap.css" rel="stylesheet">
 
-    <%--Bootstrap Table CSS--%>
-    <link href="${applicationPath}/resources/css/bootstrap/table/bootstrap-table.css" rel="stylesheet">
     <%--<link href="${applicationPath}/resources/css/bootstrap/core/bootstrap-theme.css" rel="stylesheet">--%>
 
     <!-- Custom Fonts -->
@@ -56,6 +54,9 @@
     <%--&lt;%&ndash;page title&ndash;%&gt;--%>
     <%--<c:set var="title"><tiles:insertAttribute name="title"/></c:set>--%>
     <%--<title><spring:message code="${title}"/></title>--%>
+    <script>
+        var mainContextPath = "${pageContext.request.contextPath}";
+    </script>
 </head>
 
 <body onload="dropBanner()">
@@ -91,7 +92,7 @@
 <%--<script src="${applicationPath}/resources/js/jquery/jquery.md5.js"></script>--%>
 
 <%--Bootstrap Table--%>
-<script src="${applicationPath}/resources/js/bootstrap/table/bootstrap-table.js"></script>
+
 
 <%--Bootstrap Dialog--%>
 <script src="${applicationPath}/resources/js/bootstrap/bootbox/bootbox.min.js"></script>
@@ -99,21 +100,12 @@
 <!-- Bootstrap Core JavaScript -->
 <script src="${applicationPath}/resources/js/bootstrap/core/bootstrap.min.js"></script>
 
+<script src="${applicationPath}/resources/js/jquery/jquery.base64.js"></script>
 
-<%--<script src="${applicationPath}/resources/js/wysihtml5-0.3.0.min.js"></script>--%>
-<%--<script src="${applicationPath}/resources/js/underscore-min.js"></script>--%>
-
-<!--script type="/js/bootstrap-wysihtml5-0.0.2/bootstrap-wysihtml5-0.0.2.min.js"></script-->
-<%--<script  src="${applicationPath}/resources/js/bootstrap-wysihtml5-0.0.2.js"></script>--%>
-<%--<script src="${applicationPath}/resources/js/custom_image_and_upload_wysihtml5.js"></script>--%>
-<%--<script src="${applicationPath}/resources/js/jqueryupload.js"></script>--%>
 
 <secutiry:authorize access="hasAnyRole('ADMIN','TEACHER')">
     <script src="${applicationPath}/resources/js/wysihtml5-0.3.0.js"></script>
     <script src="${applicationPath}/resources/js/bootstrap3-wysihtml5.js"></script>
 </secutiry:authorize>
-<script>
-    var mainContextPath = "${pageContext.request.contextPath}";
-</script>
 </body>
 </html>

@@ -18,15 +18,6 @@ import java.util.List;
  */
 @Repository
 public class PeopleDaoImpl extends AbstractDao<People> implements PeopleDao {
-
-    @Override
-    public People getHead() {
-        Session session = em.unwrap(Session.class);
-        Criteria criteria = session.createCriteria(People.class);
-        criteria.add(Restrictions.eq("head", true));
-        return (People) criteria.uniqueResult();
-    }
-
     @Override
     public People getByLogin(String login) {
         Session session = em.unwrap(Session.class);

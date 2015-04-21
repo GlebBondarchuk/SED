@@ -4,7 +4,6 @@ SET FOREIGN_KEY_CHECKS = 1;
 CREATE TABLE IF NOT EXISTS sed_people (
   id       BIGINT            NOT NULL AUTO_INCREMENT,
   user_id  BIGINT UNIQUE,
-  head     BIT DEFAULT FALSE NOT NULL,
   position VARCHAR(200)      NOT NULL,
   address  VARCHAR(100),
 

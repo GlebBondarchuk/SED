@@ -1,3 +1,4 @@
+
 window.onload = function () {
     $('.html-editable').wysihtml5({
         "font-styles": true, //Font styling, e.g. h1, h2, etc. Default true
@@ -7,6 +8,8 @@ window.onload = function () {
         "link": true, //Button to insert a link. Default true
         "image": true, //Button to insert an image. Default true,
         "color": true, //Button to change color of font
+        "video": true,
+
         "size": 'sm' //Button size like sm, xs etc.
     });
 };

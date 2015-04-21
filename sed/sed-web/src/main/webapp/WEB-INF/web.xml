@@ -28,6 +28,19 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
 
+    <listener>
+        <description>sessionListener</description>
+        <listener-class>
+            com.bsu.sed.listener.SedSessionListener
+        </listener-class>
+    </listener>
+
+    <listener>
+        <listener-class>
+            org.springframework.web.context.request.RequestContextListener
+        </listener-class>
+    </listener>
+
     <!--Main And Only Application Entry Point-->
     <!--All requests and responses should be pass there-->
     <servlet-mapping>

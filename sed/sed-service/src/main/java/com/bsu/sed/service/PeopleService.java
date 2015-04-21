@@ -20,6 +20,4 @@ public interface PeopleService {
     People get(Long id);
 
     List<People> find();
-
-    People getHead();
 }
