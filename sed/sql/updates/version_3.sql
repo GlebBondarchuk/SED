@@ -445,6 +445,9 @@ VALUES (3, 'CONFERENCE');
 INSERT INTO sed_primary (content_id, `key`)
 VALUES (4, 'DEPARTMENT_INFO');
 
+INSERT INTO sed_primary (content_id, `key`)
+VALUES (5, 'MAIN_CONTENT');
+
 #------------------------------------------------------------------------------------------------------------------------------------------
 
 

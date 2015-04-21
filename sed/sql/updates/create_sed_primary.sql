@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS sed_primary (
     ON DELETE CASCADE
 )
   ENGINE = InnoDB
-  DEFAULT CHARSET =utf8;
+  DEFAULT CHARSET = utf8;
 
 INSERT INTO sed_primary (content_id, `key`)
 VALUES (1, 'EDUCATIONAL_WORK');
@@ -24,3 +24,6 @@ VALUES (3, 'CONFERENCE');
 
 INSERT INTO sed_primary (content_id, `key`)
 VALUES (4, 'DEPARTMENT_INFO');
+
+INSERT INTO sed_primary (content_id, `key`)
+VALUES (5, 'MAIN_CONTENT')

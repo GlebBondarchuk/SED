@@ -19,7 +19,7 @@ import java.util.List;
 @Service
 @Transactional
 public class StatisticsServiceImpl implements StatisticsService {
-    private static final String DEFAULT_COUNTY = "Others";
+    private static final String DEFAULT_COUNTY = "Belarus";
 
     @Autowired
     private StatisticsDao statisticsDao;
