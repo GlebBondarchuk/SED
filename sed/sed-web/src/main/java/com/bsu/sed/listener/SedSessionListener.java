@@ -3,6 +3,8 @@ package com.bsu.sed.listener;
 import com.bsu.sed.model.persistent.Statistics;
 import com.bsu.sed.service.StatisticsService;
 import com.bsu.sed.service.SystemAttributeService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -24,6 +26,8 @@ import java.util.Date;
  * @author gbondarchuk
  */
 public class SedSessionListener implements HttpSessionListener {
+    private static final Logger log = LoggerFactory.getLogger(SedSessionListener.class);
+
     @Autowired
     private StatisticsService statisticsService;
 
@@ -53,14 +57,25 @@ public class SedSessionListener implements HttpSessionListener {
     }
 
     private String getCurrentHost() {
-        try {
-            URL ipURL = new URL("http://checkip.amazonaws.com");
-            BufferedReader in = new BufferedReader(new InputStreamReader(ipURL.openStream()));
-            return in.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+        String ip = request.getHeader("X-Forwarded-For");
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getHeader("Proxy-Client-IP");
         }
-        return "";
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getHeader("WL-Proxy-Client-IP");
+        }
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getHeader("HTTP_CLIENT_IP");
+        }
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getHeader("HTTP_X_FORWARDED_FOR");
+        }
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getRemoteAddr();
+        }
+        log.info("Client IP: " + ip);
+        return ip;
     }
 
     @Override

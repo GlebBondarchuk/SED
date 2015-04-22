@@ -346,6 +346,8 @@ INSERT INTO sed_content (id, name, content, update_date, content_type, creator, 
 INSERT INTO sed_content (id, name, content, update_date, content_type, creator, static, role) VALUES (21743, '', null, '2015-04-21 14:26:51', null, null, false, null);
 INSERT INTO sed_content (id, name, content, update_date, content_type, creator, static, role) VALUES (21745, '123', 123, '2015-04-21 14:29:39', null, null, false, null);
 
+INSERT INTO sed_content (id,name, static) VALUES (6, 'Help Page', true);
+
 #------------------------------------------------------------------------------------------------------------------------------------------
 
 DROP TABLE IF EXISTS sed_document;

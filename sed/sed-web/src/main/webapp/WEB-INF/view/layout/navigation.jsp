@@ -30,20 +30,7 @@
                         <li>
                             <a href="${applicationPath}/map"><spring:message code="label.nav.map"/></a>
                         </li>
-                        <li>
-                            <a href="${applicationPath}/statistics"><spring:message code="label.nav.statistics"/></a>
-                        </li>
-                        <li>
-                            <a href="${applicationPath}/notification"><spring:message code="label.nav.notifications"/></a>
-                        </li>
-                        <li>
-                            <a href="${applicationPath}/peoples"><spring:message code="label.nav.peoples"/></a>
-                        </li>
-                        <security:authorize access="isAuthenticated()">
-                            <li>
-                                <a href="${applicationPath}/students"><spring:message code="label.nav.students"/></a>
-                            </li>
-                        </security:authorize>
+                        <li class="divider"></li>
                         <li>
                             <a href="${applicationPath}/content/educational"><spring:message code="label.nav.educational"/></a>
                         </li>
@@ -53,14 +40,31 @@
                         <li>
                             <a href="${applicationPath}/content/conference"><spring:message code="label.nav.conferences"/></a>
                         </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="${applicationPath}/peoples"><spring:message code="label.nav.peoples"/></a>
+                        </li>
+                        <security:authorize access="isAuthenticated()">
+                            <li>
+                                <a href="${applicationPath}/students"><spring:message code="label.nav.students"/></a>
+                            </li>
+                        </security:authorize>
+                        <li>
+                            <a href="${applicationPath}/notification"><spring:message code="label.nav.notifications"/></a>
+                        </li>
+                        <li class="divider"></li>
                         <li>
                             <a href="${applicationPath}/news"><spring:message code="label.news.title"/></a>
                         </li>
-                        <li>
-                            <a href="${applicationPath}/contact"><spring:message code="label.nav.contact"/></a>
-                        </li>
+                        <li class="divider"></li>
                         <li>
                             <a href="${applicationPath}/gallery"><spring:message code="label.nav.gallery"/></a>
+                        </li>
+                        <li>
+                            <a href="${applicationPath}/statistics"><spring:message code="label.nav.statistics"/></a>
+                        </li>
+                        <li>
+                            <a href="${applicationPath}/contact"><spring:message code="label.nav.contact"/></a>
                         </li>
                     </ul>
                 </li>
@@ -71,17 +75,9 @@
                             <li>
                                 <a href="${applicationPath}/admin/system"><spring:message code="label.nav.admin.system"/></a>
                             </li>
+                            <li class="divider"></li>
                             <li>
                                 <a href="${applicationPath}/admin/users"><spring:message code="label.nav.admin.users"/></a>
-                            </li>
-                            <li>
-                                <a href="${applicationPath}/admin/news-url"><spring:message code="label.nav.newsSettings"/></a>
-                            </li>
-                            <li>
-                                <a href="${applicationPath}/admin/news"><spring:message code="label.nav.news"/></a>
-                            </li>
-                            <li>
-                                <a href="${applicationPath}/admin/processes"><spring:message code="label.nav.backgroundProcesses"/></a>
                             </li>
                             <li>
                                 <a href="${applicationPath}/documents"><spring:message code="label.nav.documents"/></a>
@@ -92,6 +88,18 @@
                             <li>
                                 <a href="${applicationPath}/text"><spring:message code="label.nav.text"/></a>
                             </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="${applicationPath}/admin/news"><spring:message code="label.nav.news"/></a>
+                            </li>
+                            <li>
+                                <a href="${applicationPath}/admin/news-url"><spring:message code="label.nav.newsSettings"/></a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="${applicationPath}/admin/processes"><spring:message code="label.nav.backgroundProcesses"/></a>
+                            </li>
+                            <li class="divider"></li>
                             <li>
                                 <a href="${applicationPath}/content/create"><spring:message code="label.nav.newPage"/></a>
                             </li>
