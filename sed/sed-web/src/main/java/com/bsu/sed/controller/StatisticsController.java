@@ -32,7 +32,6 @@ public class StatisticsController {
     @RequestMapping("/data/pie")
     @ResponseBody
     public String getPieChartStatisticsData() {
-        statisticsService.recalculate();
         return statisticsService.getPieChartJsonStatistics();
     }
 }

@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.Date;
+import java.util.concurrent.Executors;
 
 /**
  * @author gbondarchuk
@@ -43,6 +44,7 @@ public class SedSessionListener implements HttpSessionListener {
 
     @Override
     public void sessionCreated(HttpSessionEvent httpSessionEvent) {
+
         try {
             initStatisticsService(httpSessionEvent);
 
@@ -51,9 +53,16 @@ public class SedSessionListener implements HttpSessionListener {
             statistics.setHost(getCurrentHost());
 
             statisticsService.create(statistics);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Executors.newSingleThreadExecutor().execute(new Runnable() {
+            @Override
+            public void run() {
+                statisticsService.recalculate();
+            }
+        });
     }
 
     private String getCurrentHost() {
@@ -74,8 +83,12 @@ public class SedSessionListener implements HttpSessionListener {
         if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
             ip = request.getRemoteAddr();
         }
-        log.info("Client IP: " + ip);
-        return ip;
+        String clientIp = ip;
+        if (ip.contains(",")) {
+            clientIp = ip.split(",")[0].trim();
+        }
+        log.info("Client IP: " + clientIp);
+        return clientIp;
     }
 
     @Override
