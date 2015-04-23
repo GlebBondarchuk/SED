@@ -1,5 +1,6 @@
 package com.bsu.sed.service;
 
+import com.bsu.sed.model.Role;
 import com.bsu.sed.model.persistent.Navigation;
 
 import java.util.List;
@@ -12,7 +13,7 @@ public interface NavigationService {
 
     List<Navigation> getAll();
 
-    void save(String text, String relativeUrl, boolean authorizedOnly, Long parentId);
+    void save(String text, String relativeUrl, Role role, Long parentId);
 
     void delete(Long id);
 
@@ -20,7 +21,7 @@ public interface NavigationService {
 
     List<Navigation> getParentCandidates();
 
-    void update(Long id, String text, String relativeUrl, boolean authorizedOnly, int listNumber, Long parentId);
+    void update(Long id, String text, String relativeUrl, Role role, int listNumber, Long parentId);
 
     Navigation get(Long id);
 }

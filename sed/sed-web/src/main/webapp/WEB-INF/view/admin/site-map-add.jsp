@@ -46,7 +46,35 @@
             <label class="col-sm-2 control-label"><spring:message code="label.siteMap.authorizedOnly"/></label>
 
             <div class="col-sm-10">
-                <input id="onlyAuthorized" name="authorizedOnly" type="checkbox" ${item.authorizedOnly ? 'checked' : ''}/>
+                <select name="role" class="form-control" id="contentRole" placeholder="Choose Authority" title="Choose Authority">
+                    <c:forEach var="role" items="${roles}">
+                        <c:choose>
+                            <c:when test="${role == null}">
+                                <c:choose>
+                                    <c:when test="${role == item.role}">
+                                        <option selected value="${role}">ALL</option>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <option value="${role}">ALL</option>
+                                    </c:otherwise>
+                                </c:choose>
+                            </c:when>
+                            <c:when test="${item.role == role}">
+                                <c:choose>
+                                    <c:when test="${empty role}">
+                                        <option selected value="${role}">ALL</option>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <option selected>${role}</option>
+                                    </c:otherwise>
+                                </c:choose>
+                            </c:when>
+                            <c:otherwise>
+                                <option>${role}</option>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:forEach>
+                </select>
                 <span class="help-block with-errors hidden"></span>
             </div>
         </div>

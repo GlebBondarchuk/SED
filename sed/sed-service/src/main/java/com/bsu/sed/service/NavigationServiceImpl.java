@@ -1,6 +1,7 @@
 package com.bsu.sed.service;
 
 import com.bsu.sed.dao.NavigationDao;
+import com.bsu.sed.model.Role;
 import com.bsu.sed.model.persistent.Navigation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
@@ -31,11 +32,11 @@ public class NavigationServiceImpl implements NavigationService {
     }
 
     @Override
-    public void save(String text, String relativeUrl, boolean authorizedOnly, Long parentId) {
+    public void save(String text, String relativeUrl, Role role, Long parentId) {
         Navigation navigation = new Navigation();
         navigation.setText(text);
         navigation.setUrl(relativeUrl);
-        navigation.setAuthorizedOnly(authorizedOnly);
+        navigation.setRole(role);
         if (parentId != null) {
             Navigation parent = navigationDao.load(parentId);
             navigation.setParent(parent);
@@ -62,11 +63,11 @@ public class NavigationServiceImpl implements NavigationService {
     }
 
     @Override
-    public void update(Long id, String text, String relativeUrl, boolean authorizedOnly, int listNumber, Long parentId) {
+    public void update(Long id, String text, String relativeUrl, Role role, int listNumber, Long parentId) {
         Navigation navigation = navigationDao.load(id);
         navigation.setText(text);
         navigation.setUrl(relativeUrl);
-        navigation.setAuthorizedOnly(authorizedOnly);
+        navigation.setRole(role);
         navigation.setListNumber(listNumber);
         if (parentId != null) {
             Navigation parent = navigationDao.load(parentId);

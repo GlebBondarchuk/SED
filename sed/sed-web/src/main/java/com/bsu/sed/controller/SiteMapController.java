@@ -1,5 +1,6 @@
 package com.bsu.sed.controller;
 
+import com.bsu.sed.model.Role;
 import com.bsu.sed.model.Tiles;
 import com.bsu.sed.model.persistent.Navigation;
 import com.bsu.sed.service.NavigationService;
@@ -46,6 +47,7 @@ public class SiteMapController {
         modelAndView.addObject("parents", parents);
         modelAndView.addObject("baseURL", getBaseUrl(request));
         modelAndView.addObject("edit", true);
+        modelAndView.addObject("roles", Role.getRolesWithEmpty());
         return modelAndView;
     }
 
@@ -54,14 +56,14 @@ public class SiteMapController {
     public RedirectView updateSiteMap(@PathVariable("id") Long id,
                                       @RequestParam("text") String text,
                                       @RequestParam("url") String url,
-                                      @RequestParam(value = "authorizedOnly", required = false) boolean authorizedOnly,
+                                      @RequestParam(value = "role") Role role,
                                       @RequestParam(value = "listNumber") int listNumber,
                                       @RequestParam("parent") Long parentId, HttpServletRequest request) {
         String relativeUrl = null;
         if (StringUtils.isNotBlank(url)) {
             relativeUrl = getRelativeUrl(request, url);
         }
-        navigationService.update(id, text, relativeUrl, authorizedOnly, listNumber,  parentId);
+        navigationService.update(id, text, relativeUrl, role, listNumber,  parentId);
         return new RedirectView("/map", true);
     }
 
@@ -71,6 +73,7 @@ public class SiteMapController {
         List<Navigation> parents = navigationService.getParentCandidates();
         ModelAndView modelAndView = new ModelAndView(Tiles.SITE_MAP_ADD.getTileName());
         modelAndView.addObject("parents", parents);
+        modelAndView.addObject("roles", Role.getRolesWithEmpty());
         return modelAndView;
     }
 
@@ -78,14 +81,14 @@ public class SiteMapController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public RedirectView addSiteMap(@RequestParam("text") String text,
                                    @RequestParam("url") String url,
-                                   @RequestParam(value = "authorizedOnly", required = false) boolean authorizedOnly,
+                                   @RequestParam(value = "role") Role role,
                                    @RequestParam("parent") Long parentId, HttpServletRequest request) {
         String relativeUrl = null;
         if (StringUtils.isNotBlank(url)) {
             relativeUrl = getRelativeUrl(request, url);
         }
 //      navigationService.updateParent(parentId);
-        navigationService.save(text, relativeUrl, authorizedOnly, parentId);
+        navigationService.save(text, relativeUrl, role, parentId);
         return new RedirectView("/map", true);
     }
 

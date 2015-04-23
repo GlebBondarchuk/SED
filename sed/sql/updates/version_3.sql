@@ -274,7 +274,7 @@ CREATE TABLE IF NOT EXISTS sed_navigation (
   parent_id       BIGINT,
   text            VARCHAR(200) NOT NULL,
   url             VARCHAR(300),
-  authorized_only BIT                  DEFAULT FALSE,
+  role            VARCHAR(20),
   list_number     INT(3),
   list_order      INT(3),
   lang            VARCHAR(3),
@@ -285,27 +285,27 @@ CREATE TABLE IF NOT EXISTS sed_navigation (
   ENGINE = InnoDB
   DEFAULT CHARSET =utf8;
 
-INSERT INTO sed_navigation (id, parent_id, text, url, authorized_only, list_number, list_order, lang, navbar) VALUES (24, null, 'Информация', null, true, 2, 0, null, false);
-INSERT INTO sed_navigation (id, parent_id, text, url, authorized_only, list_number, list_order, lang, navbar) VALUES (26, 24, 'Site Map', '/map', false, 0, 0, null, false);
-INSERT INTO sed_navigation (id, parent_id, text, url, authorized_only, list_number, list_order, lang, navbar) VALUES (27, 24, 'Состав Кафедры', '/peoples', false, 0, 0, null, false);
-INSERT INTO sed_navigation (id, parent_id, text, url, authorized_only, list_number, list_order, lang, navbar) VALUES (28, 24, 'Студенты', '/students', true, 0, 0, null, false);
-INSERT INTO sed_navigation (id, parent_id, text, url, authorized_only, list_number, list_order, lang, navbar) VALUES (30, 24, 'Информация Кафедры', null, false, 0, 0, null, false);
-INSERT INTO sed_navigation (id, parent_id, text, url, authorized_only, list_number, list_order, lang, navbar) VALUES (31, 30, 'Учебная работа', '/content/educational', false, 0, 0, null, false);
-INSERT INTO sed_navigation (id, parent_id, text, url, authorized_only, list_number, list_order, lang, navbar) VALUES (32, 30, 'Научная работа', '/content/scientific', false, 5, 0, null, false);
-INSERT INTO sed_navigation (id, parent_id, text, url, authorized_only, list_number, list_order, lang, navbar) VALUES (33, 30, 'Конференции', '/content/conference', false, 0, 0, null, false);
-INSERT INTO sed_navigation (id, parent_id, text, url, authorized_only, list_number, list_order, lang, navbar) VALUES (34, null, 'Новости', null, false, 0, 0, null, false);
-INSERT INTO sed_navigation (id, parent_id, text, url, authorized_only, list_number, list_order, lang, navbar) VALUES (35, 34, 'Новости Кафедры', '/news', false, 0, 0, null, false);
-INSERT INTO sed_navigation (id, parent_id, text, url, authorized_only, list_number, list_order, lang, navbar) VALUES (36, null, 'Контакты', '/contact', false, -2, 0, null, false);
-INSERT INTO sed_navigation (id, parent_id, text, url, authorized_only, list_number, list_order, lang, navbar) VALUES (37, null, 'Галерея', '/gallery', false, 0, 0, null, false);
-INSERT INTO sed_navigation (id, parent_id, text, url, authorized_only, list_number, list_order, lang, navbar) VALUES (38, null, 'Заведующий Кафедрой', '/people/bsu1', false, 1, 0, null, false);
-INSERT INTO sed_navigation (id, parent_id, text, url, authorized_only, list_number, list_order, lang, navbar) VALUES (39, null, 'Лидеры Кубы и США провели переговоры впервые с 1956 года', '/content/18375', false, 0, 0, null, false);
-INSERT INTO sed_navigation (id, parent_id, text, url, authorized_only, list_number, list_order, lang, navbar) VALUES (41, null, 'THIS PAGE', '/map/add', false, 0, 0, null, false);
-INSERT INTO sed_navigation (id, parent_id, text, url, authorized_only, list_number, list_order, lang, navbar) VALUES (43, null, 'Системные Аттрибуты', '/admin/system', false, 0, 0, null, false);
-INSERT INTO sed_navigation (id, parent_id, text, url, authorized_only, list_number, list_order, lang, navbar) VALUES (3652, null, 'аffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffddddddddddddddddddddddddddddddddddd', '/map/edit/3652', true, 0, 0, null, false);
-INSERT INTO sed_navigation (id, parent_id, text, url, authorized_only, list_number, list_order, lang, navbar) VALUES (3653, 24, '17 мгновений весны', '/content/21222', true, 0, 0, null, false);
-INSERT INTO sed_navigation (id, parent_id, text, url, authorized_only, list_number, list_order, lang, navbar) VALUES (3654, 24, '345', '/map/add', true, 0, 0, null, false);
-INSERT INTO sed_navigation (id, parent_id, text, url, authorized_only, list_number, list_order, lang, navbar) VALUES (3655, null, 'HTML', '/content/21747', false, 0, 0, null, false);
-INSERT INTO sed_navigation (id, parent_id, text, url, authorized_only, list_number, list_order, lang, navbar) VALUES (3656, null, '123', null, false, 0, 0, null, false);
+INSERT INTO sed_navigation (id, parent_id, text, url, role, list_number, list_order, lang, navbar) VALUES (24, null, 'Информация', null, null, 2, 0, null, false);
+INSERT INTO sed_navigation (id, parent_id, text, url, role, list_number, list_order, lang, navbar) VALUES (26, 24, 'Site Map', '/map', null, 0, 0, null, false);
+INSERT INTO sed_navigation (id, parent_id, text, url, role, list_number, list_order, lang, navbar) VALUES (27, 24, 'Состав Кафедры', '/peoples', null, 0, 0, null, false);
+INSERT INTO sed_navigation (id, parent_id, text, url, role, list_number, list_order, lang, navbar) VALUES (28, 24, 'Студенты', '/students', null, 0, 0, null, false);
+INSERT INTO sed_navigation (id, parent_id, text, url, role, list_number, list_order, lang, navbar) VALUES (30, 24, 'Информация Кафедры', null, null, 0, 0, null, false);
+INSERT INTO sed_navigation (id, parent_id, text, url, role, list_number, list_order, lang, navbar) VALUES (31, 30, 'Учебная работа', '/content/educational', null, 0, 0, null, false);
+INSERT INTO sed_navigation (id, parent_id, text, url, role, list_number, list_order, lang, navbar) VALUES (32, 30, 'Научная работа', '/content/scientific', null, 5, 0, null, false);
+INSERT INTO sed_navigation (id, parent_id, text, url, role, list_number, list_order, lang, navbar) VALUES (33, 30, 'Конференции', '/content/conference', null, 0, 0, null, false);
+INSERT INTO sed_navigation (id, parent_id, text, url, role, list_number, list_order, lang, navbar) VALUES (34, null, 'Новости', null, null, 0, 0, null, false);
+INSERT INTO sed_navigation (id, parent_id, text, url, role, list_number, list_order, lang, navbar) VALUES (35, 34, 'Новости Кафедры', '/news', null, 0, 0, null, false);
+INSERT INTO sed_navigation (id, parent_id, text, url, role, list_number, list_order, lang, navbar) VALUES (36, null, 'Контакты', '/contact', null, -2, 0, null, false);
+INSERT INTO sed_navigation (id, parent_id, text, url, role, list_number, list_order, lang, navbar) VALUES (37, null, 'Галерея', '/gallery', null, 0, 0, null, false);
+INSERT INTO sed_navigation (id, parent_id, text, url, role, list_number, list_order, lang, navbar) VALUES (38, null, 'Заведующий Кафедрой', '/people/bsu1', null, 1, 0, null, false);
+INSERT INTO sed_navigation (id, parent_id, text, url, role, list_number, list_order, lang, navbar) VALUES (39, null, 'Лидеры Кубы и США провели переговоры впервые с 1956 года', '/content/18375', false, 0, 0, null, false);
+INSERT INTO sed_navigation (id, parent_id, text, url, role, list_number, list_order, lang, navbar) VALUES (41, null, 'THIS PAGE', '/map/add', null, 0, 0, null, false);
+INSERT INTO sed_navigation (id, parent_id, text, url, role, list_number, list_order, lang, navbar) VALUES (43, null, 'Системные Аттрибуты', '/admin/system', null, 0, 0, null, false);
+INSERT INTO sed_navigation (id, parent_id, text, url, role, list_number, list_order, lang, navbar) VALUES (3652, null, 'аffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffddddddddddddddddddddddddddddddddddd', '/map/edit/3652', true, 0, 0, null, false);
+INSERT INTO sed_navigation (id, parent_id, text, url, role, list_number, list_order, lang, navbar) VALUES (3653, 24, '17 мгновений весны', '/content/21222', true, 0, 0, null, false);
+INSERT INTO sed_navigation (id, parent_id, text, url, role, list_number, list_order, lang, navbar) VALUES (3654, 24, '345', '/map/add', null, 0, 0, null, false);
+INSERT INTO sed_navigation (id, parent_id, text, url, role, list_number, list_order, lang, navbar) VALUES (3655, null, 'HTML', '/content/21747', null, 0, 0, null, false);
+INSERT INTO sed_navigation (id, parent_id, text, url, role, list_number, list_order, lang, navbar) VALUES (3656, null, '123', null, null, 0, 0, null, false);
 
 #------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -405,7 +405,7 @@ CREATE TABLE IF NOT EXISTS sed_news (
   creator      BIGINT,
   content      BIGINT,
   photo        VARCHAR(2000),
-  simpleText   VARCHAR(3000),
+  simpleText   VARCHAR(10000),
   category     VARCHAR(70),
   fixed        BIT                DEFAULT FALSE,
   created_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,

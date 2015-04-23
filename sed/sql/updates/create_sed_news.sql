@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS sed_news (
   creator      BIGINT,
   content      BIGINT,
   photo        VARCHAR(2000),
-  simpleText   VARCHAR(3000),
+  simpleText   VARCHAR(10000),
   category     VARCHAR(70),
   fixed        BIT                DEFAULT FALSE,
   created_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,

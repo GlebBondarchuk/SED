@@ -48,10 +48,10 @@
                             <li>
                                 <a href="${applicationPath}/students"><spring:message code="label.nav.students"/></a>
                             </li>
+                            <li>
+                                <a href="${applicationPath}/notification"><spring:message code="label.nav.notifications"/></a>
+                            </li>
                         </security:authorize>
-                        <li>
-                            <a href="${applicationPath}/notification"><spring:message code="label.nav.notifications"/></a>
-                        </li>
                         <li class="divider"></li>
                         <li>
                             <a href="${applicationPath}/news"><spring:message code="label.news.title"/></a>

@@ -5,7 +5,8 @@
 <div class="jumbotron">
     <ul id="accordion">
         <c:forEach var="parent" items="${parents}">
-            <security:authorize access="${parent.authorizedOnly ? 'isAuthenticated()' : 'permitAll()'}">
+            <security:authorize
+                    access="${empty parent.role ? 'permitAll()' : (parent.role =='ADMIN' ? 'hasRole(\"ADMIN\")' : (parent.role == 'TEACHER' ? 'hasAnyRole(\"ADMIN\", \"TEACHER\")' :'isAuthenticated()'))}">
                 <li>
                     <c:choose>
                         <c:when test="${parent.children.size() == 0}">
@@ -23,54 +24,66 @@
                             </security:authorize>
                             <ul id="${parent.id}" class="panel-collapse">
                                 <c:forEach var="child" items="${parent.children}">
-                                    <security:authorize access="${child.authorizedOnly ? 'isAuthenticated()' : 'permitAll()'}">
+                                    <security:authorize
+                                            access="${empty parent.role ? 'permitAll()' : (parent.role =='ADMIN' ? 'hasRole(\"ADMIN\")' : (parent.role == 'TEACHER' ? 'hasAnyRole(\"ADMIN\", \"TEACHER\")' :'isAuthenticated()'))}">
                                         <li>
                                             <c:choose>
                                                 <c:when test="${child.children.size() == 0}">
                                                     <a href="${applicationPath}${child.url}" target="_blank">${child.text}</a>
                                                     <security:authorize access="hasRole('ADMIN')">
-                                                        <a class="text-danger" href="${applicationPath}/map/edit/${child.id}"><spring:message code="label.siteMap.edit"/></a>
-                                                        <a class="text-danger" href="${applicationPath}/map/delete/${child.id}"><spring:message code="label.siteMap.delete"/></a>
+                                                        <a class="text-danger" href="${applicationPath}/map/edit/${child.id}"><spring:message
+                                                                code="label.siteMap.edit"/></a>
+                                                        <a class="text-danger" href="${applicationPath}/map/delete/${child.id}"><spring:message
+                                                                code="label.siteMap.delete"/></a>
                                                     </security:authorize>
                                                 </c:when>
                                                 <c:otherwise>
                                                     ${child.text}
                                                     <security:authorize access="hasRole('ADMIN')">
-                                                        <a class="text-danger" href="${applicationPath}/map/edit/${child.id}"><spring:message code="label.siteMap.edit"/></a>
-                                                        <a class="text-danger" href="${applicationPath}/map/delete/${child.id}"><spring:message code="label.siteMap.delete"/></a>
+                                                        <a class="text-danger" href="${applicationPath}/map/edit/${child.id}"><spring:message
+                                                                code="label.siteMap.edit"/></a>
+                                                        <a class="text-danger" href="${applicationPath}/map/delete/${child.id}"><spring:message
+                                                                code="label.siteMap.delete"/></a>
                                                     </security:authorize>
                                                     <ul id="${child.id}" class="panel-collapse">
                                                         <c:forEach var="child" items="${child.children}">
-                                                            <security:authorize access="${child.authorizedOnly ? 'isAuthenticated()' : 'permitAll()'}">
+                                                            <security:authorize
+                                                                    access="${empty parent.role ? 'permitAll()' : (parent.role =='ADMIN' ? 'hasRole(\"ADMIN\")' : (parent.role == 'TEACHER' ? 'hasAnyRole(\"ADMIN\", \"TEACHER\")' :'isAuthenticated()'))}">
                                                                 <li>
                                                                     <c:choose>
                                                                         <c:when test="${child.children.size() == 0}">
                                                                             <a href="${applicationPath}${child.url}" target="_blank">${child.text}</a>
                                                                             <security:authorize access="hasRole('ADMIN')">
-                                                                                <a class="text-danger" href="${applicationPath}/map/edit/${child.id}"><spring:message code="label.siteMap.edit"/></a>
+                                                                                <a class="text-danger" href="${applicationPath}/map/edit/${child.id}"><spring:message
+                                                                                        code="label.siteMap.edit"/></a>
                                                                                 <a class="text-danger"
-                                                                                   href="${applicationPath}/map/delete/${child.id}"><spring:message code="label.siteMap.delete"/></a>
+                                                                                   href="${applicationPath}/map/delete/${child.id}"><spring:message
+                                                                                        code="label.siteMap.delete"/></a>
                                                                             </security:authorize>
                                                                         </c:when>
                                                                         <c:otherwise>
                                                                             ${child.text}
                                                                             <security:authorize access="hasRole('ADMIN')">
-                                                                                <a class="text-danger" href="${applicationPath}/map/edit/${child.id}"><spring:message code="label.siteMap.edit"/></a>
+                                                                                <a class="text-danger" href="${applicationPath}/map/edit/${child.id}"><spring:message
+                                                                                        code="label.siteMap.edit"/></a>
                                                                                 <a class="text-danger"
-                                                                                   href="${applicationPath}/map/delete/${child.id}"><spring:message code="label.siteMap.delete"/></a>
+                                                                                   href="${applicationPath}/map/delete/${child.id}"><spring:message
+                                                                                        code="label.siteMap.delete"/></a>
                                                                             </security:authorize>
                                                                             <ul id="${child.id}" class="panel-collapse">
                                                                                 <c:forEach var="child" items="${child.children}">
                                                                                     <security:authorize
-                                                                                            access="${child.authorizedOnly ? 'isAuthenticated()' : 'permitAll()'}">
+                                                                                            access="${empty parent.role ? 'permitAll()' : (parent.role =='ADMIN' ? 'hasRole(\"ADMIN\")' : (parent.role == 'TEACHER' ? 'hasAnyRole(\"ADMIN\", \"TEACHER\")' :'isAuthenticated()'))}">
                                                                                         <li>
                                                                                             <a href="${applicationPath}${child.url}"
                                                                                                target="_blank">${child.text}</a>
                                                                                             <security:authorize access="hasRole('ADMIN')">
                                                                                                 <a class="text-danger"
-                                                                                                   href="${applicationPath}/map/edit/${child.id}"><spring:message code="label.siteMap.edit"/></a>
+                                                                                                   href="${applicationPath}/map/edit/${child.id}"><spring:message
+                                                                                                        code="label.siteMap.edit"/></a>
                                                                                                 <a class="text-danger"
-                                                                                                   href="${applicationPath}/map/delete/${child.id}"><spring:message code="label.siteMap.delete"/></a>
+                                                                                                   href="${applicationPath}/map/delete/${child.id}"><spring:message
+                                                                                                        code="label.siteMap.delete"/></a>
                                                                                             </security:authorize>
                                                                                         </li>
                                                                                     </security:authorize>

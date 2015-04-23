@@ -16,7 +16,7 @@ public class Navigation extends BaseEntity {
     private Navigation parent;
     private String text;
     private String url;
-    private boolean authorizedOnly;
+    private Role role;
     private int listNumber;
     private int order;
     private String lang;
@@ -26,7 +26,7 @@ public class Navigation extends BaseEntity {
         this.parent = parent;
         this.text = parent.text;
         this.url = parent.url;
-        this.authorizedOnly = parent.authorizedOnly;
+        this.role = parent.role;
         this.listNumber = parent.listNumber;
         this.order = parent.order;
         this.lang = parent.lang;
@@ -86,13 +86,14 @@ public class Navigation extends BaseEntity {
         this.url = url;
     }
 
-    @Column(name = "authorized_only")
-    public boolean isAuthorizedOnly() {
-        return authorizedOnly;
+    @Column(name = "role")
+    @Enumerated(EnumType.STRING)
+    public Role getRole() {
+        return role;
     }
 
-    public void setAuthorizedOnly(boolean authorizedOnly) {
-        this.authorizedOnly = authorizedOnly;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     @Column(name = "list_number")
