@@ -24,7 +24,7 @@
                         <h5><i class="fa fa-envelope-o"></i><a href="mailto:${student.user.email}"> ${student.user.email}</a></h5>
                     </c:if>
                 </div>
-                <security:authorize access="hasRole('ADMIN')">
+                <security:authorize access="hasAnyRole('ADMIN','TEACHER')">
                     <a href="<c:url value="/student/${student.user.login}/edit"/>">
                         <span class="glyphicon glyphicon-edit"></span>
                     </a>

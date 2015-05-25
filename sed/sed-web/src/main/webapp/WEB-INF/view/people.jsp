@@ -1,3 +1,4 @@
+<%@ page import="com.bsu.sed.utils.SecurityUtils" %>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -38,7 +39,7 @@
     </div>
 </c:if>
 
-<security:authorize access="hasRole('ADMIN')">
+<security:authorize access="hasAnyRole('ADMIN','TEACHER')">
     <c:if test="${edit}">
         <div class="row">
             <div class="col-md-2">
@@ -119,6 +120,19 @@
                             </div>
                         </div>
                     </div>
+                    <security:authentication var="username" property="principal.username"/>
+                    <c:if test="${people.user.name == username}">
+                        <input type="password" style="display:none">
+                    <div class="form-group">
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Change Password"
+                                       value="" autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+                    </c:if>
                     <button type="submit" name="submit" id="submit" class="btn btn-danger pull-left">
                         <span class="glyphicon glyphicon-save"></span>&nbsp;&nbsp;<spring:message code="people.button.saveChanges"/>
                     </button>
@@ -175,7 +189,7 @@
     </div>
 </div>
 
-<security:authorize access="hasRole('ADMIN')">
+<security:authorize access="hasAnyRole('ADMIN','TEACHER')">
     <hr>
     <div class="row">
         <div class="col-lg-12">

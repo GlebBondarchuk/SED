@@ -31,8 +31,13 @@
         </div>
     </div>
 </c:if>
-
-<security:authorize access="hasRole('ADMIN')">
+<security:authentication var="username" property="principal.username"/>
+<security:authorize access="hasAnyRole('ADMIN','STUDENT')">
+    <c:if test="${not edit and student.user.name == username}">
+    <a href="<c:url value="/student/${student.user.login}/edit"/>">
+        <span class="glyphicon glyphicon-edit"></span>
+    </a>
+    </c:if>
     <c:if test="${edit}">
         <div class="row">
             <div class="col-md-2">
@@ -112,6 +117,18 @@
                             <span class="help-block with-errors hidden"></span>
                         </div>
                     </div>
+                    <c:if test="${student.user.name == username}">
+                        <input type="password" style="display:none">
+                    <div class="form-group">
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Change Password"
+                                       value="">
+                            </div>
+                        </div>
+                    </div>
+                    </c:if>
                     <button type="submit" name="submit" id="submit" class="btn btn-danger pull-left">
                         <span class="glyphicon glyphicon-save"></span>&nbsp;&nbsp;<spring:message
                             code="people.button.saveChanges"/>

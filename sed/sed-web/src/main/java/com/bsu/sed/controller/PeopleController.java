@@ -5,8 +5,10 @@ import com.bsu.sed.model.Tiles;
 import com.bsu.sed.model.dto.ContentDto;
 import com.bsu.sed.model.dto.PeopleDto;
 import com.bsu.sed.model.persistent.People;
+import com.bsu.sed.model.persistent.Student;
 import com.bsu.sed.service.ContentService;
 import com.bsu.sed.service.PeopleService;
+import com.bsu.sed.utils.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -59,18 +61,26 @@ public class PeopleController {
     }
 
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN','TEACHER')")
     @RequestMapping(value = "/people/{login}/edit", method = RequestMethod.GET)
     public ModelAndView getEditUserPage(@PathVariable("login") String login) {
+        People user = peopleService.getByLogin(login);
+        if(SecurityUtils.hasAnyRole(Role.TEACHER) && !user.getUser().getName().equals(SecurityUtils.getAuthenticatedUserName())) {
+            throw new RuntimeException("Access is denied.");
+        }
         ModelAndView modelAndView = getUserPage(login);
         modelAndView.addObject("edit", true);
         return modelAndView;
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN','TEACHER')")
     @RequestMapping(value = "/people/{userLogin}/edit", method = RequestMethod.POST)
     public ModelAndView saveChanges(@PathVariable("userLogin") String login,
                                     @ModelAttribute PeopleDto dto, BindingResult result) {
+        People user = peopleService.getByLogin(login);
+        if(SecurityUtils.hasAnyRole(Role.TEACHER) && !user.getUser().getName().equals(SecurityUtils.getAuthenticatedUserName())) {
+            throw new RuntimeException("Access is denied.");
+        }
         ModelAndView modelAndView = new ModelAndView(Tiles.USER_PAGE.getTileName());
         if (result.hasErrors()) {
             modelAndView.addObject("errors", result.getAllErrors());

@@ -471,12 +471,12 @@
             <properties>
                 <custom.resource>bsu</custom.resource>
                 <documentRepositoryFolder>/home</documentRepositoryFolder>
-                <serverUrl>sed-bsu.mycloud.by</serverUrl>
+                <serverUrl>sed-fpm.mycloud.by</serverUrl>
                 <context-root>/</context-root>
                 <displayVersion>inline</displayVersion>
-                <dbURL>jdbc:mysql://mysql17001-sedbsu2015.mycloud.by/sed</dbURL>
+                <dbURL>jdbc:mysql://mysql22821-sed-fpm.mycloud.by/sed</dbURL>
                 <dbUser>root</dbUser>
-                <dbPassword>4FmO3VJfLJ</dbPassword>
+                <dbPassword>SBOdxx48225</dbPassword>
                 <locale>ru_RU</locale>
             </properties>
         </profile>

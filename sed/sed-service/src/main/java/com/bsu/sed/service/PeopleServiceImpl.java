@@ -9,6 +9,7 @@ import com.bsu.sed.model.persistent.Content;
 import com.bsu.sed.model.persistent.People;
 import com.bsu.sed.model.persistent.User;
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang.StringUtils;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
@@ -88,6 +89,10 @@ public class PeopleServiceImpl implements PeopleService {
         for (Content content : people.getContents()) {
             Hibernate.initialize(content);
             content.setHtml(new String(content.getContent(), Charset.forName("UTF-8")));
+        }
+        if(StringUtils.isNotBlank(dto.getPassword())) {
+            String encoded = passwordEncoder.encodePassword(dto.getPassword(), null);
+            people.getUser().setPassword(encoded);
         }
         return people;
     }
